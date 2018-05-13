@@ -1,3 +1,36 @@
 {% extends 'base.html' %}
 {% import '_macros.html' as macros %}
 
+{% block page_content %}
+    <ul class="posts">
+        {% for post in posts %}
+            <li class="post">
+                <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
+                <button class="floatright">只看楼主</button>
+                <button class="floatright">收藏</button>
+                <button class="floatright" id="give-comment">回复</button>
+            </li>
+            {% if pagination.page == 1 %}
+                <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
+                    <div>
+                        {{ post.descriptions }}
+                        <div class="post-footer">
+                            <span>{{ post.add_time }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% include '_comments.html'%}
+    {{ macros.pagination_widget(pagination, 'main.idle_item', id=posts[0].id) }}
+    <form method="post" action="" style="margin-top: 30px" role="form">
+        <div class="form-group">
+            <label for="name">发表回复</label>
+            <input class="editor" name="content" id="content" placeholder="">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">发表</button>
+        </div>
+    </form>
+{% endblock %}

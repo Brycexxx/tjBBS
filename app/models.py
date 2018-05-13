@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     confirmed = db.Column(db.Boolean, default=False)
     avatar = db.Column(db.String(128))
     location = db.Column(db.String(64))
-    member_since = db.Column(db.DateTime, default=datetime.utcnow)
+    member_since = db.Column(db.DateTime, default=datetime.now)
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     idle_items = db.relationship('IdleItems', backref='user', lazy='dynamic')
@@ -129,7 +129,7 @@ class IdleItems(db.Model):
     title = db.Column(db.String(256), index=True)
     descriptions = db.Column(db.Text)
     images = db.Column(db.String(128))
-    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+    add_time = db.Column(db.DateTime, default=datetime.now)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     view_times = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -142,7 +142,7 @@ class IdleItems(db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+    add_time = db.Column(db.DateTime, default=datetime.now)
     body = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'))

@@ -1,0 +1,24 @@
+<ul class="posts">
+    {% for comment in comments %}
+        <li class="post">
+            <div>
+                {{ comment.body }}
+                <div class="post-footer">
+                    <span>{{ comment.add_time }}&nbsp;-</span>
+                    <span class="do_reply">回复</span>
+                    <br>
+                    <div class="comment-form">
+                        <form role="form" method="post">
+                            <div class="form-group">
+                                <input type="text" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-primary" >发表</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

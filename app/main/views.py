@@ -70,7 +70,7 @@ def idle_item(id):
     idle_item = IdleItems.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     if request.method == 'POST':
-        comment_body = request.form['content']
+        comment_body = drop_html(request.form['content'])
         if comment_body:
             comment = Comment(body=comment_body, idle_item=idle_item, user=current_user._get_current_object())
             db.session.add(comment)
@@ -85,7 +85,7 @@ def idle_item(id):
         page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     comments = pagination.items
-    return render_template('post_details.html', posts=[idle_item], comment=comments, pagination=pagination)
+    return render_template('post_details.html', posts=[idle_item], comments=comments, pagination=pagination)
 
 
 @main.route('/follow/<username>')
