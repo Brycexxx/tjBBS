@@ -1,0 +1,82 @@
+.categories h3:before, .categories h3:after {
+    width: 170px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 40px 0px;
+}
+.center {
+    text-align: center;
+}
+.image-size {
+    width: 80%;
+    height: 240px;
+}
+a {
+    font-size: 20px;
+}
+
+.carousel-top {
+    margin-top: 20px;
+}
+.slide-size {
+    width: 560px;
+    height: 215px;
+}
+
+.foot-color {
+    background-color: #333;
+    border-color: #333;
+}
+
+a {
+    font-size: 14px;
+}
+
+.profile-thumbnail {
+    position: absolute;
+    height: 40px;
+    width: 54px;
+}
+.profile-header {
+    min-height: 260px;
+    margin-left: 280px;
+}
+ul.posts {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+ul.posts li.post {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.posts li.post:hover {
+    background-color: #f0f0f0;
+}
+div.post-date {
+    float: right;
+}
+div.post-author {
+    font-weight: bold;
+    padding-left: 45px;
+}
+div.post-thumbnail {
+    position: absolute;
+}
+div.post-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+div.post-footer {
+    text-align: right;
+}
+div.pagination {
+    width: 100%;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+}

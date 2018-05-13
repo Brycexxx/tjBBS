@@ -1,0 +1,13 @@
+{{ user.username }}, 你好！
+
+欢迎使用同济大学二手交易网站
+
+为了确认你的帐号请点击链接:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+致敬,
+
+同济大学二手交易网
+
+注意：此为系统由件请勿回复！

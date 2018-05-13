@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% import '_macros.html' as macros %}
+
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb" style="margin-top:6px;">
+                    {% if args['object'] == '帖子' %}
+                        <li>找到&nbsp;{{ idle_items_count }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
+                    {% else %}
+                        <li>找到{{ users_count }}个与"{{ args['keyword'] }}"相关的用户</li>
+                    {% endif %}
+                </ol>
+                {% include '_posts.html' %}
+            </div>
+        </div>
+    </div>
+    {% if pagination %}
+        <div class="pagination">
+            {% if args['object'] == '帖子' %}
+                {{ macros.pagination_widget(pagination, 'main.search', object='帖子', keyword=args['keyword']) }}
+            {% else %}
+                {{ macros.pagination_widget(pagination, 'main.search', object='用户', keyword=args['keyword']) }}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

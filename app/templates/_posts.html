@@ -1,0 +1,50 @@
+<ul class="posts">
+    {% for post in posts %}
+        {% if args['object'] == '帖子' %}
+            <li class="post">
+                <a href="{{ url_for('main.idle_item', id=post.id) }}"><h3>{{ post.title }}</h3></a>
+                <h5>{{ post.comments.count() }}个回复</h5>
+                <p>{{ post.descriptions[: 30] + '......' }}</p>
+                <span>{{ post.add_time }}&nbsp;-</span>
+                <a href="{{ url_for('main.user', username=post.user.username) }}">{{ post.user.username }}</a>&nbsp;-
+                <a href="#">{{ post.category.name }}</a>
+            </li>
+        {% else %}
+            <li class="post">
+                <div class="profile-thumbnail">
+                    <a href="{{ url_for('main.user', username=post.username) }}">
+                        <img class="img-rounded profile-thumbnail" src="{{ url_for('static', filename='uploads/users/' + post.avatar) }}">
+                    </a>
+                </div>
+                <div class="post-date" style="font-size: 12px">{{ moment(post.member_since).fromNow() }}加入</div>
+                <div class="post-author" style="margin-left: 15px">
+                    <a href="{{ url_for('main.user', username=post.username) }}">
+                        {{ post.username }}
+                    </a>
+                </div>
+                <div class="post-body" style="margin-left: 60px">
+                    {% if post.about_me %}
+                        {{ post.about_me }}
+                    {% else %}
+                        这个人很神秘，什么也没留下......
+                    {% endif %}
+                    <div class="post-footer">
+                        {% if current_user != post %}
+                            <a href="{{ url_for('main.follow', username=post.username) }}">
+                                <span class="label label-primary">关注</span>
+                            </a>
+                            <a href="{{ url_for('main.add_friends', username=post.username) }}">
+                                <span class="label label-success">加为好友</span>
+                            </a>
+                        {% endif %}
+                        <a href="#">
+                            <span class="label label-primary">
+                                {{ post.idle_items.count() }}&nbsp;帖子
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

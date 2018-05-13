@@ -1,0 +1,93 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}同济大学二手交易市场{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#do_search").click(function () {
+                const select_object = $("#select_object").val();
+                const keyword = $("#keyword").val();
+                if (keyword.length !== 0) {
+                    location.href = "{{ url_for('main.search', page=1) }}?object=" + select_object + "&keyword=" + keyword
+                }
+                else {
+                    $("#keyword").attr('placeholder', "请输入搜索关键字！");
+                }
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation" style="margin: 0px">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="{{ url_for('main.index') }}">同济大学的专属二手交易网站</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('main.user', username=current_user.username) }}">欢迎您，{{ current_user.username }}</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="background-color: #ffda44; width: 100%; height: 90px; padding:25px 0px">
+        <div class="row">
+            <div class="col-md-3 hidden-sm center">
+                让你的闲置流动起来！
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+                <form method="post">
+                    <input type="text" class="form-control" id="keyword" placeholder="客官想找什么呀" style="width: 250px; float: left">
+                    <select class="form-control" id="select_object" style="width: 80px; float: left">
+                        <option>帖子</option>
+                        <option>用户</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <a class="btn btn-default" id="do_search"><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</a>
+                    </span>
+                </form>
+            </div>
+            <div class="col-md-3 hidden-sm center">
+                <a href="{{ url_for('main.post_idle_item') }}">发布你的闲置</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang('zh-cn') }}
+{% endblock %}

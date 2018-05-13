@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <form  method="post" action="" style="margin-top: 30px" role="form">
+        <div class="form-group">
+            {{ form.category.label }}
+            {{ form.category }}
+            {{ form.title.label }}
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <input class="editor" name="content" id="content">
+        </div>
+    <div class="form-group">
+        {{ form.csrf_token }}
+        {{ form.submit }}
+    </div>
+    </form>
+{% endblock %}
