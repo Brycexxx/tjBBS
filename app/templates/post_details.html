@@ -3,27 +3,25 @@
 
 {% block page_content %}
     <ul class="posts">
-        {% for post in posts %}
-            <li class="post">
-                <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
-                <button class="floatright">只看楼主</button>
-                <button class="floatright">收藏</button>
-                <button class="floatright" id="give-comment">回复</button>
-            </li>
-            {% if pagination.page == 1 %}
-                <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
-                    <div>
-                        {{ post.descriptions }}
-                        <div class="post-footer">
-                            <span>{{ post.add_time }}</span>
-                        </div>
+        <li class="post">
+            <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
+            <button class="floatright" id="only-owner">只看楼主</button>
+            <button class="floatright">收藏</button>
+            <button class="floatright" id="give-comment">回复</button>
+        </li>
+        {% if pagination.page == 1 %}
+            <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
+                <div>
+                    {{ post.descriptions }}
+                    <div class="post-footer">
+                        <span>{{ post.add_time }}</span>
                     </div>
-                </li>
-            {% endif %}
-        {% endfor %}
+                </div>
+            </li>
+        {% endif %}
     </ul>
     {% include '_comments.html'%}
-    {{ macros.pagination_widget(pagination, 'main.idle_item', id=posts[0].id) }}
+    {{ macros.pagination_widget(pagination, 'main.idle_item', id=post.id) }}
     <form method="post" action="" style="margin-top: 30px" role="form">
         <div class="form-group">
             <label for="name">发表回复</label>

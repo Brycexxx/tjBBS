@@ -16,7 +16,12 @@ def drop_html(html_body):
 @main.route('/')
 def index():
     form = SearchForm()
-    return render_template('index.html', form=form)
+    page = request.args.get('page', 1, type=int)
+    pagination = IdleItems.query.order_by(IdleItems.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    posts = pagination.items
+    return render_template('index.html', form=form, pagination=pagination, posts=posts)
 
 
 @main.route('/user/<username>')
@@ -85,7 +90,7 @@ def idle_item(id):
         page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     comments = pagination.items
-    return render_template('post_details.html', posts=[idle_item], comments=comments, pagination=pagination)
+    return render_template('post_details.html', post=idle_item, comments=comments, pagination=pagination)
 
 
 @main.route('/follow/<username>')

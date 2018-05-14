@@ -13,6 +13,11 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+   $("#only-owner").click(function (e) {
+      $(".not-owner").toggle();
+   });
+});
 /*
 function reply(e){
     const span = e.target;
@@ -20,4 +25,15 @@ function reply(e){
     div.css('display', 'block');
 }
 
+
+        <script>
+            $(document).ready(function () {
+                $("#only-host").click(function (e) {
+                    btn = e.target;
+                    {% if current_user != comment.user %}
+                        $(btn).style.display=none;
+                    {% endif %}
+                });
+            });
+        </script>
 */

@@ -1,6 +1,6 @@
 <ul class="posts">
     {% for comment in comments %}
-        <li class="post">
+        <li {% if post.user != comment.user %} class="post not-owner" {% else %} class="post" {% endif %}>
             <div>
                 {{ comment.body }}
                 <div class="post-footer">
