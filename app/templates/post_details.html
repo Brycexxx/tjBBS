@@ -6,7 +6,11 @@
         <li class="post">
             <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
             <button class="floatright" id="only-owner">只看楼主</button>
-            <button class="floatright">收藏</button>
+            {% if not current_user.is_collecting(post) %}
+                <input class="floatright" type="button" value="收藏" onclick="window.location.href='{{ url_for('main.collect', id=post.id) }}'">
+            {% else %}
+                <input class="floatright" type="button" value="取消收藏" onclick="window.location.href='{{ url_for('main.cancel_collect', id=post.id) }}'">
+            {% endif %}
             <button class="floatright" id="give-comment">回复</button>
         </li>
         {% if pagination.page == 1 %}
@@ -21,7 +25,9 @@
         {% endif %}
     </ul>
     {% include '_comments.html'%}
-    {{ macros.pagination_widget(pagination, 'main.idle_item', id=post.id) }}
+    {% if comments %}
+        {{ macros.pagination_widget(pagination, 'main.idle_item', id=post.id) }}
+    {% endif %}
     <form method="post" action="" style="margin-top: 30px" role="form">
         <div class="form-group">
             <label for="name">发表回复</label>

@@ -8,11 +8,12 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 @auth.before_app_request
 def before_request():
-    if current_user.is_authenticated \
-        and not current_user.confirmed \
+    if current_user.is_authenticated:
+        current_user.ping()
+        if not current_user.confirmed \
         and request.endpoint != 'static' \
         and request.blueprint != 'auth':
-        return redirect(url_for('auth.unconfirmed'))
+            return redirect(url_for('auth.unconfirmed'))
 
 @auth.route('/register', methods=['POST', 'GET'])
 def register():

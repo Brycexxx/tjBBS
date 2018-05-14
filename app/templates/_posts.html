@@ -3,7 +3,7 @@
         {% if args['object'] == '帖子' %}
             <li class="post">
                 <a href="{{ url_for('main.idle_item', id=post.id) }}"><h3>{{ post.title }}</h3></a>
-                <h5>{{ post.comments.count() }}个回复</h5>
+                <h5>{{ post.comments.count() }}&nbsp;个回复 | {{ post.view_times }}&nbsp;次浏览</h5>
                 <p>{{ post.descriptions[: 30] + '......' }}</p>
                 <span>{{ post.add_time }}&nbsp;-</span>
                 <a href="{{ url_for('main.user', username=post.user.username) }}">{{ post.user.username }}</a>&nbsp;-

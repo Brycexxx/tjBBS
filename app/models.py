@@ -5,11 +5,19 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 
+
 class Permission:
     FOLLOW = 1
     COMMENT = 2
     WRITE = 3
     ADMIN = 4
+
+
+class Collection(db.Model):
+    __tablename__ = "collections"
+    collecting_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    collected_idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'), primary_key=True)
+    add_time = db.Column(db.DateTime, default=datetime.now)
 
 
 class User(db.Model, UserMixin):
@@ -24,10 +32,13 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String(128))
     location = db.Column(db.String(64))
     member_since = db.Column(db.DateTime, default=datetime.now)
-    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    last_seen = db.Column(db.DateTime, default=datetime.now)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     idle_items = db.relationship('IdleItems', backref='user', lazy='dynamic')
-
+    collections = db.relationship('Collection', foreign_keys=[Collection.collecting_user_id],
+                                  backref=db.backref('collecting_user', lazy='joined'),
+                                  lazy='dynamic',
+                                  cascade='all, delete-orphan')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -47,7 +58,7 @@ class User(db.Model, UserMixin):
 
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
-        return s.dumps({'confirm': self.id}).decode('utf-8') # 解码之前是字节型数据，解码后是字符串类型
+        return s.dumps({'confirm': self.id}).decode('utf-8')  # 解码之前是字节型数据，解码后是字符串类型
 
     def confirm(self, token):
         s = Serializer(current_app.config['SECRET_KEY'])
@@ -63,21 +74,40 @@ class User(db.Model, UserMixin):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
     def is_admin(self):
         return (self.role_id == 2)
 
     def ping(self):
-        self.last_seen = datetime.utcnow()
+        self.last_seen = datetime.now()
         db.session.add(self)
+        db.session.commit()
 
+    def collect(self, idle_item):
+        if not self.is_collecting(idle_item):
+            c = Collection(collected_idle_item=idle_item, collecting_user=self)
+            db.session.add(c)
+            db.session.commit()
+
+    def cancel_collect(self, idle_item):
+        collection = self.collections.filter_by(collected_idle_item_id=idle_item.id).first()
+        if collection:
+            db.session.delete(collection)
+            db.session.commit()
+
+    def is_collecting(self, idle_item):
+        if idle_item.id is None:
+            return False
+        return self.collections.filter_by(
+            collected_idle_item_id=idle_item.id).first() is not None
 
     def __repr__(self):
         return "<User: %r>" % (self.username)
 
+
 class AnonymousUser(AnonymousUserMixin):
     def is_admin(self):
         return False
+
 
 login_manager.anonymous_user = AnonymousUser
 
@@ -119,9 +149,9 @@ class Role(db.Model):
     def add_permission(self, perm):
         self.permission += perm
 
-
     def __repr__(self):
         return "<Role: %r>" % self.name
+
 
 class IdleItems(db.Model):
     __tablename__ = 'idle_items'
@@ -131,13 +161,17 @@ class IdleItems(db.Model):
     images = db.Column(db.String(128))
     add_time = db.Column(db.DateTime, default=datetime.now)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
-    view_times = db.Column(db.Integer)
+    view_times = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='idle_item', lazy='dynamic')
-
+    users = db.relationship('Collection', foreign_keys=[Collection.collected_idle_item_id],
+                            backref=db.backref('collected_idle_item', lazy='joined'),
+                            lazy='dynamic',
+                            cascade='all, delete-orphan')
 
     def __repr__(self):
         return '<IdleItems: %r>' % self.id
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -146,7 +180,6 @@ class Comment(db.Model):
     body = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'))
-
 
     def __repr__(self):
         return "<Comment to: %r>" % self.idle_item.title
@@ -169,5 +202,3 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<Category: %r>' % self.name
-
-
