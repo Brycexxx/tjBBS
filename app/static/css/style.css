@@ -71,7 +71,9 @@ div.post-content {
     min-height: 48px;
 }
 div.post-footer {
+    color: gray;
     text-align: right;
+    margin-top: 20px;
 }
 div.pagination {
     width: 100%;
@@ -83,7 +85,7 @@ div.pagination {
     float: right;
 }
 .post-body {
-     padding-left: 45px;
+    padding-left: 45px;
 }
 
 ul.comments {
@@ -104,4 +106,22 @@ ul.comments li.comment:hover {
 }
 .comment-form {
     display: none;
+}
+
+.reply-box-size {
+    width: 80%;
+    min-width: 100px;
+}
+
+ul.reply-comments {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+
+ul.reply-comments li.reply-comment {
+    text-align: left;
+    margin-left: 32px;
+    padding: 8px;
 }

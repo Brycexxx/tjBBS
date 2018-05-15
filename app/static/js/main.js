@@ -8,6 +8,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".do_reply").click(function (e) {
         sp = e.target;
+        const sp_value = $(sp).text();
+        if (sp_value === "回复") {
+            $(sp).html("收起回复");
+        }
+        else {
+            $(sp).html("回复");
+        }
         const reply = $(sp).next().next();
         $(reply).toggle();
     });
@@ -18,22 +25,11 @@ $(document).ready(function () {
       $(".not-owner").toggle();
    });
 });
+
 /*
-function reply(e){
-    const span = e.target;
-    const div = span.nextSibling.nextSibling;
-    div.css('display', 'block');
-}
+$(document).ready(function () {
+    $("#submit").click(function (e) {
+        const comment_body = $("#comment-body").val();
 
-
-        <script>
-            $(document).ready(function () {
-                $("#only-host").click(function (e) {
-                    btn = e.target;
-                    {% if current_user != comment.user %}
-                        $(btn).style.display=none;
-                    {% endif %}
-                });
-            });
-        </script>
-*/
+    });
+});*/

@@ -1,19 +1,38 @@
 <ul class="posts">
-    {% for comment in comments %}
-        <li {% if post.user != comment.user %} class="post not-owner" {% else %} class="post" {% endif %}>
+    {% for f in range(length) %}
+        <li {% if post.user != comments[f].user %} class="post not-owner" {% else %} class="post" {% endif %}>
             <div>
-                {{ comment.body }}
+                <span id="comment-body">
+                    {{ comments[f].body }}
+                </span>
                 <div class="post-footer">
-                    <span>{{ comment.add_time }}&nbsp;-</span>
-                    <span class="do_reply">回复</span>
+                    {% if current_user == comments[f].user %}
+                        <a href="{{ url_for('main.del_comment', id=comments[f].id, post_id=post.id) }}">删除&nbsp;</a>
+                    {% endif %}
+                    <span>{{ f + 2 }}&nbsp;楼&nbsp;|&nbsp;{{ comments[f].add_time }}&nbsp;-</span>
+                    <span class="do_reply">回复</span>({{ comments[f].replys.count() }})
                     <br>
                     <div class="comment-form">
-                        <form role="form" method="post">
+                        {% if comments[f].replys %}
+                            <ul class="reply-comments">
+                                {% for reply_comment in comments[f].replys %}
+                                    <li class="reply-comment">
+                                        {{ reply_comment.user.username }}: {{ reply_comment.body }}
+                                    <div class="post-footer">
+                                        <a href="{{ url_for('main.del_rep_comment', id=reply_comment.id, post_id=post.id) }}">删除</a>&nbsp;|&nbsp;
+                                        {{ reply_comment.add_time }}
+                                    </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <form role="form" method="post" action="{{ url_for('main.idle_item', id=post.id, page=page, reply_comment_id=comments[f].id) }}">
                             <div class="form-group">
-                                <input type="text" placeholder="" class="form-control">
+                                {{ form.reply }}
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-sm btn-primary" >发表</button>
+                                {{ form.csrf_token }}
+                                {{ form.submit }}
                             </div>
                         </form>
                     </div>

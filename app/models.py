@@ -35,6 +35,7 @@ class User(db.Model, UserMixin):
     last_seen = db.Column(db.DateTime, default=datetime.now)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     idle_items = db.relationship('IdleItems', backref='user', lazy='dynamic')
+    reply_comments = db.relationship('ReplyToComment', backref='user', lazy='dynamic')
     collections = db.relationship('Collection', foreign_keys=[Collection.collecting_user_id],
                                   backref=db.backref('collecting_user', lazy='joined'),
                                   lazy='dynamic',
@@ -106,6 +107,9 @@ class User(db.Model, UserMixin):
 
 class AnonymousUser(AnonymousUserMixin):
     def is_admin(self):
+        return False
+
+    def is_collecting(self, idle_item):
         return False
 
 
@@ -180,6 +184,7 @@ class Comment(db.Model):
     body = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'))
+    replys = db.relationship('ReplyToComment', backref='comment', lazy='dynamic')
 
     def __repr__(self):
         return "<Comment to: %r>" % self.idle_item.title
@@ -202,3 +207,15 @@ class Category(db.Model):
 
     def __repr__(self):
         return '<Category: %r>' % self.name
+
+
+class ReplyToComment(db.Model):
+    __tablename__ = "replys_to_comment"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    add_time = db.Column(db.DateTime, default=datetime.now)
+
+    def __repr__(self):
+        return "<ReplyTo Comment %r>" % self.comment_id
