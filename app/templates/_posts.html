@@ -6,13 +6,13 @@
                 <h5>{{ post.comments.count() }}&nbsp;个回复 | {{ post.view_times }}&nbsp;次浏览</h5>
                 <p>{{ post.descriptions[: 30] + '......' }}</p>
                 <span>{{ post.add_time }}&nbsp;-</span>
-                <a href="{{ url_for('main.user', username=post.user.username) }}">{{ post.user.username }}</a>&nbsp;-
+                <a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;-
                 <a href="#">{{ post.category.name }}</a>
             </li>
         {% else %}
             <li class="post">
                 <div class="profile-thumbnail">
-                    <a href="{{ url_for('main.user', username=post.username) }}">
+                    <a href="{{ url_for('main.user', id=post.id) }}">
                         <img class="img-rounded profile-thumbnail" src="{{ url_for('static', filename='uploads/users/' + post.avatar) }}">
                     </a>
                 </div>

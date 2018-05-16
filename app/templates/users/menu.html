@@ -1,0 +1,19 @@
+<div class="col-md-3">
+    <div class="list-group">
+        <a id="user-info" href="{{ url_for('main.userinfo')}}" class="list-group-item">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;基本信息
+        </a>
+        <a id="edit-pwd" href="{{ url_for('main.edit_pwd')}}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码
+        </a>
+        <a id="follows" href="{{ url_for('main.follows', page=1) }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-comment"></span>&nbsp;关注/粉丝
+        </a>
+        <a id="posts" href="{{ url_for('main.idle_items', page=1) }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;发布帖子
+        </a>
+        <a id="collections" href="{{ url_for('main.collected_idle_items', page=1) }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;收藏帖子
+        </a>
+    </div>
+</div>

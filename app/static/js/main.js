@@ -26,10 +26,3 @@ $(document).ready(function () {
    });
 });
 
-/*
-$(document).ready(function () {
-    $("#submit").click(function (e) {
-        const comment_body = $("#comment-body").val();
-
-    });
-});*/

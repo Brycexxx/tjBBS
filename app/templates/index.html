@@ -92,7 +92,7 @@
                 {% for post in posts %}
                     <tr>
                         <td><a href="{{ url_for('main.idle_item', id=post.id) }}">{{ post.title }}</a></td>
-                        <td><a href="{{ url_for('main.user', username=post.user.username) }}">{{ post.user.username }}</a></td>
+                        <td><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a></td>
                         <td>{{ post.comments.count() }} / {{ post.view_times }}</td>
                         <td>{{ post.user.last_seen }}</td>
                     </tr>

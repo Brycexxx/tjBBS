@@ -1,24 +1,12 @@
-{% extends "base.html" %}
-{% block title %}同济二手市场-{{ user.username }}{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}的主页{% endblock %}
+
 {% block page_content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <img class="img-rounded" src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}">
-            </div>
-            <div class="col-md-6">
-                <h1>{{ user.username }}</h1>
-                {% if user.location %}
-                    <p>
-                        来自<a href="http://maps.baidu.com/?q={{ user.location }}">{{ user.location }}</a><br>
-                    </p>
-                {% endif %}
-                {% if current_user.is_admin() %}
-                    <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
-                {% endif %}
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                <p>{{ moment(user.member_since).format('L') }} 你加入了同济大学跳蚤市场. 最后一次访问 {{ moment(user.last_seen).fromNow() }}.</p>
-            </div>
+    <div class="container" style="margin-top:76px">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}"
+                 style="width: 100px;" class="img-responsive img-rounded">
         </div>
     </div>
 {% endblock %}

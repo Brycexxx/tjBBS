@@ -1,18 +1,27 @@
 from . import main
 from .. import db
-from ..models import User, Category, IdleItems, Comment, ReplyToComment
-from .forms import PostForm, SearchForm, ReplyToCommentForm
+from ..models import User, Category, IdleItems, Comment, ReplyToComment, Collection
+from .forms import PostForm, SearchForm, ReplyToCommentForm, UserDetailForm, PwdForm
 from flask import render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, login_required
+from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
+from datetime import datetime
+from uuid import uuid4
 from sqlalchemy import or_
-import json
-import re
+import json, re, os
 
 
 def drop_html(html_body):
     pattern = re.compile(r'<[^>]+>', re.S)
     body = pattern.sub('', html_body)
     return body
+
+def change_filename(filename):
+    fileinfo = os.path.split(filename)
+    filename = datetime.now().strftime("%Y%m%d%H%M%S") + \
+                str(uuid4().hex) + fileinfo[-1]
+    return filename
 
 
 @main.route('/')
@@ -24,23 +33,59 @@ def index():
     posts = pagination.items
     return render_template('index.html', pagination=pagination, posts=posts)
 
-
 @main.route('/user/<int:id>')
 def user(id):
     user = User.query.get_or_404(id)
-    return render_template('user.html', id=id)
+    return render_template('user.html', user=user)
 
-
-@main.route('/edit-profile/<int:id>')
+@main.route('/userinfo/', methods=['GET', 'POST'])
 @login_required
-def edit_profile(id):
-    return
+def userinfo():
+    form = UserDetailForm()
+    form.avatar.validators = []
+    if request.method == 'GET':
+        # 显示用户原本的信息
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.info.data = current_user.about_me
+    if form.validate_on_submit():
+        data = form.data
+        if form.avatar.data != "":
+            file_avatar = secure_filename(form.avatar.data.filename)
+            if not os.path.exists(current_app.config['FC_DIR']):
+                os.mkdir(current_app.config['FC_DIR'])
+                os.chmod(current_app.config['FC_DIR'])
+            user.avatar = change_filename(file_avatar)
+            form.avatar.data.save(current_app.config['FC_DIR'] + user.avatar)
 
+        username_count = User.query.filter_by(username=data['username']).count()
+        if data['username'] != user.username and username_count == 1:
+            flash("昵称已经存在！")
+            return redirect(url_for('main.userinfo'))
 
-@main.route('/edit-pwd/<int:id>')
+        # 保存
+        current_user.username = data['username']
+        current_user.email = data['email']
+        current_user.about_me = data['info']
+        flash("修改成功！")
+        return redirect(url_for('main.userinfo'))
+    return render_template('users/userinfo.html', form=form)
+
+@main.route('/edit-pwd/', methods=['GET', 'POST'])
 @login_required
-def edit_pwd(id):
-    return
+def edit_pwd():
+    form = PwdForm()
+    if form.validate_on_submit():
+        data = form.data
+        if not current_user.verify_password(data['old_pwd']):
+            flash("旧密码错误！")
+            return redirect(url_for('main.edit_pwd'))
+        current_user.password_hash = generate_password_hash(data['new_pwd'])
+        db.session.add(current_user._get_current_object())
+        db.session.commit()
+        flash("密码修改成功，请重新登录！")
+        return redirect(url_for('auth.logout'))
+    return render_template('users/edit_pwd.html', form=form)
 
 
 @main.route('/follows')
@@ -52,13 +97,22 @@ def follows():
 @main.route('/posts')
 @login_required
 def idle_items():
-    return
+    page = request.args.get('page', 1, type=int)
+    pagination = current_user.idle_items.order_by(IdleItems.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    idle_items = pagination.items
+    return render_template('users/idle_items.html', posts=idle_items, pagination=pagination)
 
-
-@main.route('/collections')
+@main.route('/collected-posts')
 @login_required
 def collected_idle_items():
-    return
+    page = request.args.get('page', 1, type=int)
+    pagination = current_user.collections.order_by(Collection.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    collected_idle_items = pagination.items
+    return render_template('users/collected_idle_items.html', posts=collected_idle_items, pagination=pagination)
 
 
 @main.route('/post', methods=['GET', 'POST'])
@@ -144,12 +198,6 @@ def idle_item(id):
                            pagination=pagination, length=length, form=form, page=page)
 
 
-"""
-def get_reply_comment(comments):
-    return [ReplyToComment.query.filter_by(comment_id=comment.id).all() for comment in comments]
-"""
-
-
 @main.route('/follow/<username>')
 @login_required
 def follow(username):
@@ -188,11 +236,21 @@ def cancel_collect(id):
     return redirect(url_for('main.idle_item', id=idle_item.id))
 
 
-@main.route('/collections')
+@main.route('/del-post/<int:id>')
 @login_required
-def my_collections():
-    return
+def del_post(id):
+    idle_item = IdleItems.query.get_or_404(id)
+    db.session.delete(idle_item)
+    db.session.commit()
+    return redirect(url_for('main.idle_items'))
 
+@main.route('/del-collected-post/<int:id>')
+@login_required
+def del_collected_post(id):
+    collected_idle_item = Collection.query.filter_by(collected_idle_item_id=id).first()
+    db.session.delete(collected_idle_item)
+    db.session.commit()
+    return redirect(url_for('main.collected_idle_items'))
 
 @main.route('/del-comment/<int:id>')
 @login_required
