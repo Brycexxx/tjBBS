@@ -930,7 +930,7 @@
     <table id="235" parent="3" name="follows">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="236" parent="3" name="idle_items">
+    <table id="236" parent="3" name="posts">
       <Engine>InnoDB</Engine>
     </table>
     <table id="237" parent="3" name="replys_to_comment">
@@ -984,7 +984,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="233" name="collected_idle_item_id">
+    <column id="248" parent="233" name="collected_post_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -995,25 +995,25 @@
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="233" name="collected_idle_item_id">
-      <ColNames>collected_idle_item_id</ColNames>
+    <index id="250" parent="233" name="collected_post_id">
+      <ColNames>collected_post_id</ColNames>
     </index>
     <key id="251" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>collecting_user_id
-collected_idle_item_id</ColNames>
+collected_post_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="252" parent="233" name="collections_ibfk_2">
+    <foreign-key id="252" parent="233" name="collections_ibfk_1">
       <ColNames>collecting_user_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="253" parent="233" name="collections_ibfk_1">
-      <ColNames>collected_idle_item_id</ColNames>
+    <foreign-key id="253" parent="233" name="collections_ibfk_2">
+      <ColNames>collected_post_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
-      <RefTableName>idle_items</RefTableName>
+      <RefTableName>posts</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="254" parent="234" name="id">
@@ -1038,7 +1038,7 @@ collected_idle_item_id</ColNames>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="234" name="idle_item_id">
+    <column id="258" parent="234" name="post_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1046,24 +1046,24 @@ collected_idle_item_id</ColNames>
     <index id="259" parent="234" name="user_id">
       <ColNames>user_id</ColNames>
     </index>
-    <index id="260" parent="234" name="idle_item_id">
-      <ColNames>idle_item_id</ColNames>
+    <index id="260" parent="234" name="post_id">
+      <ColNames>post_id</ColNames>
     </index>
     <key id="261" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="262" parent="234" name="comments_ibfk_2">
+    <foreign-key id="262" parent="234" name="comments_ibfk_1">
       <ColNames>user_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="263" parent="234" name="comments_ibfk_3">
-      <ColNames>idle_item_id</ColNames>
+    <foreign-key id="263" parent="234" name="comments_ibfk_2">
+      <ColNames>post_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
-      <RefTableName>idle_items</RefTableName>
+      <RefTableName>posts</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="264" parent="235" name="follower_id">
@@ -1092,13 +1092,13 @@ collected_idle_item_id</ColNames>
 followed_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="269" parent="235" name="follows_ibfk_2">
+    <foreign-key id="269" parent="235" name="follows_ibfk_1">
       <ColNames>follower_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="270" parent="235" name="follows_ibfk_1">
+    <foreign-key id="270" parent="235" name="follows_ibfk_2">
       <ColNames>followed_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>users</RefTableName>
@@ -1146,7 +1146,7 @@ followed_id</ColNames>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="279" parent="236" name="ix_idle_items_title">
+    <index id="279" parent="236" name="ix_posts_title">
       <ColNames>title</ColNames>
     </index>
     <index id="280" parent="236" name="category_id">
@@ -1160,13 +1160,13 @@ followed_id</ColNames>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="283" parent="236" name="idle_items_ibfk_1">
+    <foreign-key id="283" parent="236" name="posts_ibfk_1">
       <ColNames>category_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>categories</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="284" parent="236" name="idle_items_ibfk_2">
+    <foreign-key id="284" parent="236" name="posts_ibfk_2">
       <ColNames>user_id</ColNames>
       <RefSchemaName>depTwoHand</RefSchemaName>
       <RefTableName>users</RefTableName>
@@ -1189,14 +1189,14 @@ followed_id</ColNames>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="237" name="add_time">
+    <column id="288" parent="237" name="user_id">
       <Position>4</Position>
-      <DataType>datetime|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="237" name="user_id">
+    <column id="289" parent="237" name="add_time">
       <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="290" parent="237" name="comment_id">
@@ -1307,12 +1307,12 @@ followed_id</ColNames>
       <DataType>varchar(64)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="239" name="last_seen">
+    <column id="312" parent="239" name="member_since">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="239" name="member_since">
+    <column id="313" parent="239" name="last_seen">
       <Position>11</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>

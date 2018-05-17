@@ -16,14 +16,14 @@ class Permission:
 class Collection(db.Model):
     __tablename__ = "collections"
     collecting_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    collected_idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'), primary_key=True)
+    collected_post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
 
 class Follow(db.Model):
     __tablename__ = 'follows'
     follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     followed_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    add_time = db.Column(db.DateTime, default=datetime.now)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 class User(db.Model, UserMixin):
@@ -40,7 +40,7 @@ class User(db.Model, UserMixin):
     member_since = db.Column(db.DateTime(), default=datetime.utcnow)
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
-    idle_items = db.relationship('IdleItems', backref='user', lazy='dynamic')
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
     reply_comments = db.relationship('ReplyToComment', backref='user', lazy='dynamic')
     collections = db.relationship('Collection', foreign_keys=[Collection.collecting_user_id],
                                   backref=db.backref('collecting_user', lazy='joined'),
@@ -98,23 +98,23 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
-    def collect(self, idle_item):
-        if not self.is_collecting(idle_item):
-            c = Collection(collected_idle_item=idle_item, collecting_user=self)
+    def collect(self, post):
+        if not self.is_collecting(post):
+            c = Collection(collected_post=post, collecting_user=self)
             db.session.add(c)
             db.session.commit()
 
-    def cancel_collect(self, idle_item):
-        collection = self.collections.filter_by(collected_idle_item_id=idle_item.id).first()
+    def cancel_collect(self, post):
+        collection = self.collections.filter_by(collected_post_id=post.id).first()
         if collection:
             db.session.delete(collection)
             db.session.commit()
 
-    def is_collecting(self, idle_item):
-        if idle_item.id is None:
+    def is_collecting(self, post):
+        if post.id is None:
             return False
         return self.collections.filter_by(
-            collected_idle_item_id=idle_item.id).first() is not None
+            collected_post_id=post.id).first() is not None
 
     def follow(self, user):
         if not self.is_following(user):
@@ -147,7 +147,7 @@ class AnonymousUser(AnonymousUserMixin):
     def is_admin(self):
         return False
 
-    def is_collecting(self, idle_item):
+    def is_collecting(self, post):
         return False
 
 
@@ -194,20 +194,19 @@ class Role(db.Model):
     def __repr__(self):
         return "<Role: %r>" % self.name
 
-
-class IdleItems(db.Model):
-    __tablename__ = 'idle_items'
+class Post(db.Model):
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), index=True)
     descriptions = db.Column(db.Text)
     images = db.Column(db.String(128))
-    add_time = db.Column(db.DateTime, default=datetime.now)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     view_times = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.relationship('Comment', backref='idle_item', lazy='dynamic')
-    users = db.relationship('Collection', foreign_keys=[Collection.collected_idle_item_id],
-                            backref=db.backref('collected_idle_item', lazy='joined'),
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    users = db.relationship('Collection', foreign_keys=[Collection.collected_post_id],
+                            backref=db.backref('collected_post', lazy='joined'),
                             lazy='dynamic',
                             cascade='all, delete-orphan')
 
@@ -218,21 +217,21 @@ class IdleItems(db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    add_time = db.Column(db.DateTime, default=datetime.now)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
     body = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     replys = db.relationship('ReplyToComment', backref='comment', lazy='dynamic')
 
     def __repr__(self):
-        return "<Comment to: %r>" % self.idle_item.title
+        return "<Comment to: %r>" % self.post.title
 
 
 class Category(db.Model):
     __tablename__ = 'categories'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
-    idle_items = db.relationship('IdleItems', backref='category', lazy='dynamic')
+    posts = db.relationship('Post', backref='category', lazy='dynamic')
 
     @staticmethod
     def insert_categories():
@@ -253,7 +252,7 @@ class ReplyToComment(db.Model):
     body = db.Column(db.Text)
     comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    add_time = db.Column(db.DateTime, default=datetime.now)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return "<ReplyTo Comment %r>" % self.comment_id

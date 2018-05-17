@@ -9,7 +9,7 @@
                     {% if current_user == comments[f].user %}
                         <a href="{{ url_for('main.del_comment', id=comments[f].id, post_id=post.id) }}">删除&nbsp;</a>
                     {% endif %}
-                    <span>{{ f + 2 }}&nbsp;楼&nbsp;|&nbsp;{{ comments[f].add_time }}&nbsp;-</span>
+                    <span>{{ f + 2 }}&nbsp;楼&nbsp;|&nbsp;{{ moment(comments[f].add_time).format('LLL') }}&nbsp;-</span>
                     <span class="do_reply">回复</span>({{ comments[f].replys.count() }})
                     <br>
                     <div class="comment-form">
@@ -26,7 +26,7 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                        <form role="form" method="post" action="{{ url_for('main.idle_item', id=post.id, page=page, reply_comment_id=comments[f].id) }}">
+                        <form role="form" method="post" action="{{ url_for('main.post_detail', id=post.id, page=page, reply_comment_id=comments[f].id) }}">
                             <div class="form-group">
                                 {{ form.reply }}
                             </div>

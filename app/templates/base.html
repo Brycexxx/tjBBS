@@ -68,7 +68,7 @@
                 </form>
             </div>
             <div class="col-md-3 hidden-sm center">
-                <a href="{{ url_for('main.post_idle_item') }}">发布你的闲置</a>
+                <a href="{{ url_for('main.post') }}">发布你的闲置</a>
             </div>
         </div>
     </div>
@@ -89,6 +89,6 @@
 
 {% block scripts %}
     {{ super() }}
-    {{ moment.include_moment() }}
-    {{ moment.locale('zh-cn') }}
+    {{ moment.include_moment(local_js="/static/js/moment-with-locales.min.js") }}
+    {{ moment.lang('zh-CN') }}
 {% endblock %}

@@ -18,7 +18,7 @@
                 <div>
                     {{ post.descriptions }}
                     <div class="post-footer">
-                        <span>1&nbsp;楼 | {{ post.add_time }}</span>
+                        <span>1&nbsp;楼 | {{ moment(post.add_time).format('LLL') }}</span>
                     </div>
                 </div>
             </li>
@@ -27,7 +27,7 @@
     {% include '_comments.html'%}
     {% if comments %}
         <div class="center">
-            {{ macros.pagination_widget(pagination, 'main.idle_item', id=post.id) }}
+            {{ macros.pagination_widget(pagination, 'main.post_detail', id=post.id) }}
         </div>
     {% endif %}
     <form method="post" action="" style="margin-top: 30px" role="form">

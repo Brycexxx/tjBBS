@@ -91,10 +91,14 @@
                 <tbody>
                 {% for post in posts %}
                     <tr>
-                        <td><a href="{{ url_for('main.idle_item', id=post.id) }}">{{ post.title }}</a></td>
-                        <td><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a></td>
+                        <td><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></td>
+                        {% if current_user == post.user %}
+                            <td><a href="{{ url_for('main.userinfo') }}">{{ post.user.username }}</a></td>
+                        {% else %}
+                            <td><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a></td>
+                        {% endif %}
                         <td>{{ post.comments.count() }} / {{ post.view_times }}</td>
-                        <td>{{ post.user.last_seen }}</td>
+                        <td>{{ moment(post.user.last_seen).format('LLL') }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

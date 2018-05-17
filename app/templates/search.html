@@ -7,12 +7,61 @@
             <div class="col-md-12">
                 <ol class="breadcrumb" style="margin-top:6px;">
                     {% if args['object'] == '帖子' %}
-                        <li>找到&nbsp;{{ idle_items_count }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
+                        <li>找到&nbsp;{{ posts_count }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
                     {% else %}
                         <li>找到{{ users_count }}个与"{{ args['keyword'] }}"相关的用户</li>
                     {% endif %}
                 </ol>
-                {% include '_posts.html' %}
+                <ul class="posts">
+                    {% for post in posts %}
+                        {% if args['object'] == '帖子' %}
+                            <li class="post">
+                                <a href="{{ url_for('main.post_detail', id=post.id) }}"><h3>{{ post.title }}</h3></a>
+                                <h5>{{ post.comments.count() }}&nbsp;个回复 | {{ post.view_times }}&nbsp;次浏览</h5>
+                                <p>{{ post.descriptions[: 30] + '......' }}</p>
+                                <span>{{ post.add_time }}&nbsp;-</span>
+                                <a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;-
+                                <a href="#">{{ post.category.name }}</a>
+                            </li>
+                        {% else %}
+                            <li class="post">
+                                <div class="profile-thumbnail">
+                                    <a href="{{ url_for('main.user', id=post.id) }}">
+                                        <img class="img-rounded profile-thumbnail" {% if post.avatar %}src="{{ url_for('static', filename='uploads/users/' + post.avatar) }}"{% else %} src="{{ url_for('static', filename='uploads/users/' + 'tjer.gif') }}{% endif %}">
+                                    </a>
+                                </div>
+                                <div class="post-date" style="font-size: 12px">{{ moment(post.member_since).fromNow() }}加入</div>
+                                <div class="post-author" style="margin-left: 15px">
+                                    <a href="{{ url_for('main.user', id=post.id) }}">
+                                        {{ post.username }}
+                                    </a>
+                                </div>
+                                <div class="post-body" style="margin-left: 60px">
+                                    {% if post.about_me %}
+                                        {{ post.about_me }}
+                                    {% else %}
+                                        这个人很神秘，什么也没留下......
+                                    {% endif %}
+                                    <div class="post-footer">
+                                        {% if current_user != post %}
+                                            <a href="{{ url_for('main.follow', id=post.id) }}">
+                                                <span class="label label-primary">关注</span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="label label-success">加为好友</span>
+                                            </a>
+                                        {% endif %}
+                                        <a href="#">
+                                            <span class="label label-primary">
+                                                {{ post.posts.count() }}&nbsp;帖子
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

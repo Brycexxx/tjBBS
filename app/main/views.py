@@ -1,6 +1,6 @@
 from . import main
 from .. import db
-from ..models import User, Category, IdleItems, Comment, ReplyToComment, Collection, Follow
+from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow
 from .forms import PostForm, SearchForm, ReplyToCommentForm, UserDetailForm, PwdForm
 from flask import render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, login_required
@@ -19,15 +19,14 @@ def drop_html(html_body):
 
 def change_filename(filename):
     fileinfo = os.path.split(filename)
-    filename = datetime.now().strftime("%Y%m%d%H%M%S") + \
+    filename = datetime.utcnow().strftime("%Y%m%d%H%M%S") + \
                 str(uuid4().hex) + fileinfo[-1]
     return filename
-
 
 @main.route('/')
 def index():
     page = request.args.get('page', 1, type=int)
-    pagination = IdleItems.query.order_by(IdleItems.add_time.desc()).paginate(
+    pagination = Post.query.order_by(Post.add_time.desc()).paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     posts = pagination.items
@@ -36,7 +35,12 @@ def index():
 @main.route('/user/<int:id>')
 def user(id):
     user = User.query.get_or_404(id)
-    return render_template('user.html', user=user)
+    page = request.args.get('page', 1, type=int)
+    pagination = user.posts.order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    posts = pagination.items
+    return render_template('user.html', user=user, posts=posts, pagination=pagination)
 
 @main.route('/userinfo/', methods=['GET', 'POST'])
 @login_required
@@ -93,38 +97,38 @@ def edit_pwd():
 
 @main.route('/posts')
 @login_required
-def idle_items():
+def posts():
     page = request.args.get('page', 1, type=int)
-    pagination = current_user.idle_items.order_by(IdleItems.add_time.desc()).paginate(
+    pagination = current_user.posts.order_by(Post.add_time.desc()).paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
-    idle_items = pagination.items
-    return render_template('users/idle_items.html', posts=idle_items, pagination=pagination)
+    posts = pagination.items
+    return render_template('users/posts.html', posts=posts, pagination=pagination)
 
 @main.route('/collected-posts')
 @login_required
-def collected_idle_items():
+def collected_posts():
     page = request.args.get('page', 1, type=int)
     pagination = current_user.collections.order_by(Collection.add_time.desc()).paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
-    collected_idle_items = pagination.items
-    return render_template('users/collected_idle_items.html', posts=collected_idle_items, pagination=pagination)
+    collected_posts = pagination.items
+    return render_template('users/collected_posts.html', posts=collected_posts, pagination=pagination)
 
 
 @main.route('/post', methods=['GET', 'POST'])
 @login_required
-def post_idle_item():
+def post():
     form = PostForm()
     if form.validate_on_submit():
         data = form.data
-        idle_item = IdleItems(
+        post = Post(
             title=data['title'],
             descriptions=drop_html(request.form['content']),
             category=Category.query.get(data['category']),
             user=current_user
         )
-        db.session.add(idle_item)
+        db.session.add(post)
         db.session.commit()
         flash("您的帖子已发布！")
         return redirect(url_for('main.index'))
@@ -135,17 +139,17 @@ def post_idle_item():
 def search(page):
     args = eval(json.dumps(request.args))
     if args['object'] == '帖子':
-        idle_items_count = IdleItems.query.filter(
-            or_(IdleItems.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
-                IdleItems.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
+        posts_count = Post.query.filter(
+            or_(Post.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
+                Post.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
         ).count()
-        pagination = IdleItems.query.filter(
-            or_(IdleItems.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
-                IdleItems.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
-        ).order_by(IdleItems.add_time.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
-                                                       error_out=False)
+        pagination = Post.query.filter(
+            or_(Post.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
+                Post.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
+        ).order_by(Post.add_time.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
+                                                   error_out=False)
         posts = pagination.items
-        return render_template('search.html', idle_items_count=idle_items_count, pagination=pagination, posts=posts,
+        return render_template('search.html', posts_count=posts_count, pagination=pagination, posts=posts,
                                args=args)
     else:
         users_count = User.query.filter(User.username.ilike('%' + args['keyword'] + '%')).count()
@@ -156,25 +160,25 @@ def search(page):
         return render_template('search.html', users_count=users_count, args=args, pagination=pagination, posts=posts)
 
 
-@main.route('/post/<int:id>/', methods=['GET', 'POST'])
-def idle_item(id):
+@main.route('/post-detail/<int:id>/', methods=['GET', 'POST'])
+def post_detail(id):
     form = ReplyToCommentForm()
-    idle_item = IdleItems.query.get_or_404(id)
+    post = Post.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     if request.args.get('reply_comment_id', None):
         reply_comment_id = request.args.get('reply_comment_id')
         reply_comment = Comment.query.get_or_404(reply_comment_id)
-    idle_item.view_times += 1
-    db.session.add(idle_item)
+    post.view_times += 1
+    db.session.add(post)
     db.session.commit()
     if request.method == 'POST' and 'reply_comment_id' not in request.args:
         comment_body = drop_html(request.form['content'])
         if comment_body:
-            comment = Comment(body=comment_body, idle_item=idle_item, user=current_user._get_current_object())
+            comment = Comment(body=comment_body, post=post, user=current_user._get_current_object())
             db.session.add(comment)
             db.session.commit()
             flash("您的评论已发布")
-            return redirect(url_for('main.idle_item', id=idle_item.id, page=-1))
+            return redirect(url_for('main.post_detail', id=post.id, page=-1))
         else:
             flash("请输入描述内容！")
     if form.validate_on_submit():
@@ -183,15 +187,15 @@ def idle_item(id):
                                           user=current_user._get_current_object())
         db.session.add(reply_to_comment)
         db.session.commit()
-        return redirect(url_for('main.idle_item', id=idle_item.id, page=page))
+        return redirect(url_for('main.post_detail', id=post.id, page=page))
     if page == -1:
-        page = (idle_item.comments.count() - 1) // current_app.config['PER_PAGE'] + 1
-    pagination = idle_item.comments.order_by(Comment.add_time.asc()).paginate(
+        page = (post.comments.count() - 1) // current_app.config['PER_PAGE'] + 1
+    pagination = post.comments.order_by(Comment.add_time.asc()).paginate(
         page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     comments = pagination.items
     length = len(comments)
-    return render_template('post_details.html', post=idle_item, comments=comments,
+    return render_template('post_details.html', post=post, comments=comments,
                            pagination=pagination, length=length, form=form, page=page)
 
 
@@ -225,11 +229,11 @@ def followers(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     pagination = user.followers.paginate(
-        page=page, per_page=current_app.config('PER_PAGE'), error_out=False
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     follows = [{'user': item.followed, 'add_time': item.add_time}
                for item in pagination.items]
-    return render_template('followers.html', user=user, pagination=pagination,
+    return render_template('follows.html', user=user, pagination=pagination,
                            follows=follows, title='关注了谁', endpoint='main.followers')
 
 @main.route('/followed_by/<int:id>')
@@ -238,48 +242,48 @@ def followed_by(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
     pagination = user.followed.paginate(
-        page=page, per_page=current_app.config('PER_PAGE'), error_out=False
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     follows = [{'user': item.follower, 'add_time': item.add_time}
                for item in pagination.items]
-    return render_template('followers.html', user=user, pagination=pagination,
+    return render_template('follows.html', user=user, pagination=pagination,
                            follows=follows, title='的粉丝',endpoint='main.followed_by')
 
 @main.route('/collect/<int:id>')
 @login_required
 def collect(id):
-    idle_item = IdleItems.query.get_or_404(id)
-    current_user.collect(idle_item)
+    post = Post.query.get_or_404(id)
+    current_user.collect(post)
     db.session.commit()
     flash("您已经成功收藏该帖！")
-    return redirect(url_for('main.idle_item', id=idle_item.id))
+    return redirect(url_for('main.post_detail', id=post.id))
 
 
 @main.route('/uncollect/<int:id>')
 @login_required
 def cancel_collect(id):
-    idle_item = IdleItems.query.get_or_404(id)
-    current_user.cancel_collect(idle_item)
+    post = Post.query.get_or_404(id)
+    current_user.cancel_collect(post)
     db.session.commit()
     flash("您已经取消收藏！")
-    return redirect(url_for('main.idle_item', id=idle_item.id))
+    return redirect(url_for('main.idle_item', id=post.id))
 
 
 @main.route('/del-post/<int:id>')
 @login_required
 def del_post(id):
-    idle_item = IdleItems.query.get_or_404(id)
-    db.session.delete(idle_item)
+    post = Post.query.get_or_404(id)
+    db.session.delete(post)
     db.session.commit()
-    return redirect(url_for('main.idle_items'))
+    return redirect(url_for('main.posts '))
 
 @main.route('/del-collected-post/<int:id>')
 @login_required
 def del_collected_post(id):
-    collected_idle_item = Collection.query.filter_by(collected_idle_item_id=id).first()
-    db.session.delete(collected_idle_item)
+    collected_post = Collection.query.filter_by(collected_post_id=id).first()
+    db.session.delete(collected_post)
     db.session.commit()
-    return redirect(url_for('main.collected_idle_items'))
+    return redirect(url_for('main.collected_posts'))
 
 @main.route('/del-comment/<int:id>')
 @login_required
@@ -288,7 +292,7 @@ def del_comment(id):
     post_id = request.args.get('post_id')
     db.session.delete(comment)
     db.session.commit()
-    return redirect(url_for('main.idle_item', id=post_id))
+    return redirect(url_for('main.post_detail', id=post_id))
 
 
 @main.route('/del-replycomment/<int:id>')
@@ -298,4 +302,4 @@ def del_rep_comment(id):
     post_id = request.args.get('post_id')
     db.session.delete(reply_comment)
     db.session.commit()
-    return redirect(url_for('main.idle_item', id=post_id))
+    return redirect(url_for('main.post_detail', id=post_id))

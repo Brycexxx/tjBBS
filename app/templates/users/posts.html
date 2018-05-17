@@ -21,17 +21,17 @@
                                     <div style="margin-top: 20px;">
                                         {{ post.descriptions }}
                                         <div class="post-footer">
-                                            <a href="{{ url_for('main.del_post', id=post.id) }}">删除</a> | <span>{{ post.add_time }}</span>
+                                            <a href="{{ url_for('main.del_post', id=post.id) }}">删除</a> | <span>{{ moment(post.add_time).format('LLL') }}</span>
                                         </div>
                                     </div>
                                 </li>
                             {% endfor %}
                         </ul>
                         <div class="center">
-                            {{ macros.pagination_widget(pagination, 'main.idle_items') }}
+                            {{ macros.pagination_widget(pagination, 'main.posts') }}
                         </div>
                     {% else %}
-                        <h4>你还没有收藏的帖子</h4>
+                        <h4>你还没有发布帖子</h4>
                     {% endif %}
                 </div>
             </div>
