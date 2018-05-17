@@ -18,7 +18,7 @@
                 </div>
                 <div class="post-date" style="font-size: 12px">{{ moment(post.member_since).fromNow() }}加入</div>
                 <div class="post-author" style="margin-left: 15px">
-                    <a href="{{ url_for('main.user', username=post.username) }}">
+                    <a href="{{ url_for('main.user', id=post.id) }}">
                         {{ post.username }}
                     </a>
                 </div>

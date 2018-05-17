@@ -7,6 +7,39 @@
         <div class="col-md-4">
             <img src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}"
                  style="width: 100px;" class="img-responsive img-rounded">
+            <span style="font-style: italic">“{{ user.about_me }}”</span>
+        </div>
+        <div class="col-md-8">
+            <h1>{{ user.username }}</h1>
+            {% if user.location %}
+                <p>
+                    来自 <a href="http://maps.baidu.com/?q={{ user.location }}">{{ user.location }}</a><br>
+                </p>
+            {% endif %}
+            {% if current_user.is_admin() %}
+                <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+            {% endif %}
+            <p>{{ moment(user.member_since).format('L') }} 加入. 最后一次访问在 {{ moment(user.last_seen).fromNow(refresh=True) }}.</p>
+            <p>共发布 {{ user.idle_items.count() }} 篇帖子.</p>
+            <p>
+                <a href="{{ url_for('.followers', id=user.id) }}">关注: <span class="badge">{{ user.followed.count() }}</span></a>
+                <a href="{{ url_for('.followed_by', id=user.id) }}">粉丝: <span class="badge">{{ user.followers.count() }}</span></a>
+                {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+                    | <span class="label label-default">关注了你</span>
+                {% endif %}
+            </p>
+
+            <p>
+                {% if user != current_user %}
+                    {% if not current_user.is_following(user) %}
+                        <a href="{{ url_for('.follow', id=user.id) }}" class="btn btn-primary">关注</a>
+                    {% else %}
+                        <a href="{{ url_for('.unfollow', id=user.id) }}" class="btn btn-default">取消关注</a>
+                    {% endif %}
+                {% else%}
+                    <a class="btn btn-default" href="{{ url_for('main.userinfo') }}">编辑</a>
+                {% endif %}
+            </p>
         </div>
     </div>
 {% endblock %}

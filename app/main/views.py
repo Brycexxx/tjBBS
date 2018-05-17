@@ -1,6 +1,6 @@
 from . import main
 from .. import db
-from ..models import User, Category, IdleItems, Comment, ReplyToComment, Collection
+from ..models import User, Category, IdleItems, Comment, ReplyToComment, Collection, Follow
 from .forms import PostForm, SearchForm, ReplyToCommentForm, UserDetailForm, PwdForm
 from flask import render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, login_required
@@ -55,11 +55,11 @@ def userinfo():
             if not os.path.exists(current_app.config['FC_DIR']):
                 os.mkdir(current_app.config['FC_DIR'])
                 os.chmod(current_app.config['FC_DIR'])
-            user.avatar = change_filename(file_avatar)
-            form.avatar.data.save(current_app.config['FC_DIR'] + user.avatar)
+            current_user.avatar = change_filename(file_avatar)
+            form.avatar.data.save(current_app.config['FC_DIR'] + current_user.avatar)
 
         username_count = User.query.filter_by(username=data['username']).count()
-        if data['username'] != user.username and username_count == 1:
+        if data['username'] != current_user.username and username_count == 1:
             flash("昵称已经存在！")
             return redirect(url_for('main.userinfo'))
 
@@ -67,6 +67,8 @@ def userinfo():
         current_user.username = data['username']
         current_user.email = data['email']
         current_user.about_me = data['info']
+        db.session.add(current_user)
+        db.session.commit()
         flash("修改成功！")
         return redirect(url_for('main.userinfo'))
     return render_template('users/userinfo.html', form=form)
@@ -87,11 +89,6 @@ def edit_pwd():
         return redirect(url_for('auth.logout'))
     return render_template('users/edit_pwd.html', form=form)
 
-
-@main.route('/follows')
-@login_required
-def follows():
-    return
 
 
 @main.route('/posts')
@@ -198,23 +195,55 @@ def idle_item(id):
                            pagination=pagination, length=length, form=form, page=page)
 
 
-@main.route('/follow/<username>')
+@main.route('/follow/<int:id>')
 @login_required
-def follow(username):
-    return
+def follow(id):
+    user = User.query.get_or_404(id)
+    if current_user.is_following(user):
+        flash("您已经关注该用户了")
+        return redirect(url_for('main.user', id=id))
+    current_user.follow(user)
+    flash("您成功地关注了%s" % user.username)
+    return redirect(url_for('main.user', id=id))
 
 
-@main.route('/unfollow/<username>')
+@main.route('/unfollow/<int:id>')
 @login_required
-def unfollow(username):
-    return
+def unfollow(id):
+    user = User.query.get_or_404(id)
+    if not current_user.is_following(user):
+        flash("您还没关注该用户")
+        return redirect(url_for('main.user', id=id))
+    current_user.unfollow(user)
+    flash("您取消了关注%s" % user.username)
+    return redirect(url_for('main.user', id=id))
 
 
-@main.route('/add/<username>')
+@main.route('/followers/<int:id>')
 @login_required
-def add_friends(username):
-    return
+def followers(id):
+    user = User.query.get_or_404(id)
+    page = request.args.get('page', 1, type=int)
+    pagination = user.followers.paginate(
+        page=page, per_page=current_app.config('PER_PAGE'), error_out=False
+    )
+    follows = [{'user': item.followed, 'add_time': item.add_time}
+               for item in pagination.items]
+    return render_template('followers.html', user=user, pagination=pagination,
+                           follows=follows, title='关注了谁', endpoint='main.followers')
 
+@main.route('/followed_by/<int:id>')
+@login_required
+def followed_by(id):
+    user = User.query.get_or_404(id)
+    page = request.args.get('page', 1, type=int)
+    pagination = user.followed.paginate(
+        page=page, per_page=current_app.config('PER_PAGE'), error_out=False
+    )
+    follows = [{'user': item.follower, 'add_time': item.add_time}
+               for item in pagination.items]
+    return render_template('followers.html', user=user, pagination=pagination,
+                           follows=follows, title='的粉丝',endpoint='main.followed_by')
 
 @main.route('/collect/<int:id>')
 @login_required

@@ -17,6 +17,12 @@ class Collection(db.Model):
     __tablename__ = "collections"
     collecting_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     collected_idle_item_id = db.Column(db.Integer, db.ForeignKey('idle_items.id'), primary_key=True)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Follow(db.Model):
+    __tablename__ = 'follows'
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    followed_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     add_time = db.Column(db.DateTime, default=datetime.now)
 
 
@@ -31,8 +37,8 @@ class User(db.Model, UserMixin):
     confirmed = db.Column(db.Boolean, default=False)
     avatar = db.Column(db.String(128))
     location = db.Column(db.String(64))
-    member_since = db.Column(db.DateTime, default=datetime.now)
-    last_seen = db.Column(db.DateTime, default=datetime.now)
+    member_since = db.Column(db.DateTime(), default=datetime.utcnow)
+    last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     idle_items = db.relationship('IdleItems', backref='user', lazy='dynamic')
     reply_comments = db.relationship('ReplyToComment', backref='user', lazy='dynamic')
@@ -40,6 +46,15 @@ class User(db.Model, UserMixin):
                                   backref=db.backref('collecting_user', lazy='joined'),
                                   lazy='dynamic',
                                   cascade='all, delete-orphan')
+    followed = db.relationship('Follow', foreign_keys=[Follow.follower_id],
+                               backref=db.backref('follower', lazy='joined'),
+                               lazy='dynamic',
+                               cascade='all, delete-orphan')
+    followers = db.relationship('Follow', foreign_keys=[Follow.followed_id],
+                               backref=db.backref('followed', lazy='joined'),
+                               lazy='dynamic',
+                               cascade='all, delete-orphan')
+
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -79,7 +94,7 @@ class User(db.Model, UserMixin):
         return (self.role_id == 2)
 
     def ping(self):
-        self.last_seen = datetime.now()
+        self.last_seen = datetime.utcnow()
         db.session.add(self)
         db.session.commit()
 
@@ -100,6 +115,29 @@ class User(db.Model, UserMixin):
             return False
         return self.collections.filter_by(
             collected_idle_item_id=idle_item.id).first() is not None
+
+    def follow(self, user):
+        if not self.is_following(user):
+            f = Follow(followed=user, follower=self)
+            db.session.add(f)
+            db.session.commit()
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            f = Follow.query.filter_by(followed_id=user.id).first()
+            if f:
+                db.session.delete(f)
+                db.session.commit()
+
+    def is_following(self, user):
+        if user.id is None:
+            return False
+        return self.followed.filter_by(followed_id=user.id).first() is not None
+
+    def is_followed_by(self, user):
+        if user.id is None:
+            return False
+        return self.followed.filter_by(follower_id=user.id).first() is not None
 
     def __repr__(self):
         return "<User: %r>" % (self.username)

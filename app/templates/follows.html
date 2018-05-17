@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% import '_macros.html' as macros %}
+
+{% block title %}{{ user.username }}{{ title }}{% endblock %}
+
+{% block page_content %}
+    <div class="container" style="margin-top:76px">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}"
+                 style="width: 100px;" class="img-responsive img-rounded">
+            <span style="font-style: italic">“{{ user.about_me }}”</span>
+        </div>
+        {% include '_follows.html' %}
+    </div>
+{% endblock %}
