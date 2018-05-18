@@ -144,10 +144,14 @@ class User(db.Model, UserMixin):
 
 
 class AnonymousUser(AnonymousUserMixin):
+
     def is_admin(self):
         return False
 
     def is_collecting(self, post):
+        return False
+
+    def is_following(self, user):
         return False
 
 

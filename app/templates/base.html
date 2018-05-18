@@ -4,29 +4,16 @@
 
 {% block head %}
     {{ super() }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $("#do_search").click(function () {
-                const select_object = $("#select_object").val();
-                const keyword = $("#keyword").val();
-                if (keyword.length !== 0) {
-                    location.href = "{{ url_for('main.search', page=1) }}?object=" + select_object + "&keyword=" + keyword
-                }
-                else {
-                    $("#keyword").attr('placeholder', "请输入搜索关键字！");
-                }
-            });
-        })
-    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 {% endblock %}
 
 {% block navbar %}
-    <div class="navbar navbar-inverse" role="navigation" style="margin: 0px">
+    <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,10 +22,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"  href="{{ url_for('main.index') }}">同济大学的专属二手交易网站</a>
+                <a class="navbar-brand"  href="{{ url_for('main.index') }}">同济生活小助手</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('main.post') }}">发布你的闲置</a></li>
                     {% if current_user.is_authenticated %}
                         <li><a href="{{ url_for('main.userinfo') }}">欢迎您，{{ current_user.username }}</a></li>
                         <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
@@ -49,29 +37,27 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container" style="background-color: #ffda44; width: 100%; height: 90px; padding:25px 0px">
-        <div class="row">
-            <div class="col-md-3 hidden-sm center">
-                让你的闲置流动起来！
-            </div>
-            <div class="col-md-4 col-md-offset-2">
-                <form method="post">
-                    <input type="text" class="form-control" id="keyword" placeholder="客官想找什么呀" style="width: 250px; float: left">
-                    <select class="form-control" id="select_object" style="width: 80px; float: left">
-                        <option>帖子</option>
-                        <option>用户</option>
+    </nav>
+    <div class="navbar navbar-default" style="background-color: #ffda44;">
+        <div class="container">
+            <div class="col-md-4 col-sm-3"></div>
+            <form class="navbar-form navbar-left" role="form">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="客官想找什么呀！" id="keyword" style="width: 200px;">
+                    <select id="select_object" class="form-control" style="width: 78px;">
+                        <option value="post">帖子</option>
+                        <option value="user">用户</option>
                     </select>
                     <span class="input-group-btn">
                         <a class="btn btn-default" id="do_search"><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</a>
                     </span>
-                </form>
-            </div>
-            <div class="col-md-3 hidden-sm center">
-                <a href="{{ url_for('main.post') }}">发布你的闲置</a>
-            </div>
+                </div>
+            </form>
+            <div class="col-md-4 col-sm-3"></div>
         </div>
     </div>
+    <!--导航-->
+
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -84,6 +70,16 @@
 
         {% block page_content %}{% endblock %}
     </div>
+
+    <!--
+    <div id="footer">
+        <div class="container" style="background-color: #333; border-color: #333; margin-top: 10px; width: 100%; bottom: 0">
+            <div class="col-md-8 col-md-offset-2" style="color: white">
+                <h4 class="center">同济生活小助手</h4>
+                <p class="center">All Rights Reserved. Design by Mr Xu</p>
+            </div>
+        </div>
+    </div>-->
 {% endblock %}
 
 
@@ -91,4 +87,38 @@
     {{ super() }}
     {{ moment.include_moment(local_js="/static/js/moment-with-locales.min.js") }}
     {{ moment.lang('zh-CN') }}
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#do_search").click(function () {
+                const select_object = $("#select_object").val();
+                const keyword = $("#keyword");
+                if (keyword.val().length !== 0) {
+                    location.href = "{{ url_for('main.search', page=1) }}?object=" + select_object + "&keyword=" + keyword.val()
+                }
+                else {
+                    keyword.attr('placeholder', "请输入搜索关键字！");
+                }
+            });
+        })
+    </script>
+    <script src="{{ url_for('static', filename='js/dist/easySlider.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#slider").easySlider( {
+                slideSpeed: 500,
+                paginationSpacing: "15px",
+                paginationDiameter: "12px",
+                paginationPositionFromBottom: "20px",
+                slidesClass: ".slides",
+                controlsClass: ".controls",
+                paginationClass: ".pagination"
+            });
+        });
+    </script>
 {% endblock %}

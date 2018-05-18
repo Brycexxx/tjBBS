@@ -7,12 +7,15 @@ tinymce.init({
     language:'zh_CN',
     //高度为400
     height: 250,
+    //图片上传地址
+    imageupload_url: 'upload-image',
     //工具栏上面的补丁按钮
     plugins: [
             'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
             'save table contextmenu directionality emoticons template paste textcolor',
             'codesample',
+            'imageupload',
     ],
     //工具栏的补丁按钮
      toolbar: 'insertfile undo redo | \
@@ -20,7 +23,7 @@ tinymce.init({
      bold italic | \
      alignleft aligncenter alignright alignjustify | \
      bullist numlist outdent indent | \
-     link image | \
+     link image imageupload | \
      print preview media fullpage | \
      forecolor backcolor emoticons |\
      codesample fontsizeselect fullscreen',
@@ -28,4 +31,5 @@ tinymce.init({
     fontsize_formats: '10pt 12pt 14pt 18pt 24pt 36pt',
     //按tab不换行
     nonbreaking_force_tab: true,
+    convert_urls: false,
 });

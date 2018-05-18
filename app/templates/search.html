@@ -2,19 +2,19 @@
 {% import '_macros.html' as macros %}
 
 {% block page_content %}
-    <div class="container">
+    <div class="container" id="container">
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb" style="margin-top:6px;">
-                    {% if args['object'] == '帖子' %}
-                        <li>找到&nbsp;{{ posts_count }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
+                    {% if args['object'] == 'post' %}
+                        <li>找到&nbsp;{{ counts }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
                     {% else %}
-                        <li>找到{{ users_count }}个与"{{ args['keyword'] }}"相关的用户</li>
+                        <li>找到{{ counts }}个与"{{ args['keyword'] }}"相关的用户</li>
                     {% endif %}
                 </ol>
                 <ul class="posts">
                     {% for post in posts %}
-                        {% if args['object'] == '帖子' %}
+                        {% if args['object'] == 'post' %}
                             <li class="post">
                                 <a href="{{ url_for('main.post_detail', id=post.id) }}"><h3>{{ post.title }}</h3></a>
                                 <h5>{{ post.comments.count() }}&nbsp;个回复 | {{ post.view_times }}&nbsp;次浏览</h5>
@@ -64,14 +64,14 @@
                 </ul>
             </div>
         </div>
-    </div>
-    {% if pagination %}
-        <div class="pagination">
-            {% if args['object'] == '帖子' %}
-                {{ macros.pagination_widget(pagination, 'main.search', object='帖子', keyword=args['keyword']) }}
+    {% if counts %}
+        <div class="center">
+            {% if args['object'] == 'post' %}
+                {{ macros.pagination_widget(pagination, 'main.search', object='post', keyword=args['keyword']) }}
             {% else %}
-                {{ macros.pagination_widget(pagination, 'main.search', object='用户', keyword=args['keyword']) }}
+                {{ macros.pagination_widget(pagination, 'main.search', object='user', keyword=args['keyword']) }}
             {% endif %}
         </div>
     {% endif %}
+       </div>
 {% endblock %}

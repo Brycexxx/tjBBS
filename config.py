@@ -4,6 +4,8 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/")
     FC_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/users/")
+    POST_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/posts/")
+    IMAGE_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
     PER_PAGE = 5
     MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = 587

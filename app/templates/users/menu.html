@@ -6,14 +6,17 @@
         <a id="edit-pwd" href="{{ url_for('main.edit_pwd')}}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码
         </a>
-        <a id="follows" href="#" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-comment"></span>&nbsp;关注/粉丝
+        <a id="following" href="#" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;你的关注
+        </a>
+        <a id="followers" href="#" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-apple"></span>&nbsp;你的粉丝
         </a>
         <a id="posts" href="{{ url_for('main.posts', page=1) }}" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-calendar"></span>&nbsp;发布帖子
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;发布的帖子
         </a>
         <a id="collections" href="{{ url_for('main.collected_posts', page=1) }}" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-heart"></span>&nbsp;收藏帖子
+            <span class="glyphicon glyphicon-star"></span>&nbsp;收藏的帖子
         </a>
         <a id="message-board" href="#" class="list-group-item user-center">
             <span class="glyphicon glyphicon-comment"></span>&nbsp;留言板

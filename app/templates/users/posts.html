@@ -19,7 +19,7 @@
                                 <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
                                     <h3 style="display: inline; vertical-align: center; margin-bottom: 20px;">{{ post.title }}</h3>
                                     <div style="margin-top: 20px;">
-                                        {{ post.descriptions }}
+                                        {{ post.descriptions | safe }}
                                         <div class="post-footer">
                                             <a href="{{ url_for('main.del_post', id=post.id) }}">删除</a> | <span>{{ moment(post.add_time).format('LLL') }}</span>
                                         </div>

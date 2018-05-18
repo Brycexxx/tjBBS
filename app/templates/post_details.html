@@ -16,7 +16,7 @@
         {% if pagination.page == 1 %}
             <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
                 <div>
-                    {{ post.descriptions }}
+                    {{ post.descriptions | safe }}
                     <div class="post-footer">
                         <span>1&nbsp;楼 | {{ moment(post.add_time).format('LLL') }}</span>
                     </div>

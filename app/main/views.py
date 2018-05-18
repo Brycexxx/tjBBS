@@ -1,8 +1,8 @@
 from . import main
 from .. import db
 from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow
-from .forms import PostForm, SearchForm, ReplyToCommentForm, UserDetailForm, PwdForm
-from flask import render_template, redirect, url_for, flash, request, current_app
+from .forms import PostForm, ReplyToCommentForm, UserDetailForm, PwdForm
+from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
@@ -17,8 +17,12 @@ def drop_html(html_body):
     body = pattern.sub('', html_body)
     return body
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in current_app.config['IMAGE_EXTENSIONS']
+
 def change_filename(filename):
-    fileinfo = os.path.split(filename)
+    fileinfo = os.path.splitext(filename)
     filename = datetime.utcnow().strftime("%Y%m%d%H%M%S") + \
                 str(uuid4().hex) + fileinfo[-1]
     return filename
@@ -115,6 +119,19 @@ def collected_posts():
     collected_posts = pagination.items
     return render_template('users/collected_posts.html', posts=collected_posts, pagination=pagination)
 
+@main.route('/upload-image', methods=['GET', 'POST'])
+@login_required
+def upload_image():
+    image = request.files['file']
+    if image and allowed_file(image.filename):
+        image_name = secure_filename(image.filename)
+        secure_imgname = change_filename(image_name)
+        success = '{"error": false, "url":"http:\/\/localhost:5000\/static\/uploads\/posts\/' + secure_imgname + '"}'
+        image.save(os.path.join(current_app.config['POST_DIR'], secure_imgname))
+        return success
+    else:
+        error = '{"error": true}'
+        return error
 
 @main.route('/post', methods=['GET', 'POST'])
 @login_required
@@ -124,7 +141,7 @@ def post():
         data = form.data
         post = Post(
             title=data['title'],
-            descriptions=drop_html(request.form['content']),
+            descriptions=request.form['content'],
             category=Category.query.get(data['category']),
             user=current_user
         )
@@ -138,7 +155,7 @@ def post():
 @main.route('/search/<int:page>/')
 def search(page):
     args = eval(json.dumps(request.args))
-    if args['object'] == '帖子':
+    if args['object'] == 'post':
         posts_count = Post.query.filter(
             or_(Post.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
                 Post.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
@@ -149,7 +166,7 @@ def search(page):
         ).order_by(Post.add_time.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
                                                    error_out=False)
         posts = pagination.items
-        return render_template('search.html', posts_count=posts_count, pagination=pagination, posts=posts,
+        return render_template('search.html', counts=posts_count, pagination=pagination, posts=posts,
                                args=args)
     else:
         users_count = User.query.filter(User.username.ilike('%' + args['keyword'] + '%')).count()
@@ -157,7 +174,7 @@ def search(page):
             order_by(User.last_seen.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
                                                      error_out=False)
         posts = pagination.items
-        return render_template('search.html', users_count=users_count, args=args, pagination=pagination, posts=posts)
+        return render_template('search.html', counts=users_count, args=args, pagination=pagination, posts=posts)
 
 
 @main.route('/post-detail/<int:id>/', methods=['GET', 'POST'])
@@ -172,7 +189,7 @@ def post_detail(id):
     db.session.add(post)
     db.session.commit()
     if request.method == 'POST' and 'reply_comment_id' not in request.args:
-        comment_body = drop_html(request.form['content'])
+        comment_body = request.form['content']
         if comment_body:
             comment = Comment(body=comment_body, post=post, user=current_user._get_current_object())
             db.session.add(comment)
@@ -275,7 +292,7 @@ def del_post(id):
     post = Post.query.get_or_404(id)
     db.session.delete(post)
     db.session.commit()
-    return redirect(url_for('main.posts '))
+    return redirect(url_for('main.posts'))
 
 @main.route('/del-collected-post/<int:id>')
 @login_required

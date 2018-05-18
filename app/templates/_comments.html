@@ -3,7 +3,7 @@
         <li {% if post.user != comments[f].user %} class="post not-owner" {% else %} class="post" {% endif %}>
             <div>
                 <span id="comment-body">
-                    {{ comments[f].body }}
+                    {{ comments[f].body | safe }}
                 </span>
                 <div class="post-footer">
                     {% if current_user == comments[f].user %}
