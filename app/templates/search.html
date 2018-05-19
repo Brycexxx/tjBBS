@@ -9,7 +9,7 @@
                     {% if args['object'] == 'post' %}
                         <li>找到&nbsp;{{ counts }}&nbsp;个与"{{ args['keyword'] }}"相关的内容</li>
                     {% else %}
-                        <li>找到{{ counts }}个与"{{ args['keyword'] }}"相关的用户</li>
+                        <li>找到&nbsp;{{ counts }}&nbsp;个与"{{ args['keyword'] }}"相关的用户</li>
                     {% endif %}
                 </ol>
                 <ul class="posts">
@@ -36,7 +36,7 @@
                                         {{ post.username }}
                                     </a>
                                 </div>
-                                <div class="post-body" style="margin-left: 60px">
+                                <div class="post-body">
                                     {% if post.about_me %}
                                         {{ post.about_me }}
                                     {% else %}
@@ -48,7 +48,7 @@
                                                 <span class="label label-primary">关注</span>
                                             </a>
                                             <a href="#">
-                                                <span class="label label-success">加为好友</span>
+                                                <span class="label label-success">留言</span>
                                             </a>
                                         {% endif %}
                                         <a href="#">

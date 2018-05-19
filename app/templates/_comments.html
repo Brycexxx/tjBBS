@@ -2,14 +2,22 @@
     {% for f in range(length) %}
         <li {% if post.user != comments[f].user %} class="post not-owner" {% else %} class="post" {% endif %}>
             <div class="row">
-                <div class="col-md-2" style="text-align: center">
+                <div class="col-md-2 aligncenter">
                     {% if comments[f].user.avatar %}
-                        <img src="{{ url_for('static', filename='uploads/users/' + comments[f].user.avatar) }}"
-                             style="width: 100px;" class="img-responsive img-rounded">
+                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}>
+                            <img src="{{ url_for('static', filename='uploads/users/' + comments[f].user.avatar) }}"
+                                 style="width: 100px;" class="img-responsive img-rounded">
+                        </a>
                     {% else %}
-                        <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
-                             style="width: 100px;" class="img-responsive img-rounded">
+                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}>
+                            <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
+                                 style="width: 100px;" class="img-responsive img-rounded">
+                        </a>
                     {% endif %}
+                    <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}
+                                                                 class="center">
+                        {{ comments[f].user.username }}
+                    </a>
                 </div>
                 <div class="col-md-10">
                 <span id="comment-body">
@@ -30,7 +38,7 @@
                                             {{ reply_comment.user.username }}: {{ reply_comment.body }}
                                             <div class="post-footer">
                                                 {% if current_user == reply_comment.user %}
-                                                <a href="{{ url_for('main.del_rep_comment', id=reply_comment.id, post_id=post.id) }}">删除</a>&nbsp;|&nbsp;
+                                                    <a href="{{ url_for('main.del_rep_comment', id=reply_comment.id, post_id=post.id) }}">删除</a>&nbsp;|&nbsp;
                                                 {% endif %}
                                                 {{ reply_comment.add_time }}
                                             </div>

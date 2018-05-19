@@ -55,6 +55,7 @@ def userinfo():
         # 显示用户原本的信息
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.location.data = current_user.location
         form.info.data = current_user.about_me
     if form.validate_on_submit():
         data = form.data
@@ -75,6 +76,7 @@ def userinfo():
         current_user.username = data['username']
         current_user.email = data['email']
         current_user.about_me = data['info']
+        current_user.location = data['location']
         db.session.add(current_user)
         db.session.commit()
         flash("修改成功！")
@@ -250,7 +252,11 @@ def followers(id):
     )
     follows = [{'user': item.followed, 'add_time': item.add_time}
                for item in pagination.items]
-    return render_template('follows.html', user=user, pagination=pagination,
+    if current_user == user:
+        template_html = 'users/follows.html'
+    else:
+        template_html = 'follows.html'
+    return render_template(template_html, user=user, pagination=pagination,
                            follows=follows, title='关注了谁', endpoint='main.followers')
 
 @main.route('/followed_by/<int:id>')
@@ -263,7 +269,11 @@ def followed_by(id):
     )
     follows = [{'user': item.follower, 'add_time': item.add_time}
                for item in pagination.items]
-    return render_template('follows.html', user=user, pagination=pagination,
+    if current_user == user:
+        template_html = 'users/follows.html'
+    else:
+        template_html = 'follows.html'
+    return render_template(template_html, user=user, pagination=pagination,
                            follows=follows, title='的粉丝',endpoint='main.followed_by')
 
 @main.route('/collect/<int:id>')

@@ -6,9 +6,18 @@
 {% block page_content %}
     <div class="container" style="margin:76px 0; ">
         <div class="col-md-4">
-            <img {% if user.avatar %}src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}"{% else %} src="{{ url_for('static', filename='uploads/users/' + 'tjer.gif') }}{% endif %}"
-                 style="width: 80%; height: auto; margin-bottom: 30px" class="img-responsive img-rounded">
-            <span style="font-style: italic">“ {{ user.about_me }} ”</span>
+            <a class="aligncenter" {% if current_user == user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=user.id) }}"{% endif %}>
+                <img {% if user.avatar %}src="{{ url_for('static', filename='uploads/users/' + user.avatar) }}"{% else %} src="{{ url_for('static', filename='uploads/users/' + 'tjer.gif') }}"{% endif %}
+                     style="width: 80%; height: auto; margin-bottom: 20px;" class="img-responsive img-rounded">
+            </a>
+            <div class="center">
+                <a {% if current_user == user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=user.id) }}"{% endif %}
+                                                 class="center">
+                    <h4>{{ user.username }}</h4>
+                </a>
+                <br>
+                <span class="center" style="font-style: italic">“ {{ user.about_me }} ”</span>
+            </div>
         </div>
         <div class="col-md-8">
             <h1 style="margin-top: 0px">{{ user.username }}</h1>
@@ -52,7 +61,7 @@
                                 <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
                                     <a href="{{ url_for('main.post_detail', id=post.id) }}"><h3 style="display: inline; vertical-align: center; margin-bottom: 20px;">{{ post.title }}</h3></a>
                                     <div style="margin-top: 20px;">
-                                        {{ post.descriptions }}
+                                        {{ post.descriptions | safe }}
                                         <div class="post-footer">
                                             <span>{{ post.add_time }}</span>
                                         </div>

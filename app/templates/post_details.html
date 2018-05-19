@@ -18,14 +18,22 @@
         {% if pagination.page == 1 %}
             <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
                 <div class="row">
-                    <div class="col-md-2" style="text-align: center">
+                    <div class="col-md-2 aligncenter">
                         {% if post.user.avatar %}
-                            <img src="{{ url_for('static', filename='uploads/users/' + post.user.avatar) }}"
-                                 style="width: 100px;" class="img-responsive img-rounded">
+                            <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}>
+                                <img src="{{ url_for('static', filename='uploads/users/' + post.user.avatar) }}"
+                                     style="width: 100px;" class="img-responsive img-rounded">
+                            </a>
                         {% else %}
-                            <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
-                                 style="width: 100px;" class="img-responsive img-rounded">
+                            <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}>
+                                <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
+                                     style="width: 100px;" class="img-responsive img-rounded">
+                            </a>
                         {% endif %}
+                        <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}
+                                                              class="center">
+                            {{ post.user.username }}
+                        </a>
                     </div>
                     <div class="col-md-10">
                         {{ post.descriptions | safe }}

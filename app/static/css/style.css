@@ -80,7 +80,7 @@ div.pagination {
     float: right;
 }
 .post-body {
-    padding-left: 45px;
+    margin-left: 60px;
 }
 
 ul.comments {
@@ -141,4 +141,15 @@ body {
 }
 .mce-window {
     transform: initial !important;
+}
+.aligncenter {
+    display: flex;
+    flex-direction: column;
+}
+
+.aligncenter a {
+    align-self: center;
+}
+.aligncenter>img {
+    align-self: center;
 }

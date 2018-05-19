@@ -1,22 +1,63 @@
-<div class="col-md-8">
-    <table class="table table-hover followers">
-        <thead><tr><th>用户</th><th>加入时间</th></tr></thead>
-        {% for follow in follows %}
-            <tbody>
-            <tr>
-                <td>
-                    <a href="{{ url_for('main.user', id=follow['user'].id) }}">
-                        {{ follow['user'].username }}
-                    </a>
-                </td>
-                <td>{{ moment(follow.add_time).format('L') }}</td>
-            </tr>
-            </tbody>
-        {% endfor %}
-    </table>
-</div>
-{% if follows %}
-    <div class="center">
-        {{ macros.pagination_widget(pagination, endpoint, id=user.id) }}
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+            {% if endpoint == 'main.followers' %}
+                {{ user.username }}的关注
+            {% else %}
+                {{ user.username }}的粉丝
+            {% endif %}
+        </h3>
     </div>
-{% endif %}
+    <div class="panel-body">
+        {% if follows %}
+            <ul class="posts">
+                {% for follow in follows %}
+                    <li class="post">
+                        <div class="profile-thumbnail">
+                            <a href="{{ url_for('main.user', id=follow['user'].id) }}">
+                                <img class="img-rounded profile-thumbnail" {% if follow['user'].avatar %}src="{{ url_for('static', filename='uploads/users/' + follow['user'].avatar) }}"{% else %} src="{{ url_for('static', filename='uploads/users/' + 'tjer.gif') }}{% endif %}">
+                            </a>
+                        </div>
+                        <div class="post-date" style="font-size: 12px">{{ moment(follow['user'].member_since).fromNow() }}加入</div>
+                        <div class="post-author" style="margin-left: 15px">
+                            <a href="{{ url_for('main.user', id=follow['user'].id) }}">
+                                {{ follow['user'].username }}
+                            </a>
+                        </div>
+                        <div class="post-body">
+                            {% if follow['user'].about_me %}
+                                {{ follow['user'].about_me }}
+                            {% else %}
+                                这个人很神秘，什么也没留下......
+                            {% endif %}
+                            <div class="post-footer">
+                                {% if current_user != post %}
+                                    <a href="{{ url_for('main.follow', id=follow['user'].id) }}">
+                                        <span class="label label-primary">关注</span>
+                                    </a>
+                                    <a href="#">
+                                        <span class="label label-success">留言</span>
+                                    </a>
+                                {% endif %}
+                                <a href="#">
+                            <span class="label label-primary">
+                                {{ follow['user'].posts.count() }}&nbsp;帖子
+                            </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="center">
+                {{ macros.pagination_widget(pagination, endpoint, id=user.id) }}
+            </div>
+        {% else %}
+            {% if endpoint == 'main.followers' %}
+                <h3>{{ user.username }}还没有关注的人......</h3>
+            {% else %}
+                <h3>{{ user.username }}还没有粉丝......</h3>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

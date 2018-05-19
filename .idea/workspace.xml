@@ -2,13 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fb28c17-c9f3-4ebd-b952-bda4241a39d0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/templates/users/follows.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/_comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/_comments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/_follows.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/_follows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/follows.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/follows.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/post_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/post_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/collected_posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/collected_posts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/edit_pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/edit_pwd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/followers.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/following.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/posts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/userinfo.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +29,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/tjTwoHand$tjTwoHand.coverage" NAME="tjTwoHand Coverage Results" MODIFIED="1526709670338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tjTwoHand$tjTwoHand.coverage" NAME="tjTwoHand Coverage Results" MODIFIED="1526747676305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -41,32 +52,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <file leaf-file-name="follows.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/users/follows.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="993">
-              <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+            <state relative-caret-position="-288">
+              <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/main/views.py">
+      <file leaf-file-name="menu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/users/menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="260" column="31" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
+            <state relative-caret-position="264">
+              <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="52" column="51" lean-forward="true" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="51" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#343#349#0#HTML" expanded="true" />
+                <element signature="e#361#367#0#HTML" expanded="true" />
+                <element signature="e#464#470#0#HTML" expanded="true" />
+                <element signature="e#482#488#0#HTML" expanded="true" />
+                <element signature="e#930#936#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="8" column="198" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="198" />
             </state>
           </provider>
         </entry>
@@ -74,43 +89,12 @@
       <file leaf-file-name="follows.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_follows.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_details.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
+            <state relative-caret-position="95">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
               <folding>
-                <element signature="e#831#878#0#HTML" expanded="true" />
-                <element signature="e#1038#1064#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_comments.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/_comments.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-                <element signature="e#2168#2174#0#HTML" expanded="true" />
-                <element signature="e#2175#2181#0#HTML" expanded="true" />
+                <element signature="e#162#185#0#HTML" expanded="true" />
+                <element signature="e#631#685#0#HTML" expanded="true" />
+                <element signature="e#560#586#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,26 +103,63 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+            <state relative-caret-position="382">
+              <caret line="146" column="27" lean-forward="true" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userinfo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
+      <file leaf-file-name="post_details.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="38" column="43" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="38" selection-end-column="43" />
+            <state relative-caret-position="480">
+              <caret line="35" column="28" selection-start-line="32" selection-start-column="24" selection-end-line="35" selection-end-column="28" />
+              <folding>
+                <element signature="e#1428#1449#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
+      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="19" selection-start-column="19" selection-end-column="19" />
+            <state relative-caret-position="264">
+              <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_follows.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/main/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="274" column="38" lean-forward="true" selection-start-line="274" selection-start-column="38" selection-end-line="274" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="posts.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="9" column="30" lean-forward="true" selection-end-line="51" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -178,7 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/auth/view.py" />
         <option value="$PROJECT_DIR$/app/main/__init__.py" />
         <option value="$PROJECT_DIR$/app/templates/login.html" />
         <option value="$PROJECT_DIR$/app/templates/auth/login.html" />
@@ -193,22 +213,13 @@
         <option value="$PROJECT_DIR$/app/templates/_macros.html" />
         <option value="$PROJECT_DIR$/app/templates/userinfo.html" />
         <option value="$PROJECT_DIR$/app/templates/edit_pwd.html" />
-        <option value="$PROJECT_DIR$/app/main/forms.py" />
         <option value="$PROJECT_DIR$/app/templates/menu.html" />
         <option value="$PROJECT_DIR$/app/static/js/main.js" />
-        <option value="$PROJECT_DIR$/app/templates/users/userinfo.html" />
         <option value="$PROJECT_DIR$/app/templates/users/collected_idle_items.html" />
         <option value="$PROJECT_DIR$/app/templates/users/idle_items.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/edit_pwd.html" />
         <option value="$PROJECT_DIR$/manager.py" />
         <option value="$PROJECT_DIR$/app/templates/_posts.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/collected_posts.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/followers.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/following.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/menu.html" />
         <option value="$PROJECT_DIR$/app/static/css/carousel/style.css" />
-        <option value="$PROJECT_DIR$/app/templates/search.html" />
-        <option value="$PROJECT_DIR$/app/templates/user.html" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
         <option value="$PROJECT_DIR$/app/admin/forms.py" />
         <option value="$PROJECT_DIR$/app/admin/__init__.py" />
@@ -216,19 +227,29 @@
         <option value="$PROJECT_DIR$/app/admin/views.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/templates/post.html" />
-        <option value="$PROJECT_DIR$/app/static/css/style.css" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/app/templates/follows.html" />
-        <option value="$PROJECT_DIR$/app/templates/users/posts.html" />
         <option value="$PROJECT_DIR$/app/static/js/tinymce_setup.js" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" />
         <option value="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql" />
         <option value="$PROJECT_DIR$/app/templates/post_details.html" />
         <option value="$PROJECT_DIR$/app/templates/_comments.html" />
-        <option value="$PROJECT_DIR$/app/templates/_follows.html" />
+        <option value="$PROJECT_DIR$/app/main/forms.py" />
+        <option value="$PROJECT_DIR$/app/templates/users/userinfo.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/collected_posts.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/edit_pwd.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/posts.html" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql" />
+        <option value="$PROJECT_DIR$/app/templates/users/followers.html" />
+        <option value="$PROJECT_DIR$/app/templates/search.html" />
+        <option value="$PROJECT_DIR$/app/static/css/style.css" />
+        <option value="$PROJECT_DIR$/app/templates/user.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/following.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/menu.html" />
         <option value="$PROJECT_DIR$/app/main/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/follows.html" />
+        <option value="$PROJECT_DIR$/app/templates/_follows.html" />
+        <option value="$PROJECT_DIR$/app/templates/users/follows.html" />
       </list>
     </option>
   </component>
@@ -278,6 +299,12 @@
               <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
               <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -285,7 +312,7 @@
               <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="uploads" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
@@ -293,7 +320,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="uploads" type="462c0819:PsiDirectoryNode" />
-              <item name="posts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
@@ -388,12 +414,12 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32984293" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.499723" weight="0.31524548" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.499723" visible="true" weight="0.2635659" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.499723" visible="true" weight="0.063307494" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49916896" weight="0.07235142" />
-      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" weight="0.0" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.31357342" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" weight="0.37775445" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16620499" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.16343491" />
+      <window_info anchor="right" id="Database" order="4" weight="0.16307352" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -474,12 +500,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main/views.py</url>
-          <line>124</line>
+          <line>126</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/main/views.py</url>
-          <line>258</line>
+          <line>264</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
@@ -523,8 +549,7 @@
         <state relative-caret-position="384">
           <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
           <folding>
-            <element signature="e#831#878#0#HTML" expanded="true" />
-            <element signature="e#1038#1064#0#HTML" expanded="true" />
+            <element signature="e#1428#1449#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -543,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/edit_pwd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/_macros.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -557,48 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-984">
-          <caret line="13" column="64" selection-start-line="13" selection-start-column="64" selection-end-line="13" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/_posts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="19" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/collected_posts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="23" column="175" lean-forward="true" selection-start-line="23" selection-start-column="140" selection-end-line="23" selection-end-column="175" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/followers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/following.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -620,22 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="4" column="78014" selection-start-line="4" selection-start-column="78014" selection-end-line="4" selection-end-column="78014" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-696">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#328#334#0#HTML" expanded="true" />
-            <element signature="e#346#352#0#HTML" expanded="true" />
-            <element signature="e#915#921#0#HTML" expanded="true" />
-            <element signature="e#948#954#0#HTML" expanded="true" />
-            <element signature="e#1100#1106#0#HTML" expanded="true" />
-            <element signature="e#1229#1235#0#HTML" expanded="true" />
-            <element signature="e#3541#3547#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -663,16 +627,6 @@
     <entry file="file://$PROJECT_DIR$/app/static/tinymce/LICENSE.TXT">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2304" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/wrappers.py">
@@ -749,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/post.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -798,20 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="38" column="43" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="38" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="993">
@@ -819,64 +752,161 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
-          <folding>
-            <element signature="e#831#878#0#HTML" expanded="true" />
-            <element signature="e#1038#1064#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/_comments.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="336">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
             <element signature="e#2168#2174#0#HTML" expanded="true" />
             <element signature="e#2175#2181#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        <state relative-caret-position="696">
+          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/users/collected_posts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        <state relative-caret-position="288">
+          <caret line="12" column="81" selection-start-line="12" selection-start-column="81" selection-end-line="12" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/edit_pwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="9" column="30" lean-forward="true" selection-end-line="51" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="52" column="51" lean-forward="true" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="51" />
+          <folding>
+            <element signature="e#343#349#0#HTML" expanded="true" />
+            <element signature="e#361#367#0#HTML" expanded="true" />
+            <element signature="e#464#470#0#HTML" expanded="true" />
+            <element signature="e#482#488#0#HTML" expanded="true" />
+            <element signature="e#930#936#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="146" column="27" lean-forward="true" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="35" column="28" selection-start-line="32" selection-start-column="24" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="e#1428#1449#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="8" column="198" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="198" />
+        <state relative-caret-position="264">
+          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/followers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="260" column="31" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
+        <state relative-caret-position="264">
+          <caret line="274" column="38" lean-forward="true" selection-start-line="274" selection-start-column="38" selection-end-line="274" selection-end-column="38" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#162#185#0#HTML" expanded="true" />
+            <element signature="e#631#685#0#HTML" expanded="true" />
+            <element signature="e#560#586#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/follows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
         </state>
       </provider>
     </entry>

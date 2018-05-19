@@ -60,6 +60,17 @@ class UserDetailForm(FlaskForm):
             "placeholder": "请输入邮箱！",
         }
     )
+    location = StringField(
+        label="常住地",
+        validators=[
+            DataRequired("常住不能为空！")
+        ],
+        description="常住地",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入常住地！",
+        }
+    )
     avatar = FileField(
         label="头像",
         validators=[

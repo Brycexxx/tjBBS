@@ -6,10 +6,10 @@
         <a id="edit-pwd" href="{{ url_for('main.edit_pwd')}}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码
         </a>
-        <a id="following" href="#" class="list-group-item user-center">
+        <a id="following" href="{{ url_for('main.followers', id=current_user.id) }}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-heart"></span>&nbsp;你的关注
         </a>
-        <a id="followers" href="#" class="list-group-item user-center">
+        <a id="followers" href="{{ url_for('main.followed_by', id=current_user.id) }}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-apple"></span>&nbsp;你的粉丝
         </a>
         <a id="posts" href="{{ url_for('main.posts', page=1) }}" class="list-group-item user-center">
