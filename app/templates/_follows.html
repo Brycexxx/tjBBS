@@ -5,7 +5,7 @@
             <tbody>
             <tr>
                 <td>
-                    <a href="{{ url_for('.user', id = follow['user'].id) }}">
+                    <a href="{{ url_for('main.user', id=follow['user'].id) }}">
                         {{ follow['user'].username }}
                     </a>
                 </td>

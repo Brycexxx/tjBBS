@@ -245,7 +245,7 @@ def unfollow(id):
 def followers(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
-    pagination = user.followers.paginate(
+    pagination = user.followed.paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     follows = [{'user': item.followed, 'add_time': item.add_time}
@@ -258,7 +258,7 @@ def followers(id):
 def followed_by(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
-    pagination = user.followed.paginate(
+    pagination = user.followers.paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     follows = [{'user': item.follower, 'add_time': item.add_time}

@@ -2,137 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fb28c17-c9f3-4ebd-b952-bda4241a39d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/admin/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/admin/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/next.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/prev.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/img/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/uncompressed/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/users/followers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/users/following.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap-theme.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/image/slide1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/image/slide1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/image/slide2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/image/slide2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/image/slide3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/image/slide3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/js/tinymce_setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/tinymce_setup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/LICENSE.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/LICENSE.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/changelog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/jquery.tinymce.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/jquery.tinymce.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/en_GB.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/ja.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/ko_KR.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/zh_TW.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/license.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/license.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/advlist/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/advlist/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/anchor/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/anchor/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autolink/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autolink/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autoresize/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autoresize/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autosave/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/autosave/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/bbcode/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/bbcode/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/charmap/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/charmap/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/code/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/code/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/codesample/css/prism.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/codesample/css/prism.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/codesample/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/codesample/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/colorpicker/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/colorpicker/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/contextmenu/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/contextmenu/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/directionality/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/directionality/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-cool.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-cool.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-cry.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-cry.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-frown.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-frown.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-smile.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-smile.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-wink.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-wink.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-yell.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/img/smiley-yell.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/emoticons/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/fullpage/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/fullpage/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/fullscreen/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/fullscreen/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/help/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/help/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/help/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/help/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/hr/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/hr/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/image/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/image/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imagetools/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imagetools/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/importcss/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/importcss/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/insertdatetime/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/insertdatetime/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/legacyoutput/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/legacyoutput/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/link/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/link/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/lists/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/lists/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/media/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/media/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/nonbreaking/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/nonbreaking/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/noneditable/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/noneditable/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/pagebreak/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/pagebreak/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/paste/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/paste/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/preview/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/preview/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/print/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/print/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/save/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/save/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/searchreplace/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/searchreplace/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/spellchecker/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/spellchecker/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/tabfocus/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/tabfocus/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/table/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/table/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/template/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/template/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/textcolor/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/textcolor/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/textpattern/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/textpattern/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/toc/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/toc/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualblocks/css/visualblocks.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualblocks/css/visualblocks.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualblocks/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualblocks/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualchars/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/visualchars/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/wordcount/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/wordcount/plugin.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.inline.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.inline.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.mobile.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/content.mobile.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.eot" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.woff" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/anchor.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/anchor.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/loader.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/loader.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/object.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/object.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/trans.gif" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/img/trans.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/skin.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/skin.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/skin.mobile.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/inlite/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/inlite/theme.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/mobile/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/mobile/theme.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/modern/theme.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/themes/modern/theme.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/tinymce.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/tinymce.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/_comments.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/_comments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/follows.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/follows.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/_follows.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/_follows.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/post_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/post_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/posts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -142,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/tjTwoHand$tjTwoHand.coverage" NAME="tjTwoHand Coverage Results" MODIFIED="1526669404943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tjTwoHand$tjTwoHand.coverage" NAME="tjTwoHand Coverage Results" MODIFIED="1526709670338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -165,29 +41,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1186">
-              <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="993">
               <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="167" column="32" lean-forward="true" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+            <state relative-caret-position="395">
+              <caret line="260" column="31" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -195,11 +62,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tinymce_setup.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/static/js/tinymce_setup.js">
+      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="48">
+              <caret line="8" column="198" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="198" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="follows.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_follows.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -207,20 +92,53 @@
       <file leaf-file-name="post_details.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
+            <state relative-caret-position="336">
+              <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
               <folding>
-                <element signature="e#1430#1454#0#HTML" expanded="true" />
+                <element signature="e#831#878#0#HTML" expanded="true" />
+                <element signature="e#1038#1064#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="posts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
+      <file leaf-file-name="_comments.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/_comments.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+            <state>
+              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="e#2168#2174#0#HTML" expanded="true" />
+                <element signature="e#2175#2181#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userinfo.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="38" column="43" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="38" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -260,7 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/auth/__init__.py" />
         <option value="$PROJECT_DIR$/app/auth/view.py" />
         <option value="$PROJECT_DIR$/app/main/__init__.py" />
         <option value="$PROJECT_DIR$/app/templates/login.html" />
@@ -283,7 +200,6 @@
         <option value="$PROJECT_DIR$/app/templates/users/collected_idle_items.html" />
         <option value="$PROJECT_DIR$/app/templates/users/idle_items.html" />
         <option value="$PROJECT_DIR$/app/templates/users/edit_pwd.html" />
-        <option value="$PROJECT_DIR$/app/templates/_follows.html" />
         <option value="$PROJECT_DIR$/manager.py" />
         <option value="$PROJECT_DIR$/app/templates/_posts.html" />
         <option value="$PROJECT_DIR$/app/templates/users/collected_posts.html" />
@@ -303,14 +219,16 @@
         <option value="$PROJECT_DIR$/app/static/css/style.css" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/app/templates/follows.html" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql" />
-        <option value="$PROJECT_DIR$/app/templates/post_details.html" />
         <option value="$PROJECT_DIR$/app/templates/users/posts.html" />
-        <option value="$PROJECT_DIR$/app/templates/_comments.html" />
-        <option value="$PROJECT_DIR$/app/main/views.py" />
-        <option value="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" />
         <option value="$PROJECT_DIR$/app/static/js/tinymce_setup.js" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
+        <option value="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css" />
+        <option value="$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql" />
+        <option value="$PROJECT_DIR$/app/templates/post_details.html" />
+        <option value="$PROJECT_DIR$/app/templates/_comments.html" />
+        <option value="$PROJECT_DIR$/app/templates/_follows.html" />
+        <option value="$PROJECT_DIR$/app/main/views.py" />
       </list>
     </option>
   </component>
@@ -332,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -368,40 +285,6 @@
               <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="tinymce" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tjTwoHand" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tjTwoHand" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="uploads" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -429,13 +312,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$USER_HOME$/movie_project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
@@ -496,7 +380,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1851" height="905" extended-state="6" />
+    <frame x="64" y="-11" width="1853" height="913" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -504,48 +388,48 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32984293" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.499723" weight="0.31524548" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.499723" weight="0.43281654" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49916896" weight="0.009043927" />
-      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" weight="0.08010336" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.39889196" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.499723" visible="true" weight="0.2635659" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49916896" weight="0.07235142" />
+      <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" weight="0.0" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.31357342" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="4" weight="0.16343491" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32945737" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.16343491" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49916896" weight="0.43540052" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49916896" weight="0.251938" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32945737" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="14" weight="0.32945737" />
     </layout>
     <layout-to-restore>
       <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" visible="true" weight="0.19895288" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.38060942" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32984293" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.499723" weight="0.7604712" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.499723" weight="0.3630491" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32945737" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49916896" weight="0.010335918" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49916896" weight="0.35400516" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.500831" side_tool="true" weight="0.37628865" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32984293" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Database" order="4" weight="0.92170817" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.499723" weight="0.3630491" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,6 +477,11 @@
           <line>124</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/main/views.py</url>
+          <line>258</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -601,10 +490,59 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2208">
+          <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3744">
+          <caret line="167" column="32" lean-forward="true" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/js/tinymce_setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
+          <folding>
+            <element signature="e#831#878#0#HTML" expanded="true" />
+            <element signature="e#1038#1064#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1944">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/users/edit_pwd.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="531">
@@ -633,13 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="19" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -708,9 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/forms.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -725,9 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/auth/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -735,20 +660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="141" column="13" lean-forward="true" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/tinymce/LICENSE.TXT">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2304" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/tinymce/changelog.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -776,9 +691,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/uploads/posts/slide2.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/werkzeug/local.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -815,23 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/img/icon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -839,29 +734,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/imageupload/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/readme.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/langs/zh_CN.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="198" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="198" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/imageupload/css/style.css" />
     <entry file="file://$PROJECT_DIR$/app/static/js/jquery.form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1538">
@@ -869,30 +742,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1186">
+        <state relative-caret-position="2208">
           <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/_comments.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-337">
-          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/users/posts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="504">
           <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
         </state>
       </provider>
@@ -911,44 +770,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="167" column="32" lean-forward="true" selection-start-line="167" selection-start-column="32" selection-end-line="167" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/js/tinymce_setup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="595" column="16" selection-start-line="595" selection-start-column="16" selection-end-line="595" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/tinymce/js/tinymce/plugins/imageupload/plugin.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="39" column="35" lean-forward="true" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+        <state relative-caret-position="144">
+          <caret line="102" column="7" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1304846e-e6e7-4150-b4ff-73612c1aca05/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="16" column="77" lean-forward="true" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
-          <folding>
-            <element signature="e#1430#1454#0#HTML" expanded="true" />
-          </folding>
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/users/userinfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="38" column="43" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="38" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
+        <state relative-caret-position="993">
           <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/post_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="26" column="90" lean-forward="true" selection-start-line="26" selection-start-column="90" selection-end-line="26" selection-end-column="90" />
+          <folding>
+            <element signature="e#831#878#0#HTML" expanded="true" />
+            <element signature="e#1038#1064#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/_comments.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="e#2168#2174#0#HTML" expanded="true" />
+            <element signature="e#2175#2181#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/follows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/_follows.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="8" column="198" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="260" column="31" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
