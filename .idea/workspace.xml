@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fb28c17-c9f3-4ebd-b952-bda4241a39d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/users/messages.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1304846e-e6e7-4150-b4ff-73612c1aca05.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1304846e-e6e7-4150-b4ff-73612c1aca05.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/collected_posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/collected_posts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/edit_pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/edit_pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/follows.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/follows.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/posts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/userinfo.html" afterDir="false" />
-    </list>
+    <list default="true" id="5fb28c17-c9f3-4ebd-b952-bda4241a39d0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +36,8 @@
       <file leaf-file-name="follows.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/users/follows.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+            <state relative-caret-position="1682">
+              <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -342,14 +327,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1853" height="913" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.500831" side_tool="true" weight="0.37628865" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32984293" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.499723" weight="0.31524548" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.499723" visible="true" weight="0.16795866" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.499723" weight="0.16795866" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49916896" weight="0.27260983" />
       <window_info anchor="bottom" id="Database Console" order="13" sideWeight="0.499723" weight="0.19896641" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16565096" />
@@ -818,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/users/follows.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="73" column="18" lean-forward="true" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+        <state relative-caret-position="1682">
+          <caret line="81" column="18" lean-forward="true" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
         </state>
       </provider>
     </entry>
