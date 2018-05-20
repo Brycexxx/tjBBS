@@ -18,6 +18,24 @@
                 <br>
                 <span class="center" style="font-style: italic">“ {{ user.about_me }} ”</span>
             </div>
+            <div style="margin-top: 20px">
+                <form role="form" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <div style="text-align: left">
+                                <label for="input_info">
+                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;{{ form.message.label }}
+                                </label>
+                            </div>
+                            {{ form.message }}
+                        </div>
+                        <div class="center">
+                            {{ form.csrf_token }}
+                            {{ form.submit }}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
         <div class="col-md-8">
             <h1 style="margin-top: 0px">{{ user.username }}</h1>

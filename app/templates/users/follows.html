@@ -10,8 +10,14 @@
     <div class="col-md-9">
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span>&nbsp;
-                    用户中心
+                <h3 class="panel-title">
+                    {% if endpoint == 'main.followers' %}
+                        <span class="glyphicon glyphicon-heart"></span>&nbsp;
+                        你的关注
+                    {% else %}
+                        <span class="glyphicon glyphicon-apple"></span>&nbsp;
+                        你的粉丝
+                    {% endif %}
                 </h3>
             </div>
             <div class="panel-body">
@@ -60,9 +66,9 @@
                     </div>
                 {% else %}
                     {% if endpoint == 'main.followers' %}
-                        <h3>{{ user.username }}还没有关注的人......</h3>
+                        <h3>你还没有关注的人......</h3>
                     {% else %}
-                        <h3>{{ user.username }}还没有粉丝......</h3>
+                        <h3>你还没有粉丝......</h3>
                     {% endif %}
                 {% endif %}
             </div>

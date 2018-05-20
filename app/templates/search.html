@@ -47,7 +47,7 @@
                                             <a href="{{ url_for('main.follow', id=post.id) }}">
                                                 <span class="label label-primary">关注</span>
                                             </a>
-                                            <a href="#">
+                                            <a href="{{ url_for('main.user', id=post.id) }}">
                                                 <span class="label label-success">留言</span>
                                             </a>
                                         {% endif %}

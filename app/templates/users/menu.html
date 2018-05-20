@@ -13,13 +13,13 @@
             <span class="glyphicon glyphicon-apple"></span>&nbsp;你的粉丝
         </a>
         <a id="posts" href="{{ url_for('main.posts', page=1) }}" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-calendar"></span>&nbsp;发布的帖子
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;你的帖子
         </a>
         <a id="collections" href="{{ url_for('main.collected_posts', page=1) }}" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-star"></span>&nbsp;收藏的帖子
+            <span class="glyphicon glyphicon-star"></span>&nbsp;你的收藏
         </a>
-        <a id="message-board" href="#" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-comment"></span>&nbsp;留言板
+        <a id="message-board" href="{{ url_for('main.messages') }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-comment"></span>&nbsp;你的留言
         </a>
     </div>
 </div>

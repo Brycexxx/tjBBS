@@ -26,6 +26,17 @@ class Follow(db.Model):
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
 
 
+class MessageBoard(db.Model):
+    __tablename__ = "messageboard"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+    send_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    to_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return "<Message %r to %r>" % (self.send_user, self.to_user)
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +52,9 @@ class User(db.Model, UserMixin):
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     posts = db.relationship('Post', backref='user', lazy='dynamic')
-    reply_comments = db.relationship('ReplyToComment', backref='user', lazy='dynamic')
+    reply_comments = db.relationship('ReplyToComment',  backref='user', lazy='dynamic')
+    send_messages = db.relationship('MessageBoard', foreign_keys=[MessageBoard.send_user_id], backref='send_user', lazy='dynamic')
+    receive_messages = db.relationship('MessageBoard', foreign_keys=[MessageBoard.to_user_id], backref='receive_user', lazy='dynamic')
     collections = db.relationship('Collection', foreign_keys=[Collection.collecting_user_id],
                                   backref=db.backref('collecting_user', lazy='joined'),
                                   lazy='dynamic',

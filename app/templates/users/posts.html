@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% import '_macros.html' as macros %}
 
-{% block title %}{{ current_user.username }}-已发布帖子{% endblock %}
+{% block title %}你发布的帖子{% endblock %}
 
 {% block page_content %}
     <!--内容-->
@@ -10,7 +10,7 @@
         <div class="col-md-9">
             <div class="panel panel-warning">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span>&nbsp;用户中心</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-calendar"></span>&nbsp;你的帖子</h3>
                 </div>
                 <div class="panel-body">
                     {% if posts %}

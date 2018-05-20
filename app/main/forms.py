@@ -134,8 +134,24 @@ class PwdForm(FlaskForm):
         }
     )
     submit = SubmitField(
-        '修改密码',
+        label='修改密码',
         render_kw={
             "class": "btn btn-success",
+        }
+    )
+
+class MessageForm(FlaskForm):
+    message = TextAreaField(
+        label="留言板",
+        validators=[DataRequired("请输入你的留言")],
+        render_kw={
+            "class": "form-control",
+            "rows": 8
+        }
+    )
+    submit = SubmitField(
+        label="留言",
+        render_kw={
+            "class": "btn btn-success"
         }
     )

@@ -1,7 +1,7 @@
 from . import main
 from .. import db
-from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow
-from .forms import PostForm, ReplyToCommentForm, UserDetailForm, PwdForm
+from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow, MessageBoard
+from .forms import PostForm, ReplyToCommentForm, UserDetailForm, PwdForm, MessageForm
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
@@ -36,15 +36,24 @@ def index():
     posts = pagination.items
     return render_template('index.html', pagination=pagination, posts=posts)
 
-@main.route('/user/<int:id>')
+@main.route('/user/<int:id>', methods=['GET', 'POST'])
 def user(id):
+    form = MessageForm()
     user = User.query.get_or_404(id)
+    if form.validate_on_submit():
+        message_board = MessageBoard(body=form.message.data,
+                                     send_user=current_user._get_current_object(),
+                                     receive_user=user)
+        db.session.add(message_board)
+        db.session.commit()
+        flash("留言成功")
+        form.message.data = ""
     page = request.args.get('page', 1, type=int)
     pagination = user.posts.order_by(Post.add_time.desc()).paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     posts = pagination.items
-    return render_template('user.html', user=user, posts=posts, pagination=pagination)
+    return render_template('user.html', user=user, posts=posts, pagination=pagination, form=form)
 
 @main.route('/userinfo/', methods=['GET', 'POST'])
 @login_required
@@ -99,7 +108,15 @@ def edit_pwd():
         return redirect(url_for('auth.logout'))
     return render_template('users/edit_pwd.html', form=form)
 
-
+@main.route('/messages')
+@login_required
+def messages():
+    page = request.args.get('page', 1, type=int)
+    pagination = current_user.receive_messages.order_by(MessageBoard.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    messages = pagination.items
+    return render_template('users/messages.html', messages=messages, pagination=pagination)
 
 @main.route('/posts')
 @login_required
@@ -330,3 +347,11 @@ def del_rep_comment(id):
     db.session.delete(reply_comment)
     db.session.commit()
     return redirect(url_for('main.post_detail', id=post_id))
+
+@main.route('/del-messages/<int:id>')
+@login_required
+def del_message(id):
+    message = MessageBoard.query.get_or_404(id)
+    db.session.delete(message)
+    db.session.commit()
+    return redirect(url_for('main.messages'))
