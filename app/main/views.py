@@ -1,6 +1,6 @@
 from . import main
 from .. import db
-from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow, MessageBoard
+from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow, MessageBoard, ApplyForBestPost, SystemMessage
 from .forms import PostForm, ReplyToCommentForm, UserDetailForm, PwdForm, MessageForm
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
 from flask_login import current_user, login_required
@@ -355,3 +355,57 @@ def del_message(id):
     db.session.delete(message)
     db.session.commit()
     return redirect(url_for('main.messages'))
+
+@main.route('/apply-for-best/<int:id>')
+@login_required
+def apply_for_best(id):
+    post = Post.query.get_or_404(id)
+    apply_for_best = ApplyForBestPost(
+        post=post,
+        user=current_user._get_current_object()
+    )
+    db.session.add(apply_for_best)
+    db.session.commit()
+    flash("已发出申请，请等待审核")
+    return redirect(url_for('main.posts'))
+
+@main.route('/best-post-applys')
+@login_required
+#注意添加管理员权限访问
+def best_post_applys():
+    page = request.args.get('page', 1, type=int)
+    pagination = ApplyForBestPost.query.order_by(ApplyForBestPost.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    best_post_applys = pagination.items
+    return render_template('admin/best_post_applys.html', best_post_applys=best_post_applys, pagination=pagination)
+
+
+@main.route('/accept-best-post-apply/<int:id>')
+@login_required
+#注意添加管理员权限访问
+def accept_best_post_apply(id):
+    post = Post.query.get_or_404(id)
+    post.is_best = 1
+    system_message = SystemMessage(
+        body="你的帖子“" + post.title + "”已通过加精申请",
+        to_user=post.user
+    )
+    db.session.add_all([post, system_message])
+    db.session.commit()
+    return redirect(url_for('main.best_post_applys'))
+
+
+
+@main.route('/refuse-best-post-apply/<int:id>')
+@login_required
+#注意添加管理员权限访问
+def refuse_best_post_apply(id):
+    post = Post.query.get_or_404(id)
+    system_message = SystemMessage(
+        body="很抱歉，你的帖子“" + post.title + "”未通过加精申请",
+        to_user=post.user
+    )
+    db.session.add_all([post, system_message])
+    db.session.commit()
+    return redirect(url_for('main.best_post_applys'))

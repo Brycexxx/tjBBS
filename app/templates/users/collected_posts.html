@@ -17,11 +17,11 @@
                         <ul class="posts">
                             {% for post in posts %}
                                 <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
-                                <a href="{{ url_for('main.post_detail', id=post.collected_post.id) }}">
+                                <a href="{{ url_for('main.post_detail', id=post.collected_post_id) }}">
                                     <h3 style="display: inline; vertical-align: center; margin-bottom: 20px;">{{ post.collected_post.title }}</h3>
                                 </a>
                                     <div style="margin-top: 20px;">
-                                        {{ post.collected_post.descriptions }}
+                                        {{ post.collected_post.descriptions | safe }}
                                         <div class="post-footer">
                                             <a href="{{ url_for('main.del_collected_post', id=post.collected_post_id) }}">删除</a> | <span>{{ moment(post.add_time).format('LLL') }}</span>
                                         </div>

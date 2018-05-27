@@ -53,6 +53,8 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
     posts = db.relationship('Post', backref='user', lazy='dynamic')
     reply_comments = db.relationship('ReplyToComment',  backref='user', lazy='dynamic')
+    apply_for_best_posts = db.relationship('ApplyForBestPost', backref='user', lazy='dynamic')
+    system_messages = db.relationship('SystemMessage', backref='to_user', lazy='dynamic')
     send_messages = db.relationship('MessageBoard', foreign_keys=[MessageBoard.send_user_id], backref='send_user', lazy='dynamic')
     receive_messages = db.relationship('MessageBoard', foreign_keys=[MessageBoard.to_user_id], backref='receive_user', lazy='dynamic')
     collections = db.relationship('Collection', foreign_keys=[Collection.collecting_user_id],
@@ -218,10 +220,12 @@ class Post(db.Model):
     descriptions = db.Column(db.Text)
     images = db.Column(db.String(128))
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
+    is_best = db.Column(db.Integer, default=0)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     view_times = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    apply_for_best = db.relationship('ApplyForBestPost', backref='post', uselist=False)
     users = db.relationship('Collection', foreign_keys=[Collection.collected_post_id],
                             backref=db.backref('collected_post', lazy='joined'),
                             lazy='dynamic',
@@ -273,3 +277,23 @@ class ReplyToComment(db.Model):
 
     def __repr__(self):
         return "<ReplyTo Comment %r>" % self.comment_id
+
+class ApplyForBestPost(db.Model):
+    __tablename__ = "apply_for_best_posts"
+    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return "<%r apply for best post>" % self.post.title
+
+class SystemMessage(db.Model):
+    __tablename__ = "system_messages"
+    id = db.Column(db.Integer, primary_key=True)
+    add_time = db.Column(db.DateTime, default=datetime.utcnow)
+    to_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    body = db.Column(db.String(256))
+
+    def __repr__(self):
+        return "<Some System Messages to %r>" % self.to_user.username

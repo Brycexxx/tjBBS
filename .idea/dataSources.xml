@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="depTwoHand@localhost" uuid="1304846e-e6e7-4150-b4ff-73612c1aca05">
+    <data-source source="LOCAL" name="depAssistant@localhost" uuid="40a2d8e6-c3e9-45d9-b535-b281a4bf0035">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/depTwoHand</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/depAssistant</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

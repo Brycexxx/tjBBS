@@ -23,7 +23,11 @@
                                     <div style="margin-top: 20px;">
                                         {{ post.descriptions | safe }}
                                         <div class="post-footer">
-                                            <a href="{{ url_for('main.del_post', id=post.id) }}">删除</a> | <span>{{ moment(post.add_time).format('LLL') }}</span>
+                                            <a href="{{ url_for('main.del_post', id=post.id) }}">删除</a> |
+                                            <a href="{{ url_for('main.apply_for_best', id=post.id) }}">
+                                                <span class="label label-primary">申请加精</span>
+                                            </a>
+                                            <span>{{ moment(post.add_time).format('LLL') }}</span>
                                         </div>
                                     </div>
                                 </li>

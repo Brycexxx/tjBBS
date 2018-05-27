@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="depTwoHand@localhost" uuid="1304846e-e6e7-4150-b4ff-73612c1aca05">
+    <data-source name="depAssistant@localhost" uuid="40a2d8e6-c3e9-45d9-b535-b281a4bf0035">
       <database-info product="MySQL" version="5.7.22" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -9,7 +9,7 @@
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:depTwoHand</introspection-schemas>
+      <introspection-schemas>*:depAssistant</introspection-schemas>
     </data-source>
   </component>
 </project>
