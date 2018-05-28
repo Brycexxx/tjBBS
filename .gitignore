@@ -7,4 +7,6 @@ dist
 build
 
 # My configurations:
-env/
+venv/
+.idea/
+__pycache__/

@@ -22,12 +22,16 @@
                                         {{ best_post_apply.user.username }}为帖子“{{ best_post_apply.post.title }}”申请加精
                                     </span>
                                         <span style="float: right">
-                                            <a href="{{ url_for('main.accept_best_post_apply', id=best_post_apply.post.id) }}">
-                                                <span class="label label-success">同意</span>
+                                            {% if not best_post_apply.post.is_best %}
+                                                <a href="{{ url_for('main.accept_best_post_apply', id=best_post_apply.post.id) }}">
+                                                <span id="accept" class="label label-success">同意</span>
                                             </a>
-                                            <a href="{{ url_for('main.refuse_best_post_apply', id=best_post_apply.post.id) }}">
-                                                <span class="label label-danger">拒绝</span>
+                                                <a href="{{ url_for('main.refuse_best_post_apply', id=best_post_apply.post.id) }}">
+                                                <span id="refuse" class="label label-danger">拒绝</span>
                                             </a>
+                                            {% else %}
+                                                <span id="accept" class="label label-default">已同意</span>
+                                            {% endif %}
                                     </span>
                                     </div>
                                     <div class="post-footer">
