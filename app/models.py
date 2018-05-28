@@ -7,9 +7,8 @@ from datetime import datetime
 
 
 class Permission:
-    FOLLOW = 1
-    COMMENT = 2
-    WRITE = 3
+    USER = 1
+    MODERATE = 2
     ADMIN = 4
 
 
@@ -105,8 +104,11 @@ class User(db.Model, UserMixin):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def can(self, perm):
+        return self.role is not None and self.role.has_permission(perm)
+
     def is_admin(self):
-        return (self.role_id == 2)
+        return self.can(Permission.ADMIN)
 
     def ping(self):
         self.last_seen = datetime.utcnow()
@@ -186,11 +188,17 @@ class Role(db.Model):
     default = db.Column(db.Boolean, default=False, index=True)
     users = db.relationship('User', backref='role', lazy='dynamic')
 
+    def __int__(self, **kwargs):
+        super(Role, self).__int__(**kwargs)
+        if self.permission is None:
+            self.permission = 0
+
     @staticmethod
     def insert_roles():
         roles = {
-            'User': [Permission.FOLLOW, Permission.COMMENT, Permission.WRITE],
-            'Admin': [Permission.FOLLOW, Permission.COMMENT, Permission.WRITE, Permission.ADMIN]
+            'User': [Permission.USER],
+            'Moderate': [Permission.USER, Permission.MODERATE],
+            'Admin': [Permission.USER, Permission.MODERATE, Permission.ADMIN]
         }
         default_role = 'User'
         for r in roles:
@@ -209,6 +217,13 @@ class Role(db.Model):
 
     def add_permission(self, perm):
         self.permission += perm
+
+    def remove_permission(self, perm):
+        if self.has_permission(perm):
+            self.permission -= perm
+
+    def has_permission(self, perm):
+        return self.permission & perm == perm
 
     def __repr__(self):
         return "<Role: %r>" % self.name

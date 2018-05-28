@@ -21,5 +21,10 @@
         <a id="message-board" href="{{ url_for('main.messages') }}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-comment"></span>&nbsp;你的留言
         </a>
+        {% if current_user.is_admin() %}
+        <a id="best-post-apply" href="{{ url_for('main.best_post_applys') }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-pushpin"></span>&nbsp;加精申请
+        </a>
+        {% endif %}
     </div>
 </div>
