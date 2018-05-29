@@ -6,7 +6,7 @@
 {% block page_content %}
     <!--内容-->
     <div class="container" style="margin-top:76px">
-        {% include "users/menu.html" %}
+        {% include "admin/menu.html" %}
         <div class="col-md-9">
             <div class="panel panel-warning">
                 <div class="panel-heading">
@@ -23,10 +23,10 @@
                                     </span>
                                         <span style="float: right">
                                             {% if not best_post_apply.post.is_best %}
-                                                <a href="{{ url_for('main.accept_best_post_apply', id=best_post_apply.post.id) }}">
+                                                <a href="{{ url_for('admin.accept_best_post_apply', id=best_post_apply.post.id) }}">
                                                 <span id="accept" class="label label-success">同意</span>
                                             </a>
-                                                <a href="{{ url_for('main.refuse_best_post_apply', id=best_post_apply.post.id) }}">
+                                                <a href="{{ url_for('admin.refuse_best_post_apply', id=best_post_apply.post.id) }}">
                                                 <span id="refuse" class="label label-danger">拒绝</span>
                                             </a>
                                             {% else %}
@@ -41,7 +41,7 @@
                             {% endfor %}
                         </ul>
                         <div class="center">
-                            {{ macros.pagination_widget(pagination, 'main.best_post_applys') }}
+                            {{ macros.pagination_widget(pagination, 'admin.best_post_applys') }}
                         </div>
                     {% else %}
                         <h4>还没有帖子申请加精</h4>

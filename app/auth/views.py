@@ -76,12 +76,12 @@ def login():
     return render_template('auth/login.html', form=form)
 
 
-@auth.route('/reset-password')
-def password_reset_request():
-    return
-
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/reset-password')
+def password_reset_request():
+    return

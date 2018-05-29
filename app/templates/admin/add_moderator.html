@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}添加协管员{% endblock %}
+
+{% block page_content %}
+    <!--内容-->
+    <div class="container" style="margin-top:76px">
+        {% include "admin/menu.html" %}
+        <div class="col-md-9">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-home"></span>&nbsp;添加协管员</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="input_email">
+                                    <span class="glyphicon glyphicon-envelope"></span>&nbsp;{{ form.email.label }}
+                                </label>
+                                {{ form.email }}
+                            </div>
+                            {{ form.csrf_token }}
+                            {{ form.submit }}
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容-->
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $("#add-moderator").addClass("active")
+        });
+    </script>
+{% endblock %}
