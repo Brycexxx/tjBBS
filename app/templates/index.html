@@ -61,13 +61,17 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="margin-top: 30px;">
+        <div class="container" style="margin-top: 30px;" id="key_word">
             <div class="panel panel-default">
                 <div class="panel-heading">全部</div>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>全部主题<span class="caret"></span>&nbsp;最新&nbsp;热门&nbsp;热贴&nbsp;精华&nbsp;更多<span class="caret"></span></th>
+                        <th>全部主题<span class="caret"></span>&nbsp;
+                            <a href="{{ url_for('main.index', key_word='new') }}#key_word">最新&nbsp;</a>
+                            <a href="{{ url_for('main.index', key_word='hot') }}#key_word">热贴&nbsp;</a>
+                            <a href="{{ url_for('main.index', key_word='best') }}#key_word">精华&nbsp;</a>
+                            更多<span class="caret"></span></th>
                         <th>作者</th>
                         <th>回复/查看</th>
                         <th>最后访问</th>
@@ -91,7 +95,7 @@
             </div>
         </div>
         <div style="margin-top: 10px">
-            {{ macros.pagination_widget(pagination, 'main.index') }}
+            {{ macros.pagination_widget(pagination, 'main.index', fragment='#key_word', key_word=key_word) }}
         </div>
     </div>
 {% endblock %}

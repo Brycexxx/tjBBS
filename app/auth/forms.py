@@ -26,3 +26,13 @@ class RegisterForm(FlaskForm):
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError('用户名已经被占用！')
+
+class PwdResetRequestForm(FlaskForm):
+    email = StringField('邮箱', validators=[DataRequired(), Length(1, 64), Email()])
+    submit = SubmitField('重置密码')
+
+class PwdResetForm(FlaskForm):
+    password = PasswordField('新密码', validators=[
+        DataRequired(), EqualTo('password2', message='Passwords must match')])
+    password2 = PasswordField('确认新密码', validators=[DataRequired()])
+    submit = SubmitField('重置密码')

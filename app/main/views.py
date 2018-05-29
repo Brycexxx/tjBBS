@@ -30,11 +30,21 @@ def change_filename(filename):
 @main.route('/')
 def index():
     page = request.args.get('page', 1, type=int)
-    pagination = Post.query.order_by(Post.add_time.desc()).paginate(
+    arg = request.args.get('key_word')
+    if arg == 'hot':
+        query_results = Post.query.order_by(Post.view_times.desc())
+        key_word = 'hot'
+    elif arg == 'best':
+        query_results = Post.query.filter(Post.is_best==1).order_by(Post.add_time.desc())
+        key_word = 'best'
+    else:
+        query_results = Post.query.order_by(Post.add_time.desc())
+        key_word = ''
+    pagination = query_results.paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     posts = pagination.items
-    return render_template('index.html', pagination=pagination, posts=posts)
+    return render_template('index.html', pagination=pagination, posts=posts, key_word=key_word)
 
 @main.route('/user/<int:id>', methods=['GET', 'POST'])
 def user(id):
@@ -117,6 +127,18 @@ def messages():
     )
     messages = pagination.items
     return render_template('users/messages.html', messages=messages, pagination=pagination)
+
+@main.route('/system-messages')
+@login_required
+def system_messages():
+    page = request.args.get('page', 1, type=int)
+    pagination = SystemMessage.query.filter_by(to_user_id=current_user.id).\
+        order_by(SystemMessage.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    messages = pagination.items
+    return render_template('users/system_messages.html', system_messages=messages, pagination=pagination)
+
 
 @main.route('/posts')
 @login_required
@@ -356,6 +378,14 @@ def del_message(id):
     db.session.commit()
     return redirect(url_for('main.messages'))
 
+@main.route('/del-system-message/<int:id>')
+@login_required
+def del_system_message(id):
+    message = SystemMessage.query.get_or_404(id)
+    db.session.delete(message)
+    db.session.commit()
+    return redirect(url_for('main.system_messages'))
+
 @main.route('/apply-for-best/<int:id>')
 @login_required
 def apply_for_best(id):
@@ -368,4 +398,3 @@ def apply_for_best(id):
     db.session.commit()
     flash("已发出申请，请等待审核")
     return redirect(url_for('main.posts'))
-
