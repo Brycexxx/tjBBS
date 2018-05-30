@@ -26,3 +26,11 @@ $(document).ready(function () {
    });
 });
 
+$(document).ready(function () {
+    $(".do_unfold").click(function (e) {
+        const image_tag = e.target;
+        const li_tag = $(image_tag).parent();
+        const li_fold = $(li_tag).siblings(".display-form");
+        $(li_fold).toggle();
+    });
+});

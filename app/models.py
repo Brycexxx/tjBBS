@@ -251,7 +251,6 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), index=True)
     descriptions = db.Column(db.Text)
-    images = db.Column(db.String(128))
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
     is_best = db.Column(db.Integer, default=0)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
@@ -289,7 +288,7 @@ class Category(db.Model):
 
     @staticmethod
     def insert_categories():
-        categories = ['数码', '日用', '书籍', '影音', '鞋服', '其他']
+        categories = ['交流', '求购', '数码电子', '生活用品', '运动装备', '卡票券', '交通工具', '服装鞋包', '书籍资料', '其他', '已售/已购']
         for c in categories:
             if not Category.query.filter_by(name=c).first():
                 category = Category(name=c)
@@ -326,7 +325,10 @@ class SystemMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
     to_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.Column(db.String(64), default='admin')
     body = db.Column(db.String(256))
 
     def __repr__(self):
         return "<Some System Messages to %r>" % self.to_user.username
+
+

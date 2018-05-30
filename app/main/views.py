@@ -31,12 +31,54 @@ def change_filename(filename):
 def index():
     page = request.args.get('page', 1, type=int)
     arg = request.args.get('key_word')
+    all_categories_count = []
+    query_results_list = []
+    for i in range(1, len(Category.query.all())+1):
+        query = Post.query.filter(Post.category_id == i)
+        query_results_list.append(query.order_by(Post.add_time.desc()))
+        all_categories_count.append(query.count())
     if arg == 'hot':
         query_results = Post.query.order_by(Post.view_times.desc())
         key_word = 'hot'
     elif arg == 'best':
         query_results = Post.query.filter(Post.is_best==1).order_by(Post.add_time.desc())
         key_word = 'best'
+    elif arg == 'bulletin':
+        query_results = SystemMessage.query.filter(SystemMessage.to_user_id==None).order_by(SystemMessage.add_time.desc())
+        key_word = 'bulletin'
+    elif arg == 'communication':
+        query_results = query_results_list[0]
+        key_word = 'communication'
+    elif arg == 'buy':
+        query_results = query_results_list[1]
+        key_word = 'buy'
+    elif arg == 'electronic':
+        query_results = query_results_list[2]
+        key_word = 'electronic'
+    elif arg == 'daily':
+        query_results = query_results_list[3]
+        key_word = 'daily'
+    elif arg == 'sports':
+        query_results = query_results_list[4]
+        key_word = 'sports'
+    elif arg == 'ct':
+        query_results = query_results_list[5]
+        key_word = 'ct'
+    elif arg == 'transport':
+        query_results = query_results_list[6]
+        key_word = 'transport'
+    elif arg == 'dress':
+        query_results = query_results_list[7]
+        key_word = 'dress'
+    elif arg == 'books':
+        query_results = query_results_list[8]
+        key_word = 'books'
+    elif arg == 'others':
+        query_results = query_results_list[9]
+        key_word = 'others'
+    elif arg == 'bos':
+        query_results = query_results_list[10]
+        key_word = 'bos'
     else:
         query_results = Post.query.order_by(Post.add_time.desc())
         key_word = ''
@@ -44,7 +86,7 @@ def index():
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
     posts = pagination.items
-    return render_template('index.html', pagination=pagination, posts=posts, key_word=key_word)
+    return render_template('index.html', pagination=pagination, posts=posts, key_word=key_word, all_categories_count=all_categories_count)
 
 @main.route('/user/<int:id>', methods=['GET', 'POST'])
 def user(id):
@@ -108,6 +150,7 @@ def edit_pwd():
     form = PwdForm()
     if form.validate_on_submit():
         data = form.data
+        form.old_pwd.data = ''
         if not current_user.verify_password(data['old_pwd']):
             flash("旧密码错误！")
             return redirect(url_for('main.edit_pwd'))

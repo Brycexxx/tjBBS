@@ -30,7 +30,7 @@
                         <span>{{ f + 2 }}&nbsp;楼&nbsp;|&nbsp;{{ moment(comments[f].add_time).format('LLL') }}&nbsp;-</span>
                         <span class="do_reply">回复</span>({{ comments[f].replys.count() }})
                         <br>
-                        <div class="comment-form">
+                        <div class="display-form">
                             {% if comments[f].replys %}
                                 <ul class="reply-comments">
                                     {% for reply_comment in comments[f].replys %}

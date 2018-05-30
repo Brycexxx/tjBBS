@@ -99,7 +99,7 @@ ul.comments li.comment:nth-child(1) {
 ul.comments li.comment:hover {
     background-color: #f0f0f0;
 }
-.comment-form {
+.display-form {
     display: none;
 }
 
@@ -152,4 +152,104 @@ body {
 }
 .aligncenter>img {
     align-self: center;
+}
+
+.bm {
+    background: none repeat scroll 0% 0% transparent;
+    margin-right:10px;
+    border:none;
+}
+
+.ttp {
+    margin-bottom:5px;
+    padding-top:10px;
+    border-width:2px 0 0;
+    background:transparent;
+}
+.ttp li {
+    float:left;
+    padding-bottom:5px;
+}
+.ttp a,.ttp strong {
+    float:left;
+    margin-right:5px;
+    padding:4px 8px 3px;
+    height:30px;
+    border:1px solid #CDCDCD;
+    background:#FFF;
+    white-space:nowrap;
+}
+
+.ttp a:hover {
+    border-color:#369;
+    color:#369;
+    text-decoration:none;
+}
+.ttp a {
+    padding-right:12px;
+    padding-left:12px;
+    border-color:#369;
+    background:white;
+    color:#369;
+}
+.ttp .pipe {
+    float:left;
+    margin-right:10px;
+    padding:0;
+    width:2px;
+    height:27px;
+    background:#C2D5E3;
+    text-indent:-9999px;
+}
+
+.ttp .num {
+    background:#999;
+    padding:0 5px;
+    margin-left:5px;
+    border-radius:3px;
+    color:#FFF !important;
+}
+
+.cttp {
+    overflow:hidden;
+    padding-right:35px;
+    height:32px;
+}
+.cttp .unfold,.cttp .fold {
+    float:right;
+    display:inline;
+    margin:5px -35px 9px 0;
+    padding:0 0 0 10px;
+    width:25px;
+    height:18px;
+    background-color:transparent;
+    color:#369;
+    font-weight:400;
+}
+ul li,.xl li {
+    list-style:none;
+}
+
+body,ul,ol,li,dl,dd,p,h1,h2,h3,h4,h5,h6,form,fieldset,.pr,.pc {
+    margin:0;
+    padding:0;
+}
+
+* {
+    word-wrap:break-word;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+body,input,button,select,textarea {
+    font:12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+    color:#444;
+}
+textarea {
+    resize:none;
+}
+
+.xg1, .xg1 a {
+    color: #999 !important;
 }

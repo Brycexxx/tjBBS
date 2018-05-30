@@ -7,15 +7,18 @@
             <span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码
         </a>
         {% if current_user.is_admin() %}
-        <a id="add-moderator" href="{{ url_for('admin.add_moderator') }}" class="list-group-item user-center">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;添加协管员
-        </a>
+            <a id="add-moderator" href="{{ url_for('admin.add_moderator') }}" class="list-group-item user-center">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;添加协管员
+            </a>
         {% endif %}
         <a id="verify-post" href="{{ url_for('admin.verify_post') }}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-folder-open"></span>&nbsp;内容审核
         </a>
         <a id="best-post-apply" href="{{ url_for('admin.best_post_applys') }}" class="list-group-item user-center">
             <span class="glyphicon glyphicon-pushpin"></span>&nbsp;加精申请
+        </a>
+        <a id="post-bulletin" href="{{ url_for('admin.post_bulletin') }}" class="list-group-item user-center">
+            <span class="glyphicon glyphicon-send"></span>&nbsp;发布公告
         </a>
     </div>
 </div>

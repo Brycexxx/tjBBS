@@ -4,7 +4,7 @@ from flask_login import current_user, login_required, login_user,logout_user
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
 from ..models import ApplyForBestPost, SystemMessage, Post, User, Permission
 from ..decorators import admin_required, permission_required
-from .forms import LoginForm, AdminDetailForm, PwdForm, AddModeratorForm
+from .forms import LoginForm, AdminDetailForm, PwdForm, AddModeratorForm, BulletinBoardForm
 from werkzeug.utils import secure_filename
 from app.main.views import change_filename
 from werkzeug.security import generate_password_hash
@@ -120,6 +120,7 @@ def refuse_best_post_apply(id):
 
 @admin.route('/edit-pwd/', methods=['GET', 'POST'])
 @login_required
+@permission_required(Permission.MODERATE)
 def edit_pwd():
     form = PwdForm()
     if form.validate_on_submit():
@@ -155,5 +156,21 @@ def add_moderator():
 
 @admin.route('/verify-post')
 @login_required
+@permission_required(Permission.MODERATE)
 def verify_post():
     return render_template('admin/verify_post.html')
+
+@admin.route('/post-bulletin', methods=['GET', 'POST'])
+@login_required
+@permission_required(Permission.MODERATE)
+def post_bulletin():
+    form = BulletinBoardForm()
+    if form.validate_on_submit():
+        bulletin = SystemMessage(body=form.message.data)
+        db.session.add(bulletin)
+        db.session.commit()
+        flash("公告发布成功")
+        return redirect(url_for('admin.post_bulletin'))
+    return render_template('admin/post_bulletin.html', form=form)
+
+

@@ -132,3 +132,19 @@ class AddModeratorForm(FlaskForm):
             "class": "btn btn-success",
         }
     )
+
+class BulletinBoardForm(FlaskForm):
+    message = TextAreaField(
+        label="发布公告",
+        validators=[DataRequired("请输入内容")],
+        render_kw={
+            "class": "form-control",
+            "rows": 8
+        }
+    )
+    submit = SubmitField(
+        label="发布",
+        render_kw={
+            "class": "btn btn-success"
+        }
+    )
