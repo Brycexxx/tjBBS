@@ -3,13 +3,26 @@
 
 
 {% block page_content %}
-<div class="page-header">
-    <h1>会员登录</h1>
-</div>
-<div class="col-md-4">
-{{ wtf.quick_form(form) }}
-    <br>
-    <p>忘记密码?<a href="{{ url_for('auth.password_reset_request') }}">点击此处重置密码</a></p>
-    <p>新用户?<a href="{{ url_for('auth.register') }}">点击此处进行注册</a></p>
-</div>
+    <div class="page-header">
+        <h1>会员登录</h1>
+    </div>
+    <div class="col-md-4">
+        {{ wtf.quick_form(form) }}
+        <br>
+        <p>忘记密码?<a href="{{ url_for('auth.password_reset_request') }}">点击此处重置密码</a></p>
+        <p>新用户?<a href="{{ url_for('auth.register') }}">点击此处进行注册</a></p>
+    </div>
+    <footer id="footer-absolute">
+        <!-- Footer Bottom -->
+        <div id="footer-bottom-wrapper">
+            <div id="footer-bottom" class="container1">
+                <div class="row1">
+                    <p class="copyright">
+                        Copyright © 2018. All Rights Reserved by Mr.Xu.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End of Footer Bottom -->
+    </footer>
 {% endblock %}

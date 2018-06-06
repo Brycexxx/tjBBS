@@ -92,7 +92,7 @@ class UserDetailForm(FlaskForm):
     submit = SubmitField(
         '保存修改',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-system",
         }
     )
 
@@ -103,8 +103,10 @@ class PwdForm(FlaskForm):
         validators=[
             DataRequired("旧密码不能为空！")
         ],
+
         description="旧密码",
         render_kw={
+            "id": "clear",
             "class": "form-control",
             "placeholder": "请输入旧密码！",
         }
@@ -136,7 +138,7 @@ class PwdForm(FlaskForm):
     submit = SubmitField(
         label='修改密码',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-system",
         }
     )
 
@@ -152,6 +154,6 @@ class MessageForm(FlaskForm):
     submit = SubmitField(
         label="留言",
         render_kw={
-            "class": "btn btn-success"
+            "class": "btn btn-system"
         }
     )

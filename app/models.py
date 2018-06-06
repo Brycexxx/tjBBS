@@ -264,7 +264,7 @@ class Post(db.Model):
                             cascade='all, delete-orphan')
 
     def __repr__(self):
-        return '<IdleItems: %r>' % self.id
+        return '<Post: %r>' % self.id
 
 
 class Comment(db.Model):

@@ -2,22 +2,25 @@
     {% for f in range(length) %}
         <li {% if post.user != comments[f].user %} class="post not-owner" {% else %} class="post" {% endif %}>
             <div class="row">
-                <div class="col-md-2 aligncenter">
+                <div class="col-md-2">
                     {% if comments[f].user.avatar %}
-                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}>
+                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}
+                                                                     class="aligncenter">
                             <img src="{{ url_for('static', filename='uploads/users/' + comments[f].user.avatar) }}"
                                  style="width: 100px;" class="img-responsive img-rounded">
                         </a>
                     {% else %}
-                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}>
+                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}
+                                                                     class="aligncenter">
                             <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
                                  style="width: 100px;" class="img-responsive img-rounded">
                         </a>
                     {% endif %}
-                    <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}
-                                                                 class="center">
-                        {{ comments[f].user.username }}
-                    </a>
+                    <div class="center">
+                        <a {% if current_user == comments[f].user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=comments[f].user.id) }}"{% endif %}>
+                            {{ comments[f].user.username }}
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-10">
                 <span id="comment-body">

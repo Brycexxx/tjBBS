@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="login-header">
+        <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="同济大学生活小助手">
+        <h4>登录小助手</h4>
+    </div>
+    <div class="login-body">
+        <form role="form" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input_contact"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ form.email.label }}</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="input_password"><span
+                            class="glyphicon glyphicon-lock"></span>&nbsp;{{ form.password.label }}</label>
+                    {{ form.password }}
+                </div>
+                {{ form.submit }}
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

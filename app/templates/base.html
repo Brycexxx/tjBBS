@@ -1,65 +1,57 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}同济大学二手交易市场{% endblock %}
+{% block title %}同济大学生活小助手{% endblock %}
 
 {% block head %}
     {{ super() }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel/reset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel='stylesheet' id='bootstrap-css-css'  href="{{ url_for('static', filename='css/bts.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='responsive-css-css'  href="{{ url_for('static', filename='css/responsive.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='pretty-photo-css-css'  href="{{ url_for('static', filename='css/prettyPhotoaeb9.css') }}" type='text/css' media='all' />
+    <link rel='stylesheet' id='main-css-css'  href="{{ url_for('static', filename='css/main.css') }}" type='text/css' media='all' />
 {% endblock %}
 
 {% block navbar %}
-    <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0;">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand"  href="{{ url_for('main.index') }}">同济生活小助手</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url_for('main.post') }}">发布你的闲置</a></li>
-                    {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('main.userinfo') }}">欢迎您，{{ current_user.username }}</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('auth.login') }}">登录</a></li>
-                        <li><a href="{{ url_for('auth.register') }}">注册</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="navbar navbar-default" style="background-color: #ffda44;">
-        <div class="container">
-            <div class="col-md-4 col-sm-3"></div>
-            <form class="navbar-form navbar-left" role="form">
-                <div class="form-group input-group">
-                    <input type="text" class="form-control" placeholder="客官想找什么呀！" id="keyword" style="width: 200px;">
-                    <select id="select_object" class="form-control" style="width: 78px;">
-                        <option value="post">帖子</option>
-                        <option value="user">用户</option>
-                    </select>
-                    <span class="input-group-btn">
-                        <a class="btn btn-default" id="do_search"><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</a>
-                    </span>
+    <!-- Start of Header -->
+    <div class="header-wrapper">
+        <header>
+            <div class="container1">
+                <div class="logo-container">
+                    <!-- Website Logo -->
+                    <a href="{{ url_for('main.index') }}"  title="Knowledge Base Theme">
+                        <img src="{{ url_for('static', filename='#') }}" alt="同济生活小助手">
+                    </a>
+                    <a class="tag-line" href="{{ url_for('main.index') }}">同济生活小助手</a>
                 </div>
-            </form>
-            <div class="col-md-4 col-sm-3"></div>
-        </div>
+                <!-- Start of Main Navigation -->
+                <nav class="main-nav">
+                    <div class="menu-top-menu-container">
+                        <ul id="menu-top-menu" class="clearfix">
+                            <li><a href="{{ url_for('main.post') }}">大声说出你想干嘛</a></li>
+                            {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('main.userinfo') }}">欢迎您，{{ current_user.username }}</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                                <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+                <!-- End of Main Navigation -->
+            </div>
+        </header>
     </div>
-    <!--导航-->
-
+    <!-- End of Header -->
+    {% block search %}{% endblock %}
 {% endblock %}
+
 {% block content %}
+    {% block index %}{% endblock %}
     <div class="container">
         {% for message in get_flashed_messages() %}
             <div class="alert alert-warning">
@@ -67,20 +59,10 @@
                 {{ message }}
             </div>
         {% endfor %}
-
         {% block page_content %}{% endblock %}
     </div>
-
-    <!--
-    <div id="footer">
-        <div class="container" style="background-color: #333; border-color: #333; margin-top: 10px; width: 100%; bottom: 0">
-            <div class="col-md-8 col-md-offset-2" style="color: white">
-                <h4 class="center">同济生活小助手</h4>
-                <p class="center">All Rights Reserved. Design by Mr Xu</p>
-            </div>
-        </div>
-    </div>-->
 {% endblock %}
+
 
 
 {% block scripts %}
@@ -93,32 +75,25 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script type='text/javascript' src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static', filename='js/jquery.prettyPhoto.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static', filename='js/jflickrfeed.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static', filename='js/jquery.liveSearch.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $("#do_search").click(function () {
-                const select_object = $("#select_object").val();
                 const keyword = $("#keyword");
                 if (keyword.val().length !== 0) {
-                    location.href = "{{ url_for('main.search', page=1) }}?object=" + select_object + "&keyword=" + keyword.val()
+                    location.href = "{{ url_for('main.search', page=1) }}?keyword=" + keyword.val()
                 }
                 else {
                     keyword.attr('placeholder', "请输入搜索关键字！");
                 }
             });
         })
-    </script>
-    <script src="{{ url_for('static', filename='js/dist/easySlider.js') }}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#slider").easySlider( {
-                slideSpeed: 500,
-                paginationSpacing: "15px",
-                paginationDiameter: "12px",
-                paginationPositionFromBottom: "20px",
-                slidesClass: ".slides",
-                controlsClass: ".controls",
-                paginationClass: ".pagination"
-            });
-        });
     </script>
 {% endblock %}

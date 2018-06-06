@@ -1,6 +1,7 @@
 from . import main
 from .. import db
-from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow, MessageBoard, ApplyForBestPost, SystemMessage
+from ..models import User, Category, Post, Comment, ReplyToComment, Collection, Follow, MessageBoard, ApplyForBestPost, \
+    SystemMessage
 from .forms import PostForm, ReplyToCommentForm, UserDetailForm, PwdForm, MessageForm
 from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
 from flask_login import current_user, login_required
@@ -17,76 +18,189 @@ def drop_html(html_body):
     body = pattern.sub('', html_body)
     return body
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in current_app.config['IMAGE_EXTENSIONS']
 
+
 def change_filename(filename):
     fileinfo = os.path.splitext(filename)
     filename = datetime.utcnow().strftime("%Y%m%d%H%M%S") + \
-                str(uuid4().hex) + fileinfo[-1]
+               str(uuid4().hex) + fileinfo[-1]
     return filename
 
 @main.route('/')
 def index():
-    page = request.args.get('page', 1, type=int)
-    arg = request.args.get('key_word')
-    all_categories_count = []
-    query_results_list = []
-    for i in range(1, len(Category.query.all())+1):
+    all_query_results = []
+    for i in range(1, len(Category.query.all()) + 1):
         query = Post.query.filter(Post.category_id == i)
-        query_results_list.append(query.order_by(Post.add_time.desc()))
-        all_categories_count.append(query.count())
-    if arg == 'hot':
-        query_results = Post.query.order_by(Post.view_times.desc())
-        key_word = 'hot'
-    elif arg == 'best':
-        query_results = Post.query.filter(Post.is_best==1).order_by(Post.add_time.desc())
-        key_word = 'best'
-    elif arg == 'bulletin':
-        query_results = SystemMessage.query.filter(SystemMessage.to_user_id==None).order_by(SystemMessage.add_time.desc())
-        key_word = 'bulletin'
-    elif arg == 'communication':
-        query_results = query_results_list[0]
-        key_word = 'communication'
-    elif arg == 'buy':
-        query_results = query_results_list[1]
-        key_word = 'buy'
-    elif arg == 'electronic':
-        query_results = query_results_list[2]
-        key_word = 'electronic'
-    elif arg == 'daily':
-        query_results = query_results_list[3]
-        key_word = 'daily'
-    elif arg == 'sports':
-        query_results = query_results_list[4]
-        key_word = 'sports'
-    elif arg == 'ct':
-        query_results = query_results_list[5]
-        key_word = 'ct'
-    elif arg == 'transport':
-        query_results = query_results_list[6]
-        key_word = 'transport'
-    elif arg == 'dress':
-        query_results = query_results_list[7]
-        key_word = 'dress'
-    elif arg == 'books':
-        query_results = query_results_list[8]
-        key_word = 'books'
-    elif arg == 'others':
-        query_results = query_results_list[9]
-        key_word = 'others'
-    elif arg == 'bos':
-        query_results = query_results_list[10]
-        key_word = 'bos'
-    else:
-        query_results = Post.query.order_by(Post.add_time.desc())
-        key_word = ''
-    pagination = query_results.paginate(
-        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+        all_query_results.append(query.order_by(Post.add_time.desc()).limit(5).all())
+    all_query_results.append(Post.query.filter_by(is_best=1).order_by(Post.view_times.desc()).limit(5).all())
+    all_query_results.append(Post.query.order_by(Post.view_times.desc()).limit(5).all())
+    all_query_results.append(Post.query.order_by(Post.add_time.desc()).limit(5).all())
+
+    return render_template('index.html', all_posts=all_query_results)
+
+
+@main.route('/hot')
+def hot():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.view_times.desc()).paginate(
+        page=page, per_page=12, error_out=False
     )
     posts = pagination.items
-    return render_template('index.html', pagination=pagination, posts=posts, key_word=key_word, all_categories_count=all_categories_count)
+    title = "热门帖子"
+    endpoint = "main.hot"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+
+@main.route('/new')
+def new():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "最新发布"
+    endpoint = "main.new"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+
+@main.route('/best')
+def best():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(is_best=1).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "精华"
+    endpoint = "main.best"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+
+@main.route('/book')
+def book():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=9).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "书籍资料"
+    endpoint = "main.book"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+
+@main.route('/transport')
+def transport():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=7).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "交通工具"
+    endpoint = "main.transport"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/card')
+def card():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=6).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "卡，票，券"
+    endpoint = "main.card"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/electronic')
+def electronic():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=3).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "数码电子"
+    endpoint = "main.electronic"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/clothes')
+def clothes():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=8).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "服装鞋包"
+    endpoint = "main.electronic"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/daily')
+def daily():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=4).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "生活用品"
+    endpoint = "main.daily"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+
+@main.route('/sport')
+def sport():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=5).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "运动装备"
+    endpoint = "main.sport"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/buy')
+def buy():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=2).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "求购"
+    endpoint = "main.buy"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/communication')
+def communication():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=1).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "交流"
+    endpoint = "main.communication"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/finished')
+def finished():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=11).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "已售/已购"
+    endpoint = "main.finished"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
+
+@main.route('/others')
+def others():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(category_id=10).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=12, error_out=False
+    )
+    posts = pagination.items
+    title = "其他"
+    endpoint = "main.others"
+    return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
 
 @main.route('/user/<int:id>', methods=['GET', 'POST'])
 def user(id):
@@ -106,6 +220,7 @@ def user(id):
     )
     posts = pagination.items
     return render_template('user.html', user=user, posts=posts, pagination=pagination, form=form)
+
 
 @main.route('/userinfo/', methods=['GET', 'POST'])
 @login_required
@@ -144,22 +259,24 @@ def userinfo():
         return redirect(url_for('main.userinfo'))
     return render_template('users/userinfo.html', form=form)
 
+
 @main.route('/edit-pwd/', methods=['GET', 'POST'])
 @login_required
 def edit_pwd():
     form = PwdForm()
     if form.validate_on_submit():
         data = form.data
-        form.old_pwd.data = ''
         if not current_user.verify_password(data['old_pwd']):
             flash("旧密码错误！")
             return redirect(url_for('main.edit_pwd'))
         current_user.password_hash = generate_password_hash(data['new_pwd'])
+        form.old_pwd.data = ''
         db.session.add(current_user._get_current_object())
         db.session.commit()
         flash("密码修改成功，请重新登录！")
         return redirect(url_for('auth.logout'))
     return render_template('users/edit_pwd.html', form=form)
+
 
 @main.route('/messages')
 @login_required
@@ -171,11 +288,12 @@ def messages():
     messages = pagination.items
     return render_template('users/messages.html', messages=messages, pagination=pagination)
 
+
 @main.route('/system-messages')
 @login_required
 def system_messages():
     page = request.args.get('page', 1, type=int)
-    pagination = SystemMessage.query.filter_by(to_user_id=current_user.id).\
+    pagination = SystemMessage.query.filter_by(to_user_id=current_user.id). \
         order_by(SystemMessage.add_time.desc()).paginate(
         page=page, per_page=current_app.config['PER_PAGE'], error_out=False
     )
@@ -193,6 +311,7 @@ def posts():
     posts = pagination.items
     return render_template('users/posts.html', posts=posts, pagination=pagination)
 
+
 @main.route('/collected-posts')
 @login_required
 def collected_posts():
@@ -202,6 +321,7 @@ def collected_posts():
     )
     collected_posts = pagination.items
     return render_template('users/collected_posts.html', posts=collected_posts, pagination=pagination)
+
 
 @main.route('/upload-image', methods=['GET', 'POST'])
 @login_required
@@ -216,6 +336,7 @@ def upload_image():
     else:
         error = '{"error": true}'
         return error
+
 
 @main.route('/post', methods=['GET', 'POST'])
 @login_required
@@ -238,27 +359,32 @@ def post():
 
 @main.route('/search/<int:page>/')
 def search(page):
-    args = eval(json.dumps(request.args))
-    if args['object'] == 'post':
-        posts_count = Post.query.filter(
-            or_(Post.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
-                Post.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
-        ).count()
-        pagination = Post.query.filter(
-            or_(Post.title.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '',
-                Post.descriptions.ilike('%' + args['keyword'] + '%') if args['keyword'] is not None else '')
-        ).order_by(Post.add_time.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
-                                                   error_out=False)
-        posts = pagination.items
-        return render_template('search.html', counts=posts_count, pagination=pagination, posts=posts,
-                               args=args)
+    keyword = request.args.get('keyword')
+    count = []
+    items = []
+    # 查询帖子
+    posts_query = Post.query.filter(
+        or_(Post.title.ilike('%' + keyword + '%') if keyword is not None else '',
+            Post.descriptions.ilike('%' + keyword + '%') if keyword is not None else '')
+    )
+    posts_count = posts_query.count()
+    count.append(posts_count)
+    posts_pagination = posts_query.order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False)
+    items.append(posts_pagination.items)
+    # 查询用户
+    users_query = User.query.filter(User.username.ilike('%' + keyword + '%'))
+    users_count = users_query.count()
+    count.append(users_count)
+    users_pagination = users_query.order_by(User.last_seen.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False)
+    items.append(users_pagination.items)
+
+    if posts_count > users_count:
+        pagination = posts_pagination
     else:
-        users_count = User.query.filter(User.username.ilike('%' + args['keyword'] + '%')).count()
-        pagination = User.query.filter(User.username.ilike('%' + args['keyword'] + '%')). \
-            order_by(User.last_seen.desc()).paginate(page=page, per_page=current_app.config['PER_PAGE'],
-                                                     error_out=False)
-        posts = pagination.items
-        return render_template('search.html', counts=users_count, args=args, pagination=pagination, posts=posts)
+        pagination = users_pagination
+    return render_template('search.html', count=count, keyword=keyword, pagination=pagination, items=items)
 
 
 @main.route('/post-detail/<int:id>/', methods=['GET', 'POST'])
@@ -272,23 +398,33 @@ def post_detail(id):
     post.view_times += 1
     db.session.add(post)
     db.session.commit()
+
+    # 对帖子发布评论
     if request.method == 'POST' and 'reply_comment_id' not in request.args:
-        comment_body = request.form['content']
-        if comment_body:
-            comment = Comment(body=comment_body, post=post, user=current_user._get_current_object())
-            db.session.add(comment)
-            db.session.commit()
-            flash("您的评论已发布")
-            return redirect(url_for('main.post_detail', id=post.id, page=-1))
+        if not current_user.is_anonymous:
+            comment_body = request.form['content']
+            if comment_body:
+                comment = Comment(body=comment_body, post=post, user=current_user._get_current_object())
+                db.session.add(comment)
+                db.session.commit()
+                flash("您的评论已发布")
+                return redirect(url_for('main.post_detail', id=post.id, page=-1))
+            else:
+                flash("请输入描述内容！")
         else:
-            flash("请输入描述内容！")
+            return redirect(url_for('auth.login'))
+
+    # 回复帖子的评论
     if form.validate_on_submit():
-        data = form.data
-        reply_to_comment = ReplyToComment(body=data['reply'], comment=reply_comment,
-                                          user=current_user._get_current_object())
-        db.session.add(reply_to_comment)
-        db.session.commit()
-        return redirect(url_for('main.post_detail', id=post.id, page=page))
+        if not current_user.is_anonymous:
+            data = form.data
+            reply_to_comment = ReplyToComment(body=data['reply'], comment=reply_comment,
+                                              user=current_user._get_current_object())
+            db.session.add(reply_to_comment)
+            db.session.commit()
+            return redirect(url_for('main.post_detail', id=post.id, page=page))
+        else:
+            return redirect(url_for('auth.login'))
     if page == -1:
         page = (post.comments.count() - 1) // current_app.config['PER_PAGE'] + 1
     pagination = post.comments.order_by(Comment.add_time.asc()).paginate(
@@ -341,6 +477,7 @@ def followers(id):
     return render_template(template_html, user=user, pagination=pagination,
                            follows=follows, title='关注了谁', endpoint='main.followers')
 
+
 @main.route('/followed_by/<int:id>')
 @login_required
 def followed_by(id):
@@ -356,7 +493,8 @@ def followed_by(id):
     else:
         template_html = 'follows.html'
     return render_template(template_html, user=user, pagination=pagination,
-                           follows=follows, title='的粉丝',endpoint='main.followed_by')
+                           follows=follows, title='的粉丝', endpoint='main.followed_by')
+
 
 @main.route('/collect/<int:id>')
 @login_required
@@ -386,6 +524,7 @@ def del_post(id):
     db.session.commit()
     return redirect(url_for('main.posts'))
 
+
 @main.route('/del-collected-post/<int:id>')
 @login_required
 def del_collected_post(id):
@@ -393,6 +532,7 @@ def del_collected_post(id):
     db.session.delete(collected_post)
     db.session.commit()
     return redirect(url_for('main.collected_posts'))
+
 
 @main.route('/del-comment/<int:id>')
 @login_required
@@ -413,6 +553,7 @@ def del_rep_comment(id):
     db.session.commit()
     return redirect(url_for('main.post_detail', id=post_id))
 
+
 @main.route('/del-messages/<int:id>')
 @login_required
 def del_message(id):
@@ -421,6 +562,7 @@ def del_message(id):
     db.session.commit()
     return redirect(url_for('main.messages'))
 
+
 @main.route('/del-system-message/<int:id>')
 @login_required
 def del_system_message(id):
@@ -428,6 +570,7 @@ def del_system_message(id):
     db.session.delete(message)
     db.session.commit()
     return redirect(url_for('main.system_messages'))
+
 
 @main.route('/apply-for-best/<int:id>')
 @login_required

@@ -2,62 +2,67 @@
 {% import '_macros.html' as macros %}
 
 {% block page_content %}
-    <ul class="posts">
-        <li class="post">
-            <div>
-                <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
-                <button class="floatright" id="only-owner">只看楼主</button>
-                {% if not current_user.is_collecting(post) %}
-                    <input class="floatright" type="button" value="收藏" onclick="window.location.href='{{ url_for('main.collect', id=post.id) }}'">
-                {% else %}
-                    <input class="floatright" type="button" value="取消收藏" onclick="window.location.href='{{ url_for('main.cancel_collect', id=post.id) }}'">
-                {% endif %}
-                <button class="floatright" id="give-comment">回复</button>
-            </div>
-        </li>
-        {% if pagination.page == 1 %}
-            <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
-                <div class="row">
-                    <div class="col-md-2 aligncenter">
-                        {% if post.user.avatar %}
-                            <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}>
-                                <img src="{{ url_for('static', filename='uploads/users/' + post.user.avatar) }}"
-                                     style="width: 100px;" class="img-responsive img-rounded">
-                            </a>
-                        {% else %}
-                            <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}>
-                                <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
-                                     style="width: 100px;" class="img-responsive img-rounded">
-                            </a>
-                        {% endif %}
-                        <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}
-                                                              class="center">
-                            {{ post.user.username }}
-                        </a>
-                    </div>
-                    <div class="col-md-10">
-                        {{ post.descriptions | safe }}
-                        <div class="post-footer">
-                            <span>1&nbsp;楼 | {{ moment(post.add_time).format('LLL') }}</span>
-                        </div>
-                    </div>
+    <div id="container">
+        <ul class="posts">
+            <li class="post">
+                <div>
+                    <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
+                    <button class="floatright" id="only-owner">只看楼主</button>
+                    {% if not current_user.is_collecting(post) %}
+                        <input class="floatright" type="button" value="收藏" onclick="window.location.href='{{ url_for('main.collect', id=post.id) }}'">
+                    {% else %}
+                        <input class="floatright" type="button" value="取消收藏" onclick="window.location.href='{{ url_for('main.cancel_collect', id=post.id) }}'">
+                    {% endif %}
+                    <button class="floatright" id="give-comment">回复</button>
                 </div>
             </li>
+            {% if pagination.page == 1 %}
+                <li style="padding-top: 10px;padding-bottom: 10px;" class="post">
+                    <div class="row">
+                        <div class="col-md-2">
+                            {% if post.user.avatar %}
+                                <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}
+                                                                      class="aligncenter">
+                                    <img src="{{ url_for('static', filename='uploads/users/' + post.user.avatar) }}"
+                                         style="width: 100px;" class="img-responsive img-rounded">
+                                </a>
+                            {% else %}
+                                <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}
+                                                                      class="aligncenter">
+                                    <img src="{{ url_for('static', filename='uploads/users/tjer.gif') }}"
+                                         style="width: 100px;" class="img-responsive img-rounded">
+                                </a>
+                            {% endif %}
+                            <div class="center">
+                                <a {% if current_user == post.user %} href="{{ url_for('main.userinfo') }}"{% else %} href="{{ url_for('main.user', id=post.user.id) }}"{% endif %}>
+                                    {{ post.user.username }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            {{ post.descriptions | safe }}
+                            <div class="post-footer">
+                                <span>1&nbsp;楼 | {{ moment(post.add_time).format('LLL') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+        {% include '_comments.html'%}
+        {% if comments %}
+            <div class="center">
+                {{ macros.pagination_widget(pagination, 'main.post_detail', id=post.id) }}
+            </div>
         {% endif %}
-    </ul>
-    {% include '_comments.html'%}
-    {% if comments %}
-        <div class="center">
-            {{ macros.pagination_widget(pagination, 'main.post_detail', id=post.id) }}
-        </div>
-    {% endif %}
-    <form method="post" action="" style="margin-top: 30px" role="form">
-        <div class="form-group">
-            <label for="name">发表回复</label>
-            <input class="editor" name="content" id="content" placeholder="">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">发表</button>
-        </div>
-    </form>
+        <form method="post" action="" style="margin-top: 30px" role="form">
+            <div class="form-group">
+                <label for="name">发表回复</label>
+                <input class="editor" name="content" id="content" placeholder="">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">发表</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

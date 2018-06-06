@@ -11,6 +11,7 @@ db = SQLAlchemy()
 mail = Mail()
 login_manager = LoginManager()
 moment = Moment()
+login_manager.login_message = "请登录之后再进行其他操作"
 login_manager.blueprint_login_views = {'main': 'auth.login', 'admin': 'admin.login'}
 
 def creat_app(config_name):

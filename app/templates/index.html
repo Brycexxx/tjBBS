@@ -1,125 +1,257 @@
 {% extends "base.html" %}
 {% import '_macros.html' as macros %}
 
-{% block page_content %}
-    <div class="container">
-        <div id="slider">
-            <ul class="slides clearfix">
-                <li><img class="responsive" src="{{ url_for('static', filename='image/slide1.jpg') }}"></li>
-                <li><img class="responsive" src="{{ url_for('static', filename='image/slide2.jpg') }}"></li>
-                <li><img class="responsive" src="{{ url_for('static', filename='image/slide3.jpg') }}"></li>
-            </ul>
-            <ul class="controls">
-                <li><img src="{{ url_for('static', filename='image/prev.png') }}" alt="previous"></li>
-                <li><img src="{{ url_for('static', filename='image/next.png') }}" alt="next"></li>
-            </ul>
-            <ul class="pagination">
-                <li class="active"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-            <div class="categories center">
-                <h3>&nbsp;所有分类&nbsp;</h3>
-            </div>
-        </div>
-        <div class="container center">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/mobile.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">数码</a>
-                </div>
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/book.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">书籍</a>
-                </div>
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/daily-necessity.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">日用</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/player.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">影音</a>
-                </div>
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/clothes.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">鞋服</a>
-                </div>
-                <div class="col-md-4">
-                    <img src="{{ url_for('static', filename='image/others.jpg') }}" class="image-size">
-                    <br>
-                    <a href="#">其他</a>
-                </div>
-            </div>
-        </div>
-        <div class="container" style="margin-top: 30px;" id="key_word">
-            <ul id="thread_types" class="ttp bm cl cttp" style="height: auto;">
-                <li class="unfold"><img class="do_unfold" style="height: 10px; width: 13px;" src="{{ url_for('static', filename='image/arrow.jpeg') }}"></li>
-                <li><a href="{{ url_for('main.index') }}#key_word">全部</a></li>
-                <li><a href="{{ url_for('main.index', key_word='bulletin') }}#key_word"><font color=red><b>公告</b></font></a></li>
-                <li><a href="{{ url_for('main.index', key_word='communication') }}#key_word"><font color=orange><b>交流</b></font><span class="xg1 num">{{ all_categories_count[0] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='buy') }}#key_word"><font color=purple><b>求购</b></font><span class="xg1 num">{{ all_categories_count[1] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='electronic') }}#key_word"><font color=darkcyan><b>数码电子</b></font><span class="xg1 num">{{ all_categories_count[2] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='daily') }}#key_word"><font color=yellowgreen><b>生活用品</b></font><span class="xg1 num">{{ all_categories_count[3] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='sports') }}#key_word"><font color=olive><b>运动装备</b></font><span class="xg1 num">{{ all_categories_count[4] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='ct') }}#key_word"><font color=purple><b>卡,票,券</b></font><span class="xg1 num">{{ all_categories_count[5] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='transport') }}#key_word"><font color=slateblue><b>交通工具</b></font><span class="xg1 num">{{ all_categories_count[6] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='dress') }}#key_word"><font color=deeppink><b>服装鞋包</b></font><span class="xg1 num">{{ all_categories_count[7] }}</span></a></li>
-                <li><a href="{{ url_for('main.index', key_word='books') }}#key_word"><font color=steelblue><b>书籍资料</b></font><span class="xg1 num">{{ all_categories_count[8] }}</span></a></li>
-                <li class="display-form"><a href="{{ url_for('main.index', key_word='others') }}#key_word"><font color=orange><b>其他</b></font><span class="xg1 num">{{ all_categories_count[9] }}</span></a></li>
-                <li class="display-form"><a href="{{ url_for('main.index', key_word='bos') }}#key_word"><b>已售/已购</b><span class="xg1 num">{{ all_categories_count[10] }}</span></a></li>
-            </ul>
-            <div class="table-responsive" style="border: 1px solid #CDCDCD;">
-                <table class="table table-hover" style="margin-bottom: 0">
-                    <thead>
-                    <tr>
-                        <th>
-                            <a href="{{ url_for('main.index') }}#key_word">最新&nbsp;</a>
-                            <a href="{{ url_for('main.index', key_word='hot') }}#key_word">热贴&nbsp;</a>
-                            <a href="{{ url_for('main.index', key_word='best') }}#key_word">精华&nbsp;</a>
-                        </th>
-                        <th>作者</th>
-                        <th>回复/查看</th>
-                        <th>最后访问</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for post in posts %}
-                        <tr>
-                            {% if post.user == 'admin' %}
-                                <td>系统公告</td>
-                                <td>{{ post.body }}</td>
-                                <td></td>
-                                <td></td>
-                            {% else %}
-                                <td><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></td>
-                                {% if current_user == post.user %}
-                                    <td><a href="{{ url_for('main.userinfo') }}">{{ post.user.username }}</a></td>
-                                {% else %}
-                                    <td><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a></td>
-                                {% endif %}
-                                <td>{{ post.comments.count() }} / {{ post.view_times }}</td>
-                                <td>{{ moment(post.user.last_seen).format('LLL') }}</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+
+{% block search %}
+    <!-- Start of Search Wrapper -->
+    <div class="search-area-wrapper">
+        <div class="search-area container1">
+            <h3 class="search-header">想找些什么？</h3>
+            <p class="search-tag-line">试试下面的搜索，也许可以找到你想要的哦！</p>
+
+            <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
+                <input class="search-term required" id="keyword" type="text" placeholder="客官想找什么呀！" title="* Please enter a search term!" />
+                <a class="search-btn nowarp" id="do_search">搜&nbsp;索</a>
+                <div id="search-error-container"></div>
+            </form>
         </div>
     </div>
-    {% if posts %}
-        <div style="margin-top: 30px">
-            {{ macros.pagination_widget(pagination, 'main.index', fragment='#key_word', key_word=key_word) }}
-        </div>
-    {% endif %}
+    <!-- End of Search Wrapper -->
 {% endblock %}
+
+<!-- Start of Page Container -->
+{% block index %}
+    <div class="page-container">
+        <div class="container1">
+            <div class="col-md-8">
+                <!-- start of page content -->
+                <div class="page-content">
+                    <!-- Basic Home Page Template -->
+                    <div class="row1 separator">
+                        <section class="col-md-6 articles-list">
+                            <h3 class="hot"><a href="{{ url_for('main.hot') }}">热门帖子</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[-2] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="new"><a href="{{ url_for('main.new') }}">最新发布</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[-1] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    </div>
+
+                    <div class="row1 home-listing-area">
+                        <div>
+                            <h2>所有分类</h2>
+                        </div>
+                    </div>
+
+                    <div class="row1 separator">
+                        <section class="col-md-6 articles-list">
+                            <h3 class="best"><a href="{{ url_for('main.best') }}">精华</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[-3] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                        <section class="col-md-6 articles-list">
+                            <h3 class="book"><a href="{{ url_for('main.book') }}">书籍资料</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[8] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                    </div>
+
+                    <div class="row1 separator">
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="transport"><a href="{{ url_for('main.transport') }}">交通工具</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[6] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section class="col-md-6 articles-list">
+
+                            <h3 class="card"><a href="{{ url_for('main.card') }}">卡、票、券</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[5] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                    </div>
+
+                    <div class="row1 separator">
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="electronic"><a href="{{ url_for('main.electronic') }}">数码电子</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[2] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="clothes"><a href="{{ url_for('main.clothes') }}">服装鞋包</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[7] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    </div>
+
+                    <div class="row1 separator">
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="daily"><a href="{{ url_for('main.daily') }}">生活用品</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[3] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="sport"><a href="{{ url_for('main.sport') }}">运动装备</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[4] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="row1 separator">
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="buy"><a href="{{ url_for('main.buy') }}">求购</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[1] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section class="col-md-6 articles-list">
+                            <h3 class="communication"><a href="{{ url_for('main.communication') }}">交流</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[0] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                    </div>
+                    <div class="row1 separator">
+                        <section class="col-md-6 articles-list">
+                            <h3 class="finished"><a href="{{ url_for('main.finished') }}">已售/已购</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[10] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                        <section class="col-md-6 articles-list">
+                            <h3 class="others"><a href="{{ url_for('main.others') }}">其他</a></h3>
+                            <ul class="articles">
+                                {% for post in all_posts[10] %}
+                                    <li class="article-entry">
+                                        <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
+                                        <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
+                                        <span class="like-count">{{ post.comments.count() }}回复</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <!-- end of page content -->
+            </div>
+            {% include "_sidebar.html" %}
+        </div>
+        <!-- End of Page Container -->
+        <!-- Start of Footer -->
+        <footer id="footer-relative">
+            <!-- Footer Bottom -->
+            <div id="footer-bottom-wrapper">
+                <div id="footer-bottom" class="container1">
+                    <div class="row1">
+                        <p class="copyright">
+                            Copyright © 2018. All Rights Reserved by Mr.Xu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Footer Bottom -->
+        </footer>
+    </div>
+    <a href="#top" id="scroll-top"></a>
+{% endblock%}

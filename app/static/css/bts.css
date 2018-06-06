@@ -1,0 +1,229 @@
+.container1,
+.navbar-static-top .container1,
+.navbar-fixed-top .container1,
+.navbar-fixed-bottom .container1 {
+  width: 940px;
+}
+.container1 {
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+.container1:before, .container1:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.container1:after {
+  clear: both;
+}
+
+.span12 {
+  width: 940px;
+}
+
+.span11 {
+  width: 860px;
+}
+
+.span10 {
+  width: 780px;
+}
+
+.span9 {
+  width: 700px;
+}
+
+.span8 {
+  width: 620px;
+}
+
+.span7 {
+  width: 540px;
+}
+
+.span6 {
+  width: 460px;
+}
+
+.span5 {
+  width: 380px;
+}
+
+.span4 {
+  width: 300px;
+}
+
+.span3 {
+  width: 220px;
+}
+
+.span2 {
+  width: 140px;
+}
+
+.span1 {
+  width: 60px;
+}
+
+.offset12 {
+  margin-left: 980px;
+}
+
+.offset11 {
+  margin-left: 900px;
+}
+
+.offset10 {
+  margin-left: 820px;
+}
+
+.offset9 {
+  margin-left: 740px;
+}
+
+.offset8 {
+  margin-left: 660px;
+}
+
+.offset7 {
+  margin-left: 580px;
+}
+
+.offset6 {
+  margin-left: 500px;
+}
+
+.offset5 {
+  margin-left: 420px;
+}
+
+.offset4 {
+  margin-left: 340px;
+}
+
+.offset3 {
+  margin-left: 260px;
+}
+
+.offset2 {
+  margin-left: 180px;
+}
+
+.offset1 {
+  margin-left: 100px;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.row1 {
+  margin-left: -20px;
+  *zoom: 1;
+}
+.row1:before, .row1:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.row1:after {
+  clear: both;
+}
+
+.panel-system {
+  border-color: #353c41;
+}
+.panel-system > .panel-heading {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.panel-system > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #353c41;
+}
+.panel-system > .panel-heading .badge {
+  color: #353c41;
+  background-color: #353c41;
+}
+.panel-system > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #353c41;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+
+.btn-system {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system:focus,
+.btn-system.focus {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system:hover {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system:active,
+.btn-system.active,
+.open > .dropdown-toggle.btn-system {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system:active:hover,
+.btn-system.active:hover,
+.open > .dropdown-toggle.btn-system:hover,
+.btn-system:active:focus,
+.btn-system.active:focus,
+.open > .dropdown-toggle.btn-system:focus,
+.btn-system:active.focus,
+.btn-system.active.focus,
+.open > .dropdown-toggle.btn-system.focus {
+  color: #fff;
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system:active,
+.btn-system.active,
+.open > .dropdown-toggle.btn-system {
+  background-image: none;
+}
+.btn-system.disabled:hover,
+.btn-system[disabled]:hover,
+fieldset[disabled] .btn-system:hover,
+.btn-system.disabled:focus,
+.btn-system[disabled]:focus,
+fieldset[disabled] .btn-system:focus,
+.btn-system.disabled.focus,
+.btn-system[disabled].focus,
+fieldset[disabled] .btn-system.focus {
+  background-color: #353c41;
+  border-color: #353c41;
+}
+.btn-system .badge {
+  color: #353c41;
+  background-color: #fff;
+}
