@@ -73,7 +73,7 @@ def login():
                 next = url_for('main.index')
             return redirect(next)
         flash('无效的用户名或密码')
-    return render_template('auth/login1.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 
 @auth.route('/logout')

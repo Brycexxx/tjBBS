@@ -7,7 +7,10 @@ class LoginForm(FlaskForm):
     email = StringField('邮箱', validators=[DataRequired(), Length(1, 64), Email()])
     password = PasswordField('密码', validators=[DataRequired()])
     rememble_me = BooleanField('自动登录')
-    submit = SubmitField('登录')
+    submit = SubmitField(label='登录',
+                         render_kw={
+                             'class': 'btn btn-success'
+                         })
 
 
 class RegisterForm(FlaskForm):
@@ -28,7 +31,7 @@ class RegisterForm(FlaskForm):
             raise ValidationError('用户名已经被占用！')
 
 class PwdResetRequestForm(FlaskForm):
-    email = StringField('邮箱', validators=[DataRequired(), Length(1, 64), Email()])
+    email = StringField('请输入邮箱', validators=[DataRequired(), Length(1, 64), Email()])
     submit = SubmitField('重置密码')
 
 class PwdResetForm(FlaskForm):
