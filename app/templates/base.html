@@ -31,7 +31,10 @@
                 <nav class="main-nav">
                     <div class="menu-top-menu-container">
                         <ul id="menu-top-menu" class="clearfix">
-                            <li><a href="{{ url_for('main.post') }}">大声说出你想干嘛</a></li>
+                        <li>
+                            <iframe width="450" scrolling="no" height="22" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=1&color=%23FFFFFF&icon=1&py=hongkou1&wind=1&num=1&site=11"></iframe>
+                        </li>
+                            <li><a href="{{ url_for('main.post') }}">发贴</a></li>
                             {% if current_user.is_authenticated %}
                                 <li><a href="{{ url_for('main.userinfo') }}">欢迎您，{{ current_user.username }}</a></li>
                                 <li><a href="{{ url_for('auth.logout') }}">退出</a></li>

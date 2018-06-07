@@ -5,15 +5,15 @@
     <div id="container">
         <ul class="posts">
             <li class="post">
-                <div>
-                    <h3 style="display: inline; vertical-align: center">{{ post.title }}</h3>
-                    <button class="floatright" id="only-owner">只看楼主</button>
+                <div class="clearfix">
+                    <h3 class="post-h3">{{ post.title }}</h3>
+                    <button class="float-right" id="only-owner">只看楼主</button>
                     {% if not current_user.is_collecting(post) %}
-                        <input class="floatright" type="button" value="收藏" onclick="window.location.href='{{ url_for('main.collect', id=post.id) }}'">
+                        <input class="float-right" type="button" value="收藏" onclick="window.location.href='{{ url_for('main.collect', id=post.id) }}'">
                     {% else %}
-                        <input class="floatright" type="button" value="取消收藏" onclick="window.location.href='{{ url_for('main.cancel_collect', id=post.id) }}'">
+                        <input class="float-right" type="button" value="取消收藏" onclick="window.location.href='{{ url_for('main.cancel_collect', id=post.id) }}'">
                     {% endif %}
-                    <button class="floatright" id="give-comment">回复</button>
+                    <button class="float-right" id="give-comment">回复</button>
                 </div>
             </li>
             {% if pagination.page == 1 %}
@@ -65,4 +65,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block script %}
+
 {% endblock %}

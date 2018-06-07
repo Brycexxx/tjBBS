@@ -34,3 +34,15 @@ $(document).ready(function () {
         $(li_fold).toggle();
     });
 });
+$(document).ready(function () {
+    $(window).resize(function () {
+        if ($(window).width() < 730) {
+            $(".post-h3").css("display", "block");
+            $(".float-right").css("float", "left")
+        }
+        else {
+            $(".post-h3").css("display", "inline");
+            $(".float-right").css("float", "right")
+        }
+    })
+});

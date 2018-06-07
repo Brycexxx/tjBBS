@@ -7,7 +7,7 @@
         <img src="{{ url_for('static', filename='image/logo.jpg') }}" alt="同济大学生活小助手">
         <h4>登录小助手</h4>
     </div>
-    <form class="login-body" role="form" method="post">
+    <form class="login-body clearfix" role="form" method="post">
         <div class="form-group">
             <label for="input_contact">{{ form.email.label }}</label>
             {{ form.email }}
@@ -27,17 +27,4 @@
         {{ form.csrf_token }}
         {{ form.submit }}
     </form>
-    <footer id="footer-absolute">
-        <!-- Footer Bottom -->
-        <div id="footer-bottom-wrapper">
-            <div id="footer-bottom" class="container1">
-                <div class="row1">
-                    <p class="copyright">
-                        Copyright © 2018. All Rights Reserved by Mr.Xu.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- End of Footer Bottom -->
-    </footer>
 {% endblock %}

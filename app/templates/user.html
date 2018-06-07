@@ -59,15 +59,15 @@
             <p>
                 {% if user != current_user %}
                     {% if not current_user.is_following(user) %}
-                        <a href="{{ url_for('.follow', id=user.id) }}" class="btn btn-primary">关注</a>
+                        <a href="{{ url_for('.follow', id=user.id) }}" class="btn btn-system">关注</a>
                     {% else %}
-                        <a href="{{ url_for('.unfollow', id=user.id) }}" class="btn btn-default">取消关注</a>
+                        <a href="{{ url_for('.unfollow', id=user.id) }}" class="btn btn-system">取消关注</a>
                     {% endif %}
                 {% else%}
                     <a class="btn btn-default" href="{{ url_for('main.userinfo') }}">编辑</a>
                 {% endif %}
             </p>
-            <div class="panel panel-warning">
+            <div class="panel panel-system">
                 <div class="panel-heading">
                     <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;{{ user.username }}的帖子</h3>
                 </div>
