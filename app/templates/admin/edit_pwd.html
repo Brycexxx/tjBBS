@@ -6,7 +6,7 @@
     <div class="container" style="margin-top:76px">
         {% include "admin/menu.html" %}
         <div class="col-md-9">
-            <div class="panel panel-warning">
+            <div class="panel panel-system">
                 <div class="panel-heading">
                     <h3 class="panel-title"><span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码</h3>
                 </div>
@@ -48,5 +48,8 @@
         $(document).ready(function () {
             $("#edit-pwd").addClass("active")
         });
+        $(document).ready(function () {
+            $("#clear").val('');
+        })
     </script>
 {% endblock %}

@@ -1,11 +1,15 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, FileField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField
 
 class LoginForm(FlaskForm):
     email = StringField('邮箱帐号', validators=[DataRequired(), Length(1, 64), Email()])
     password = PasswordField('密码', validators=[DataRequired()])
-    submit = SubmitField('登录')
+    submit = SubmitField('登录',
+                         render_kw={
+                             'style': 'margin-top: 25px',
+                             'class': 'btn btn-success'
+                         })
 
 
 class AdminDetailForm(FlaskForm):
@@ -66,7 +70,7 @@ class AdminDetailForm(FlaskForm):
     submit = SubmitField(
         '保存修改',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-system",
         }
     )
 
@@ -78,6 +82,7 @@ class PwdForm(FlaskForm):
         ],
         description="旧密码",
         render_kw={
+            "id": "clear",
             "class": "form-control",
             "placeholder": "请输入旧密码！",
         }
@@ -109,7 +114,7 @@ class PwdForm(FlaskForm):
     submit = SubmitField(
         label='修改密码',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-system",
         }
     )
 
@@ -129,7 +134,7 @@ class AddModeratorForm(FlaskForm):
     submit = SubmitField(
         label='添加',
         render_kw={
-            "class": "btn btn-success",
+            "class": "btn btn-system",
         }
     )
 
@@ -145,6 +150,6 @@ class BulletinBoardForm(FlaskForm):
     submit = SubmitField(
         label="发布",
         render_kw={
-            "class": "btn btn-success"
+            "class": "btn btn-system"
         }
     )

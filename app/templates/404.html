@@ -1,0 +1,60 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>404 Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">
+
+
+	<!-- Modernizr JS -->
+	<script src="{{ url_for('static', filename='js/modernizr-2.6.2.min.js') }}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+	<![endif]-->
+{% endblock %}
+
+{% block body %}
+		<div class="container fh5co-container">
+
+			<div class="row">
+				<div class="col-md-12 animate-box" data-animate-effect="fadeIn">
+					<div class="fh5co-404-wrap" id="video" data-vide-bg="{{ url_for('static', filename='video/Crocodile') }}" data-vide-options="position: 0 50%">
+						<div class="overlay"></div>
+					</div>
+				</div>
+				<div class="col-md-12 text-center fh5co-404-text animate-box"  data-animate-effect="fadeIn">
+					<h2>Looks like you got lost</h2>
+					<p><a href="{{ url_for('main.index') }}" class="btn btn-primary">Go back home</a></p>
+				</div>
+				<div class="col-md-12 text-center fh5co-copyright animate-box" data-animate-effect="fadeInUp">
+					<p><small>&copy; All Rights Reserved. by Mr.Xu</small></p>
+				</div>
+			</div>
+
+		</div>
+    {{ super() }}
+{% endblock %}
+
+{% block scripts %}
+    <!-- jQuery -->
+	<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+	<!-- Bootstrap -->
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<!-- Vide -->
+	<script src="{{ url_for('static', filename='js/jquery.vide.min.js') }}"></script>
+	<!-- Waypoints -->
+	<script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
+	<!-- Main JS -->
+	<script src="{{ url_for('static', filename='js/404.js') }}"></script>
+{% endblock %}
