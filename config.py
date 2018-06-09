@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    SECRET_KEY = 'naO2WGZSVNIKS7MiX6jYWimb2Is1bon9'
     UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/")
     FC_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/users/")
     POST_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/posts/")
@@ -19,6 +19,8 @@ class Config:
     SQLALCHEMY_RECORD_QUERIES = True
     FLASK_DB_QUERY_TIMEOUT = 0.5
     SSL_DISABLE = True
+    APP_ID = '11374675'
+    API_KEY = '2TICmoZCYloCF52zhshhbN1Z'
 
     @staticmethod
     def init_app(app):

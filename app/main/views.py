@@ -10,7 +10,8 @@ from werkzeug.security import generate_password_hash
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy import or_
-import json, re, os
+import re, os
+from ..uploaded_content_verify import ContentVerify
 
 
 def drop_html(html_body):
@@ -18,6 +19,11 @@ def drop_html(html_body):
     body = pattern.sub('', html_body)
     return body
 
+def match_src(html_body):
+    pattern = re.compile(r'src="(http.+?)"', re.S)
+    match_result = pattern.search(html_body)
+    img_link = match_result.groups(1)[0]
+    return img_link
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -327,22 +333,43 @@ def collected_posts():
 @login_required
 def upload_image():
     image = request.files['file']
-    if image and allowed_file(image.filename):
+    content_verify = ContentVerify()
+    verify_msg, ok_or_not = content_verify.verify_uploaded_images(image)
+    image.seek(0, 0)
+    if image and allowed_file(image.filename) and ok_or_not:
         image_name = secure_filename(image.filename)
         secure_imgname = change_filename(image_name)
-        success = '{"error": false, "url":"http:\/\/localhost:5000\/static\/uploads\/posts\/' + secure_imgname + '"}'
+        success = '{"url":"http:\/\/localhost:5000\/static\/uploads\/posts\/' + secure_imgname + '"}'
         image.save(os.path.join(current_app.config['POST_DIR'], secure_imgname))
         return success
     else:
-        error = '{"error": true}'
+        if not allowed_file(image.filename):
+            verify_msg = "图片格式错误，上传失败！"
+        else:
+            verify_msg = verify_msg[0] + "，上传失败！"
+        error = '{"error": "' + verify_msg + '"}'
         return error
-
 
 @main.route('/post', methods=['GET', 'POST'])
 @login_required
 def post():
     form = PostForm()
     if form.validate_on_submit():
+        if request.form['content'] == "":
+            flash("内容为空！")
+            return redirect(url_for('main.post'))
+        try:
+            img_link = match_src(request.form['content'])
+            content_verify = ContentVerify()
+            verify_result = content_verify.verify_uploaded_images(img_link)
+            msg = content_verify.extract_msg(verify_result)
+            if not content_verify.is_ok(msg):
+                flash(verify_result['data'][0]['msg'] + "，提交失败！")
+                return redirect(url_for('main.post'))
+            else:
+                pass
+        except:
+            pass
         data = form.data
         post = Post(
             title=data['title'],
