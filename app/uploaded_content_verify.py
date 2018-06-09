@@ -21,7 +21,7 @@ class ContentVerify:
         msg = self.extract_msg(result, suffix)
         ok_or_not = self.is_ok(msg, suffix)
         return msg, ok_or_not
-
+# TODO 修改上传错误的msg
 
     def extract_msg(self, result, suffix):
         if "error_msg" in result:
