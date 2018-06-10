@@ -40,11 +40,11 @@ def change_filename(filename):
 def index():
     all_query_results = []
     for i in range(1, len(Category.query.all()) + 1):
-        query = Post.query.filter(Post.category_id == i)
+        query = Post.query.filter(Post.category_id == i, Post.check == 1)
         all_query_results.append(query.order_by(Post.add_time.desc()).limit(5).all())
-    all_query_results.append(Post.query.filter_by(is_best=1).order_by(Post.view_times.desc()).limit(5).all())
-    all_query_results.append(Post.query.order_by(Post.view_times.desc()).limit(5).all())
-    all_query_results.append(Post.query.order_by(Post.add_time.desc()).limit(5).all())
+    all_query_results.append(Post.query.filter_by(is_best=1, check=1).order_by(Post.view_times.desc()).limit(5).all())
+    all_query_results.append(Post.query.filter_by(check=1).order_by(Post.view_times.desc()).limit(5).all())
+    all_query_results.append(Post.query.filter_by(check=1).order_by(Post.add_time.desc()).limit(5).all())
 
     return render_template('index.html', all_posts=all_query_results)
 
@@ -245,7 +245,7 @@ def userinfo():
             avatar_verify = ContentVerify()
             verify_msg, ok_or_not = avatar_verify.verify_uploaded_avatar(data["avatar"])
             if not ok_or_not:
-                flash(verify_msg[0])
+                flash(verify_msg)
                 return redirect(url_for('main.userinfo'))
             data["avatar"].seek(0, 0)
             file_avatar = secure_filename(form.avatar.data.filename)
@@ -369,12 +369,12 @@ def post():
     except:
         pass
     if form.validate_on_submit():
+        content_verify = ContentVerify()
         if request.form['content'] == "":
             flash("内容为空！")
             return redirect(url_for('main.post'))
         try:
             img_link = match_src(request.form['content'])
-            content_verify = ContentVerify()
             verify_msg, ok_or_not = content_verify.verify_uploaded_images(img_link)
             if not ok_or_not:
                 flash(verify_msg[0] + "，提交失败！")
@@ -383,17 +383,30 @@ def post():
                 pass
         except AttributeError:
             print("用户上传的内容中不包含图片链接！")
+        text = request.form['content']
+        msg, spam_code, ok_or_not = content_verify.verify_text(text)
+        if not ok_or_not:
+            if spam_code == 1:
+                flash(msg)
+                return redirect(url_for('main.post'))
+            else:
+                flash(msg)
+                check = 0
+        else:
+            check = 1
         data = form.data
         post = Post(
             title=data['title'],
-            descriptions=request.form['content'],
+            descriptions=text,
             category=Category.query.get(data['category']),
-            user=current_user
+            check=check,
+            user=current_user._get_current_object()
         )
         db.session.add(post)
         db.session.commit()
-        flash("您的帖子已发布！")
-        return redirect(url_for('main.index'))
+        if check == 1:
+            flash("您的帖子已发布！")
+        return redirect(url_for('main.post'))
     return render_template('post.html', form=form)
 
 

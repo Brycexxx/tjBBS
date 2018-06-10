@@ -37,11 +37,23 @@ class ContentVerify:
         msg = result['result'][0]['data']['antiporn']
         if "conclusion" in msg:
             if not msg['conclusion'] == "色情":
-                return [''], True
+                return '', True
             else:
-                return [msg['conclusion'] + "，上传失败！"], False
+                return msg['conclusion'] + "，上传失败！", False
         else:
-            return ['审核失败，请重试！'], False
+            return '审核失败，请重试！', False
+
+
+    def verify_text(self, text):
+        result = self.client.antiSpam(text)
+        spam_code = result['result']['spam']
+        if spam_code == 0:
+            return '', True
+        elif spam_code == 1:
+            return "涉及敏感词，审核未通过，提交失败！", spam_code, False
+        else:
+            return "待审核，您将在12小时内收到审核结果", spam_code, False
+
 
 
     def extract_msg(self, result, suffix):

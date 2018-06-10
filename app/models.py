@@ -253,6 +253,7 @@ class Post(db.Model):
     descriptions = db.Column(db.Text)
     add_time = db.Column(db.DateTime, default=datetime.utcnow)
     is_best = db.Column(db.Integer, default=0)
+    check = db.Column(db.Integer)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     view_times = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

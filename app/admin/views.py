@@ -1,7 +1,7 @@
 from . import admin
 from .. import db
 from flask_login import current_user, login_required, login_user,logout_user
-from flask import render_template, redirect, url_for, flash, request, current_app, jsonify, Response
+from flask import render_template, redirect, url_for, flash, request, current_app
 from ..models import ApplyForBestPost, SystemMessage, Post, User, Permission
 from ..decorators import admin_required, permission_required
 from .forms import LoginForm, AdminDetailForm, PwdForm, AddModeratorForm, BulletinBoardForm
@@ -27,7 +27,7 @@ def login():
             else:
                 flash("无效的账户或密码")
         else:
-            flash('你没有登录权限')
+            flash('很抱歉，您没有登录权限！')
 
     return render_template('admin/login.html', form=form)
 
@@ -95,7 +95,7 @@ def accept_best_post_apply(id):
     post = Post.query.get_or_404(id)
     post.is_best = 1
     system_message = SystemMessage(
-        body="你的帖子“" + post.title + "”已通过加精申请",
+        body="您的帖子“" + post.title + "”已通过加精申请",
         to_user=post.user
     )
     db.session.add_all([post, system_message])
@@ -110,7 +110,7 @@ def accept_best_post_apply(id):
 def refuse_best_post_apply(id):
     post = Post.query.get_or_404(id)
     system_message = SystemMessage(
-        body="很抱歉，你的帖子“" + post.title + "”未通过加精申请",
+        body="很抱歉，您的帖子“" + post.title + "”未通过加精申请",
         to_user=post.user
     )
     db.session.add_all([post, system_message])
@@ -154,11 +154,44 @@ def add_moderator():
         return redirect(url_for('admin.add_moderator'))
     return render_template('admin/add_moderator.html', form=form)
 
-@admin.route('/verify-post')
+@admin.route('/pending-posts')
 @login_required
 @permission_required(Permission.MODERATE)
-def verify_post():
-    return render_template('admin/verify_post.html')
+def pending_posts():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.filter_by(check=0).order_by(Post.add_time.desc()).paginate(
+        page=page, per_page=current_app.config['PER_PAGE'], error_out=False
+    )
+    pending_posts = pagination.items
+    return render_template('admin/verify_post.html', pending_posts=pending_posts, pagination=pagination)
+
+@admin.route('/pass-check/<int:id>')
+@login_required
+@permission_required(Permission.MODERATE)
+def pass_check(id):
+    pending_post = Post.query.get_or_404(id)
+    pending_post.check = 1
+    system_message = SystemMessage(
+        body="您的帖子“" + pending_post.title + "”已通过人工审核",
+        to_user=pending_post.user
+    )
+    db.session.add_all([pending_post, system_message])
+    db.session.commit()
+    return redirect(url_for('admin.pending_posts'))
+
+@admin.route('/check-failure/<int:id>')
+@login_required
+@permission_required(Permission.MODERATE)
+def check_failure(id):
+    pending_post = Post.query.get_or_404(id)
+    system_message = SystemMessage(
+        body="很抱歉，您的帖子“" + pending_post.title + "”由于涉及敏感词未通过审核",
+        to_user=pending_post.user
+    )
+    db.session.delete(pending_post)
+    db.session.add(system_message)
+    db.session.commit()
+    return redirect(url_for('admin.pending_posts'))
 
 @admin.route('/post-bulletin', methods=['GET', 'POST'])
 @login_required
