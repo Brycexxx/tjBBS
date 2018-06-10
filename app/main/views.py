@@ -241,7 +241,13 @@ def userinfo():
         form.info.data = current_user.about_me
     if form.validate_on_submit():
         data = form.data
-        if form.avatar.data != "":
+        if data["avatar"] != "":
+            avatar_verify = ContentVerify()
+            verify_msg, ok_or_not = avatar_verify.verify_uploaded_avatar(data["avatar"])
+            if not ok_or_not:
+                flash(verify_msg[0])
+                return redirect(url_for('main.userinfo'))
+            data["avatar"].seek(0, 0)
             file_avatar = secure_filename(form.avatar.data.filename)
             if not os.path.exists(current_app.config['FC_DIR']):
                 os.mkdir(current_app.config['FC_DIR'])
@@ -343,7 +349,9 @@ def upload_image():
         image.save(os.path.join(current_app.config['POST_DIR'], secure_imgname))
         return success
     else:
-        if not allowed_file(image.filename):
+        if isinstance(verify_msg[0], dict):
+            verify_msg = "图片超出限制，审核失败！"
+        elif not allowed_file(image.filename):
             verify_msg = "图片格式错误，上传失败！"
         else:
             verify_msg = verify_msg[0] + "，上传失败！"
@@ -354,6 +362,12 @@ def upload_image():
 @login_required
 def post():
     form = PostForm()
+    try:
+        if request.form['content'] != "" and not form.validate_on_submit():
+            flash("标题为空！")
+            return redirect(url_for('main.post'))
+    except:
+        pass
     if form.validate_on_submit():
         if request.form['content'] == "":
             flash("内容为空！")
@@ -361,15 +375,14 @@ def post():
         try:
             img_link = match_src(request.form['content'])
             content_verify = ContentVerify()
-            verify_result = content_verify.verify_uploaded_images(img_link)
-            msg = content_verify.extract_msg(verify_result)
-            if not content_verify.is_ok(msg):
-                flash(verify_result['data'][0]['msg'] + "，提交失败！")
+            verify_msg, ok_or_not = content_verify.verify_uploaded_images(img_link)
+            if not ok_or_not:
+                flash(verify_msg[0] + "，提交失败！")
                 return redirect(url_for('main.post'))
             else:
                 pass
-        except:
-            pass
+        except AttributeError:
+            print("用户上传的内容中不包含图片链接！")
         data = form.data
         post = Post(
             title=data['title'],
