@@ -566,7 +566,7 @@ def cancel_collect(id):
     current_user.cancel_collect(post)
     db.session.commit()
     flash("您已经取消收藏！")
-    return redirect(url_for('main.idle_item', id=post.id))
+    return redirect(url_for('main.post_detail', id=post.id))
 
 
 @main.route('/del-post/<int:id>')
