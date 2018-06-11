@@ -93,13 +93,13 @@ a.tag-line {
     padding: 16px 14px 18px;
     /*bottom: 7px;*/
 }
-.main-nav div > ul > li:first-child {
-    position: relative;
-    float: left;
-    list-style: none;
-    padding: 16px 14px 18px;
-    bottom: 4px;
-}
+/*.main-nav div > ul > li:first-child {*/
+    /*position: relative;*/
+    /*float: left;*/
+    /*list-style: none;*/
+    /*padding: 16px 14px 18px;*/
+    /*bottom: 4px;*/
+/*}*/
 .main-nav div > ul > li a {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;

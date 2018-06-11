@@ -1,7 +1,7 @@
 <p>{{ user.username }}, 你好！</p>
 <p>欢迎使用同济大学生活小助手！</p>
 <p>为了确认你的帐号请点击<a href="{{ url_for('auth.confirm', token=token, _external=True) }}">链接</a>。</p>
-<p>或者，您可以将此链接粘帖到浏览器中进行确认:</p>
+<p>或者，您可以将此链接粘贴到浏览器中进行确认:</p>
 <p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
 <p>致敬,</p>
 <p>同济大学生活小助手</p>
