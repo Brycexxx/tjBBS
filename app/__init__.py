@@ -25,7 +25,7 @@ def creat_app(config_name):
     login_manager.init_app(app)
     moment.init_app(app)
 
-    if app.config['SSL_REDIRECT']:
+    if not app.config['SSL_DISABLE']:
         from flask_sslify import SSLify
         sslify = SSLify(app)
 
