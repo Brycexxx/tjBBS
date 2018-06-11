@@ -48,7 +48,7 @@ class ContentVerify:
         result = self.client.antiSpam(text)
         spam_code = result['result']['spam']
         if spam_code == 0:
-            return '', True
+            return '', spam_code, True
         elif spam_code == 1:
             return "涉及敏感词，审核未通过，提交失败！", spam_code, False
         else:
