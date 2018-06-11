@@ -45,7 +45,7 @@ def index():
     all_query_results.append(Post.query.filter_by(is_best=1, check=1).order_by(Post.view_times.desc()).limit(5).all())
     all_query_results.append(Post.query.filter_by(check=1).order_by(Post.view_times.desc()).limit(5).all())
     all_query_results.append(Post.query.filter_by(check=1).order_by(Post.add_time.desc()).limit(5).all())
-
+    all_query_results.append(SystemMessage.query.filter_by(to_user_id=None).first())
     return render_template('index.html', all_posts=all_query_results)
 
 
@@ -345,7 +345,7 @@ def upload_image():
     if image and allowed_file(image.filename) and ok_or_not:
         image_name = secure_filename(image.filename)
         secure_imgname = change_filename(image_name)
-        success = '{"url":"http:\/\/localhost:5000\/static\/uploads\/posts\/' + secure_imgname + '"}'
+        success = '{"url":"http:\/\/'+ current_app.config['URL'] +'\/static\/uploads\/posts\/' + secure_imgname + '"}'
         image.save(os.path.join(current_app.config['POST_DIR'], secure_imgname))
         return success
     else:

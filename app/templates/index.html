@@ -31,7 +31,7 @@
                         <section class="col-md-6 articles-list">
                             <h3 class="hot"><a href="{{ url_for('main.hot') }}">热门帖子</a></h3>
                             <ul class="articles">
-                                {% for post in all_posts[-2] %}
+                                {% for post in all_posts[-3] %}
                                     <li class="article-entry">
                                         <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
                                         <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
@@ -44,7 +44,7 @@
                         <section class="col-md-6 articles-list">
                             <h3 class="new"><a href="{{ url_for('main.new') }}">最新发布</a></h3>
                             <ul class="articles">
-                                {% for post in all_posts[-1] %}
+                                {% for post in all_posts[-2] %}
                                     <li class="article-entry">
                                         <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
                                         <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>
@@ -65,7 +65,7 @@
                         <section class="col-md-6 articles-list">
                             <h3 class="best"><a href="{{ url_for('main.best') }}">精华</a></h3>
                             <ul class="articles">
-                                {% for post in all_posts[-3] %}
+                                {% for post in all_posts[-4] %}
                                     <li class="article-entry">
                                         <h4><a href="{{ url_for('main.post_detail', id=post.id) }}">{{ post.title }}</a></h4>
                                         <span class="article-meta"><a href="{{ url_for('main.user', id=post.user.id) }}">{{ post.user.username }}</a>&nbsp;|&nbsp;{{ moment(post.add_time).format('L') }}-{{ post.view_times }}次浏览</span>

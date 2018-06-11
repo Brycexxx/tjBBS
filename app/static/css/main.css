@@ -568,6 +568,13 @@ section > div > p > span.nowarp
 .articles-list h3.others {
     background: url("../image/others.png") no-repeat 0 3px;
 }
+.bulletin h3.title {
+    padding: 4px 0 0 25px;
+    background: url("../image/bulletin.png") no-repeat 0 3px;
+}
+div.bulletin {
+    margin-bottom: 20px;
+}
 .articles-list > h3 > a{
     font-weight: 600;
     /*margin-bottom: 20px;*/
@@ -1675,7 +1682,7 @@ form.login-body div.form-group a {
 .register {
     position: relative;
     background: url("../image/background.jpg");
-    height: 92.5%;
+    height: 94%;
 }
 
 .register-body {

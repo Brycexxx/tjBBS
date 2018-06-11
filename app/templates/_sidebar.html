@@ -11,6 +11,16 @@
         </section>
 
         <section class="widget">
+            <div class="quick-links-widget bulletin">
+                <h3 class="title">公告</h3>
+                <p>{{ all_posts[-1].body }}</p>
+                <p>
+                    <small>{{ moment(all_posts[-1].add_time).format('L') }}</small>
+                </p>
+            </div>
+        </section>
+
+        <section class="widget">
             <div class="quick-links-widget">
                 <h3 class="title">友情链接</h3>
                 <ul id="menu-quick-links" class="menu clearfix">
