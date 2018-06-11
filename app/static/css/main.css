@@ -1658,8 +1658,8 @@ form.login-body input {
 
 form.login-body input[type='checkbox'] {
     display: inline-block;
-    width: 5px;
-    height: 5px;
+    width: 15px;
+    height: 15px;
     margin: 0 2px 0 0;
     float: left;
 }

@@ -6,7 +6,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 class LoginForm(FlaskForm):
     email = StringField('邮箱', validators=[DataRequired(), Length(1, 64), Email()])
     password = PasswordField('密码', validators=[DataRequired()])
-    rememble_me = BooleanField('自动登录')
+    rememble_me = BooleanField('记住我')
     submit = SubmitField(label='登录',
                          render_kw={
                              'class': 'btn btn-success'
