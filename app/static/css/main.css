@@ -47,8 +47,8 @@ blockquote p {
 .logo-container {
     padding: 19px 0;
 }
-.logo-container img {
-    margin-right: 10px;
+.logo-container a {
+    color: #c1cad1;
 }
 
 .lt-ie9 .logo-container {
@@ -85,6 +85,7 @@ a.tag-line {
 .main-nav div > ul {
     width: auto;
     margin: 0;
+    padding: 0;
 }
 .main-nav div > ul > li {
     position: relative;
@@ -94,11 +95,11 @@ a.tag-line {
     /*bottom: 7px;*/
 }
 /*.main-nav div > ul > li:first-child {*/
-    /*position: relative;*/
-    /*float: left;*/
-    /*list-style: none;*/
-    /*padding: 16px 14px 18px;*/
-    /*bottom: 4px;*/
+/*position: relative;*/
+/*float: left;*/
+/*list-style: none;*/
+/*padding: 16px 14px 18px;*/
+/*bottom: 4px;*/
 /*}*/
 .main-nav div > ul > li a {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -468,6 +469,9 @@ section > div > p > span.nowarp
 }
 .widget .title {
     margin-bottom: 6px;
+}
+.page-sidebar section.widget:last-child {
+    margin-bottom: 40px;
 }
 .quick-links-widget {
     border: 1px solid #d7d9dc;
@@ -1350,6 +1354,9 @@ a#scroll-top:hover {
         float: none;
         display: inline-block;
     }
+    .main-nav div > ul > li:last-child {
+        padding-right: 14px;
+    }
     .main-nav > div > ul > li .sub-menu {
         text-align: left;
         top: 55px;
@@ -1378,9 +1385,9 @@ a#scroll-top:hover {
 /*------------------------------------------------------------------------------------------------------------------- */
 @media (max-width: 767px) {
     /* Navigation */
-    .main-nav > div {
-        display: none;
-    }
+    /*.main-nav > div {*/
+    /*display: none;*/
+    /*}*/
     .main-nav .responsive-nav {
         display: block;
         width: 85%;
