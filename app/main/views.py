@@ -213,6 +213,8 @@ def user(id):
     form = MessageForm()
     user = User.query.get_or_404(id)
     if form.validate_on_submit():
+        if current_user.is_anonymous:
+            return redirect(url_for('auth.login'))
         message_board = MessageBoard(body=form.message.data,
                                      send_user=current_user._get_current_object(),
                                      receive_user=user)

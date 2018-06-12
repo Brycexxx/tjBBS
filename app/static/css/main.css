@@ -1685,6 +1685,11 @@ form.login-body div.form-group a {
         width: 70%;
     }
 }
+@media (max-width: 500px) {
+    .form-group #category label {
+        display: block;
+    }
+}
 
 .register {
     position: relative;
@@ -1724,4 +1729,7 @@ form.register-body #submit {
 }
 .mce-window {
     transform: initial !important;
+}
+.post-form {
+    margin: 30px 0 210px;
 }
