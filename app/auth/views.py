@@ -18,9 +18,7 @@ def before_request():
 @auth.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm()
-    print(form.validate_on_submit())
     if form.validate_on_submit():
-        print('test')
         data = form.data
         user = User(username=data['username'],
                     email=data['email'],
