@@ -1686,7 +1686,7 @@ form.login-body div.form-group a {
     }
 }
 @media (max-width: 500px) {
-    .form-group #category label {
+    .form-group #category+label {
         display: block;
     }
 }
