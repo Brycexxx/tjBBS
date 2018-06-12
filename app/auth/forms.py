@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     username = StringField('用户名', validators=[DataRequired(), Length(1, 64),
-                           Regexp('^(?!_)(?!.*?_$)[a-zA-Z0-9_@\u4e00-\u9fa5]+$', 0,
+                           Regexp('^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$', 0,
                                   '应户名必须是汉字、字母、数字、点和下划线的英文名')])
     email = StringField('邮箱帐号', validators=[DataRequired(), Length(1, 64), Email()])
     password = PasswordField('密码', validators=[DataRequired(), EqualTo('password2', message='密码不一致，请重新输入！')])

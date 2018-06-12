@@ -18,7 +18,9 @@ def before_request():
 @auth.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm()
+    print(form.validate_on_submit())
     if form.validate_on_submit():
+        print('test')
         data = form.data
         user = User(username=data['username'],
                     email=data['email'],
@@ -29,7 +31,7 @@ def register():
         send_email(user.email, '请确认你的帐号', 'auth/email/confirm',
                    user=user, token=token)
         flash('确认邮件已经发送到你的邮箱，请登录后再进行验证！')
-        return redirect(url_for('.login'))
+        return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
 
 @auth.route('/confirm/<token>')

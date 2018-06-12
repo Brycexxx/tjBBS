@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash
 from datetime import datetime
 from uuid import uuid4
 from sqlalchemy import or_
-import re, os
+import re, os, hashlib
 from ..uploaded_content_verify import ContentVerify
 
 
@@ -640,3 +640,14 @@ def apply_for_best(id):
     db.session.commit()
     flash("已发出申请，请等待审核")
     return redirect(url_for('main.posts'))
+
+@main.route('/weixin')
+def check_signature():
+    args = request.args
+    signature = args['signature']
+    timestamp = args['timestamp']
+    nonce = args['nonce']
+    L = [timestamp, nonce, 'xhp0204130111']
+    L.sort()
+    s = L[0] + L[1] + L[2]
+    return hashlib.sha1(s.encode('utf-8')).hexdigest() == signature
