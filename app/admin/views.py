@@ -18,8 +18,8 @@ def login():
     if form.validate_on_submit():
         data = form.data
         user = User.query.filter_by(email=data['email']).first()
-        if user.can(Permission.MODERATE):
-            if user:
+        if user:
+            if user.can(Permission.MODERATE):
                 if user.verify_password(data['password']):
                     login_user(user)
                     next = request.args.get('next')
@@ -30,10 +30,10 @@ def login():
                     flash('密码错误！', 'pwd_error')
                     return redirect(url_for('admin.login'))
             else:
-                flash('帐号不存在！', 'account_error')
+                flash('很抱歉，您没有登录权限！', 'permission_error')
                 return redirect(url_for('admin.login'))
         else:
-            flash('很抱歉，您没有登录权限！', 'permission_error')
+            flash('帐号不存在！', 'account_error')
             return redirect(url_for('admin.login'))
     return render_template('admin/login.html', form=form)
 
