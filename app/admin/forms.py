@@ -26,18 +26,6 @@ class AdminDetailForm(FlaskForm):
             "placeholder": "请输入昵称！",
         }
     )
-    email = StringField(
-        label="邮箱",
-        validators=[
-            DataRequired("邮箱不能为空！"),
-            Email("邮箱格式不正确！")
-        ],
-        description="邮箱",
-        render_kw={
-            "class": "form-control",
-            "placeholder": "请输入邮箱！",
-        }
-    )
     location = StringField(
         label="常住地",
         validators=[

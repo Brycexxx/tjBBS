@@ -9,18 +9,38 @@
             <div class="form-group">
                 <label for="input_contact">{{ form.username.label }}</label>
                 {{ form.username }}
+                {% if form.username.errors %}
+                    {% for err in form.username.errors %}
+                        <p style="color: red;">{{ err }}</p>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="input_contact">{{ form.email.label }}</label>
                 {{ form.email }}
+                {% if form.email.errors %}
+                    {% for err in form.email.errors %}
+                        <p style="color: red;">{{ err }}</p>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="input_password">{{ form.password.label }}</label>
                 {{ form.password }}
+                {% if form.password.errors %}
+                    {% for err in form.password.errors %}
+                        <p style="color: red;">{{ err }}</p>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="confirm_password">{{ form.password2.label }}</label>
                 {{ form.password2 }}
+                {% if form.password2.errors %}
+                    {% for err in form.password2.errors %}
+                        <p style="color: red;">{{ err }}</p>
+                    {% endfor %}
+                {% endif %}
             </div>
             {{ form.csrf_token }}
             {{ form.submit }}

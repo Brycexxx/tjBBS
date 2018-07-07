@@ -239,7 +239,6 @@ def userinfo():
     if request.method == 'GET':
         # 显示用户原本的信息
         form.username.data = current_user.username
-        form.email.data = current_user.email
         form.location.data = current_user.location
         form.info.data = current_user.about_me
     if form.validate_on_submit():
@@ -248,7 +247,7 @@ def userinfo():
             avatar_verify = ContentVerify()
             verify_msg, ok_or_not = avatar_verify.verify_uploaded_avatar(data["avatar"])
             if not ok_or_not:
-                flash(verify_msg)
+                flash(verify_msg, 'avatar_error')
                 return redirect(url_for('main.userinfo'))
             data["avatar"].seek(0, 0)
             file_avatar = secure_filename(form.avatar.data.filename)
@@ -260,17 +259,16 @@ def userinfo():
 
         username_count = User.query.filter_by(username=data['username']).count()
         if data['username'] != current_user.username and username_count == 1:
-            flash("昵称已经存在！")
+            flash("昵称已经存在！", 'username_error')
             return redirect(url_for('main.userinfo'))
 
         # 保存
         current_user.username = data['username']
-        current_user.email = data['email']
         current_user.about_me = data['info']
         current_user.location = data['location']
         db.session.add(current_user)
         db.session.commit()
-        flash("修改成功！")
+        flash("修改成功！", 'ok')
         return redirect(url_for('main.userinfo'))
     return render_template('users/userinfo.html', form=form)
 
@@ -367,20 +365,20 @@ def post():
     form = PostForm()
     try:
         if request.form['content'] != "" and not form.validate_on_submit():
-            flash("标题为空！")
+            flash("标题不能为空！", 'title_error')
             return redirect(url_for('main.post'))
     except:
         pass
     if form.validate_on_submit():
         content_verify = ContentVerify()
         if request.form['content'] == "":
-            flash("内容为空！")
+            flash("内容不能为空！", 'error')
             return redirect(url_for('main.post'))
         try:
             img_link = match_src(request.form['content'])
             verify_msg, ok_or_not = content_verify.verify_uploaded_images(img_link)
             if not ok_or_not:
-                flash(verify_msg[0] + "，提交失败！")
+                flash(verify_msg[0] + "，提交失败！", 'error')
                 return redirect(url_for('main.post'))
             else:
                 pass
@@ -390,10 +388,10 @@ def post():
         msg, spam_code, ok_or_not = content_verify.verify_text(text)
         if not ok_or_not:
             if spam_code == 1:
-                flash(msg)
+                flash(msg, 'error')
                 return redirect(url_for('main.post'))
             else:
-                flash(msg)
+                flash(msg, 'error')
                 check = 0
         else:
             check = 1
@@ -408,7 +406,7 @@ def post():
         db.session.add(post)
         db.session.commit()
         if check == 1:
-            flash("您的帖子已发布！")
+            flash("您的帖子已发布！", 'ok')
         return redirect(url_for('main.post'))
     return render_template('post.html', form=form)
 
@@ -640,14 +638,3 @@ def apply_for_best(id):
     db.session.commit()
     flash("已发出申请，请等待审核")
     return redirect(url_for('main.posts'))
-
-@main.route('/weixin')
-def check_signature():
-    args = request.args
-    signature = args['signature']
-    timestamp = args['timestamp']
-    nonce = args['nonce']
-    L = [timestamp, nonce, 'xhp0204130111']
-    L.sort()
-    s = L[0] + L[1] + L[2]
-    return hashlib.sha1(s.encode('utf-8')).hexdigest() == signature

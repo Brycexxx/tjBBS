@@ -8,6 +8,7 @@ from .forms import LoginForm, AdminDetailForm, PwdForm, AddModeratorForm, Bullet
 from werkzeug.utils import secure_filename
 from app.main.views import change_filename
 from werkzeug.security import generate_password_hash
+from ..uploaded_content_verify import ContentVerify
 import os
 
 
@@ -37,7 +38,7 @@ def logout():
     logout_user()
     return redirect(url_for('admin.login'))
 
-@admin.route('/')
+@admin.route('/', methods=['GET', 'POST'])
 @login_required
 @permission_required(Permission.MODERATE)
 def index():
@@ -46,12 +47,17 @@ def index():
     if request.method == 'GET':
         # 显示用户原本的信息
         form.username.data = current_user.username
-        form.email.data = current_user.email
         form.location.data = current_user.location
         form.info.data = current_user.about_me
     if form.validate_on_submit():
         data = form.data
-        if form.avatar.data != "":
+        if data["avatar"] != "":
+            avatar_verify = ContentVerify()
+            verify_msg, ok_or_not = avatar_verify.verify_uploaded_avatar(data["avatar"])
+            if not ok_or_not:
+                flash(verify_msg, 'avatar_error')
+                return redirect(url_for('admin.index'))
+            data["avatar"].seek(0, 0)
             file_avatar = secure_filename(form.avatar.data.filename)
             if not os.path.exists(current_app.config['FC_DIR']):
                 os.mkdir(current_app.config['FC_DIR'])
@@ -61,18 +67,17 @@ def index():
 
         username_count = User.query.filter_by(username=data['username']).count()
         if data['username'] != current_user.username and username_count == 1:
-            flash("昵称已经存在！")
-            return redirect(url_for('admin.userinfo'))
+            flash("昵称已经存在！", 'username_error')
+            return redirect(url_for('admin.index'))
 
         # 保存
         current_user.username = data['username']
-        current_user.email = data['email']
         current_user.about_me = data['info']
         current_user.location = data['location']
         db.session.add(current_user)
         db.session.commit()
-        flash("修改成功！")
-        return redirect(url_for('admin.userinfo'))
+        flash("修改成功！", 'ok')
+        return redirect(url_for('admin.index'))
     return render_template('admin/admin_info.html', form=form)
 
 

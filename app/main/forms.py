@@ -40,24 +40,12 @@ class UserDetailForm(FlaskForm):
         validators=[
             DataRequired("昵称不能为空！"),
             Length(1, 64),
-            Regexp('^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$', 0, '应户名必须是汉字、字母、数字、点和下划线的英文名')
+            Regexp('^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$', 0, '用户名必须是汉字、字母、数字、点和下划线的组合')
         ],
         description="账号",
         render_kw={
             "class": "form-control",
             "placeholder": "请输入昵称！",
-        }
-    )
-    email = StringField(
-        label="邮箱",
-        validators=[
-            DataRequired("邮箱不能为空！"),
-            Email("邮箱格式不正确！")
-        ],
-        description="邮箱",
-        render_kw={
-            "class": "form-control",
-            "placeholder": "请输入邮箱！",
         }
     )
     location = StringField(
