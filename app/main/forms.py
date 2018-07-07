@@ -96,7 +96,7 @@ class PwdForm(FlaskForm):
         render_kw={
             "id": "clear",
             "class": "form-control",
-            "placeholder": "请输入旧密码！",
+            "placeholder": "请输入旧密码",
         }
     )
     new_pwd = PasswordField(
@@ -108,7 +108,7 @@ class PwdForm(FlaskForm):
         description="新密码",
         render_kw={
             "class": "form-control",
-            "placeholder": "请输入新密码！",
+            "placeholder": "请输入新密码",
         }
     )
     confirm_new_pwd = PasswordField(
@@ -120,7 +120,7 @@ class PwdForm(FlaskForm):
         description="确认新密码",
         render_kw={
             "class": "form-control",
-            "placeholder": "请确认新密码！",
+            "placeholder": "请确认新密码",
         }
     )
     submit = SubmitField(

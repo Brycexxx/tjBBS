@@ -19,17 +19,22 @@ def login():
         data = form.data
         user = User.query.filter_by(email=data['email']).first()
         if user.can(Permission.MODERATE):
-            if user is not None and user.verify_password(data['password']):
-                login_user(user)
-                next = request.args.get('next')
-                if next is None or next.startswith('/'):
-                    next = url_for('admin.index')
-                return redirect(next)
+            if user:
+                if user.verify_password(data['password']):
+                    login_user(user)
+                    next = request.args.get('next')
+                    if next is None or next.startswith('/'):
+                        next = url_for('admin.index')
+                    return redirect(next)
+                else:
+                    flash('密码错误！', 'pwd_error')
+                    return redirect(url_for('admin.login'))
             else:
-                flash("无效的账户或密码")
+                flash('帐号不存在！', 'account_error')
+                return redirect(url_for('admin.login'))
         else:
-            flash('很抱歉，您没有登录权限！')
-
+            flash('很抱歉，您没有登录权限！', 'permission_error')
+            return redirect(url_for('admin.login'))
     return render_template('admin/login.html', form=form)
 
 @admin.route('/logout')
@@ -131,12 +136,12 @@ def edit_pwd():
     if form.validate_on_submit():
         data = form.data
         if not current_user.verify_password(data['old_pwd']):
-            flash("旧密码错误！")
+            flash("旧密码错误！", 'error')
             return redirect(url_for('main.edit_pwd'))
         current_user.password_hash = generate_password_hash(data['new_pwd'])
         db.session.add(current_user._get_current_object())
         db.session.commit()
-        flash("密码修改成功，请重新登录！")
+        flash("密码修改成功，请重新登录！", 'ok')
         return redirect(url_for('auth.logout'))
     return render_template('admin/edit_pwd.html', form=form)
 

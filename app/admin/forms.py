@@ -3,8 +3,8 @@ from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField
 
 class LoginForm(FlaskForm):
-    email = StringField('邮箱帐号', validators=[DataRequired(), Length(1, 64), Email()])
-    password = PasswordField('密码', validators=[DataRequired()])
+    email = StringField('邮箱帐号', validators=[DataRequired("帐号不能为空！"), Length(1, 64), Email()])
+    password = PasswordField('密码', validators=[DataRequired("密码不能为空！")])
     submit = SubmitField('登录',
                          render_kw={
                              'style': 'margin-top: 25px',

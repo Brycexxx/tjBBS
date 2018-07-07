@@ -280,13 +280,13 @@ def edit_pwd():
     if form.validate_on_submit():
         data = form.data
         if not current_user.verify_password(data['old_pwd']):
-            flash("旧密码错误！")
+            flash("旧密码错误！", 'error')
             return redirect(url_for('main.edit_pwd'))
         current_user.password_hash = generate_password_hash(data['new_pwd'])
         form.old_pwd.data = ''
         db.session.add(current_user._get_current_object())
         db.session.commit()
-        flash("密码修改成功，请重新登录！")
+        flash("密码修改成功，请重新登录！", 'ok')
         return redirect(url_for('auth.logout'))
     return render_template('users/edit_pwd.html', form=form)
 
