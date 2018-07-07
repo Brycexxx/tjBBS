@@ -66,13 +66,19 @@ def login():
     if form.validate_on_submit():
         data = form.data
         user = User.query.filter_by(email=data['email']).first()
-        if user is not None and user.verify_password(data['password']):
-            login_user(user, remember=data['rememble_me'])
-            next = request.args.get('next')
-            if next is None or next.startswith('/'):
-                next = url_for('main.index')
-            return redirect(next)
-        flash('无效的用户名或密码')
+        if user:
+            if user.verify_password(data['password']):
+                login_user(user, remember=data['rememble_me'])
+                next = request.args.get('next')
+                if next is None or next.startswith('/'):
+                    next = url_for('main.index')
+                return redirect(next)
+            else:
+                flash('密码错误！', 'pwd_error')
+                return redirect(url_for('auth.login'))
+        else:
+            flash('帐号不存在！', 'account_error')
+            return redirect(url_for('auth.login'))
     return render_template('auth/login.html', form=form)
 
 

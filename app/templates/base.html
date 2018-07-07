@@ -58,7 +58,7 @@
 {% block content %}
     {% block index %}{% endblock %}
     <div class="container">
-        {% for message in get_flashed_messages() %}
+        {% for message in get_flashed_messages(category_filter=['ok']) %}
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{ message }}
