@@ -27,6 +27,11 @@
                                 </label>
                             </div>
                             {{ form.message }}
+                            {% if form.message.errors %}
+                            {% for err in form.message.errors %}
+                                <p style="color: red;">{{ err }}</p>
+                            {% endfor %}
+                        {% endif %}
                         </div>
                         <div class="center">
                             {{ form.csrf_token }}

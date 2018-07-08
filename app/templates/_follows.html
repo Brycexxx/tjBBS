@@ -1,6 +1,6 @@
-<div class="panel panel-warning">
+<div class="panel panel-system">
     <div class="panel-heading">
-        <h3 class="panel-title"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+        <h3 class="panel-title"><span class="glyphicon glyphicon-apple"></span>&nbsp;
             {% if endpoint == 'main.followers' %}
                 {{ user.username }}的关注
             {% else %}
@@ -31,18 +31,24 @@
                                 这个人很神秘，什么也没留下......
                             {% endif %}
                             <div class="post-footer">
-                                {% if current_user != post %}
-                                    <a href="{{ url_for('main.follow', id=follow['user'].id) }}">
-                                        <span class="label label-primary">关注</span>
-                                    </a>
-                                    <a href="#">
+                                {% if current_user != follow['user'] %}
+                                    {% if not current_user.is_following(follow['user']) %}
+                                        <a href="{{ url_for('main.follow', id=follow['user'].id) }}">
+                                            <span class="label label-primary">关注</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ url_for('main.unfollow', id=follow['user'].id) }}">
+                                            <span class="label label-primary">取消关注</span>
+                                        </a>
+                                    {% endif %}
+                                    <a href="{{ url_for('main.user', id=follow['user'].id) }}">
                                         <span class="label label-success">留言</span>
                                     </a>
                                 {% endif %}
-                                <a href="#">
-                            <span class="label label-primary">
-                                {{ follow['user'].posts.count() }}&nbsp;帖子
-                            </span>
+                                <a href="{{ url_for('main.user', id=follow['user'].id) }}">
+                                    <span class="label label-primary">
+                                        {{ follow['user'].posts.count() }}&nbsp;帖子
+                                    </span>
                                 </a>
                             </div>
                         </div>

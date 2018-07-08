@@ -461,10 +461,11 @@ def post_detail(id):
                 comment = Comment(body=comment_body, post=post, user=current_user._get_current_object())
                 db.session.add(comment)
                 db.session.commit()
-                flash("您的评论已发布")
+                flash("您的评论已发布", 'ok')
                 return redirect(url_for('main.post_detail', id=post.id, page=-1))
             else:
-                flash("请输入描述内容！")
+                flash("请输入评论内容！", 'comment_error')
+                return redirect(url_for('main.post_detail', id=post.id, page=-1))
         else:
             return redirect(url_for('auth.login'))
 

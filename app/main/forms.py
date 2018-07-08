@@ -27,7 +27,7 @@ class SearchForm(FlaskForm):
 
 
 class ReplyToCommentForm(FlaskForm):
-    reply = StringField('回复评论：', validators=[DataRequired()],
+    reply = StringField('回复评论：', validators=[DataRequired("内容不能为空！")],
                         render_kw={
                             'class': 'reply-box-size'
                         })
@@ -133,7 +133,7 @@ class PwdForm(FlaskForm):
 class MessageForm(FlaskForm):
     message = TextAreaField(
         label="留言板",
-        validators=[DataRequired("请输入你的留言")],
+        validators=[DataRequired("留言不能为空！")],
         render_kw={
             "class": "form-control",
             "rows": 8
