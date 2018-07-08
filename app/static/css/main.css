@@ -1733,3 +1733,22 @@ form.register-body #submit {
 .post-form {
     margin: 30px 0 210px;
 }
+#toggle-checkbox:checked + div {
+    display: block !important;
+}
+.toggle-label {
+    position: relative;
+    left: 50%;
+    margin-left: -49px;
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.toggle-label:hover {
+    color: #395996;
+}
+.caret {
+    width: 6px;
+    height: 10px;
+}

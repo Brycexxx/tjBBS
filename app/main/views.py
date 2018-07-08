@@ -56,7 +56,7 @@ def hot():
         page=page, per_page=12, error_out=False
     )
     posts = pagination.items
-    title = "热门帖子"
+    title = "热门"
     endpoint = "main.hot"
     return render_template('posts_list.html', pagination=pagination, posts=posts, title=title, endpoint=endpoint)
 

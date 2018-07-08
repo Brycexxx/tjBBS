@@ -5,7 +5,9 @@
 {% block page_content %}
     <!--内容-->
     <div id="container">
-        <div class="col-md-2">
+        <label class="toggle-label hidden-lg hidden-md" for="toggle-checkbox">所有分类&nbsp;<span class="caret"></span></label>
+        <input id="toggle-checkbox" class="hidden" type="checkbox">
+        <div class="col-md-2 hidden-xs hidden-sm">
             <div class="list-group side-bar">
                 <a class="list-group-item" id="hot" href="{{ url_for('main.hot') }}">热门</a>
                 <a class="list-group-item" id="new" href="{{ url_for('main.new') }}">最新</a>
