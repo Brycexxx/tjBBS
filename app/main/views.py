@@ -496,10 +496,10 @@ def post_detail(id):
 def follow(id):
     user = User.query.get_or_404(id)
     if current_user.is_following(user):
-        flash("您已经关注该用户了")
+        flash("您已经关注该用户了", 'ok')
         return redirect(url_for('main.user', id=id))
     current_user.follow(user)
-    flash("您成功地关注了%s" % user.username)
+    flash("您成功地关注了%s" % user.username, 'ok')
     return redirect(url_for('main.user', id=id))
 
 
@@ -508,10 +508,10 @@ def follow(id):
 def unfollow(id):
     user = User.query.get_or_404(id)
     if not current_user.is_following(user):
-        flash("您还没关注该用户")
+        flash("您还没关注该用户", 'ok')
         return redirect(url_for('main.user', id=id))
     current_user.unfollow(user)
-    flash("您取消了关注%s" % user.username)
+    flash("您取消了关注%s" % user.username, 'ok')
     return redirect(url_for('main.user', id=id))
 
 
@@ -557,7 +557,7 @@ def collect(id):
     post = Post.query.get_or_404(id)
     current_user.collect(post)
     db.session.commit()
-    flash("您已经成功收藏该帖！")
+    flash("您已经成功收藏该帖！", 'ok')
     return redirect(url_for('main.post_detail', id=post.id))
 
 
@@ -567,7 +567,7 @@ def cancel_collect(id):
     post = Post.query.get_or_404(id)
     current_user.cancel_collect(post)
     db.session.commit()
-    flash("您已经取消收藏！")
+    flash("您已经取消收藏！", 'ok')
     return redirect(url_for('main.post_detail', id=post.id))
 
 
@@ -637,5 +637,5 @@ def apply_for_best(id):
     )
     db.session.add(apply_for_best)
     db.session.commit()
-    flash("已发出申请，请等待审核")
+    flash("已发出申请，请等待审核", 'ok')
     return redirect(url_for('main.posts'))
