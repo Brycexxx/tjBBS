@@ -221,7 +221,7 @@ def user(id):
                                      receive_user=user)
         db.session.add(message_board)
         db.session.commit()
-        flash("留言成功")
+        flash("留言成功", 'ok')
         form.message.data = ""
     page = request.args.get('page', 1, type=int)
     pagination = user.posts.order_by(Post.add_time.desc()).paginate(
