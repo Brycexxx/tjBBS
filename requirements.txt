@@ -22,7 +22,7 @@ Jinja2==2.10
 Mako==1.0.7
 MarkupSafe==1.0
 numpy==1.14.4
-opencv-python==3.4.1.15
+opencv-python==4.2.0.32
 PyMySQL==0.8.1
 python-dateutil==2.7.3
 python-editor==1.0.3
